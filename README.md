@@ -1,4 +1,4 @@
-# api_dentalapp Documentation
+# Documentation
 
 # API REQUESTS
 1. login_post
