@@ -183,7 +183,6 @@ class Clinic extends CI_Controller
         return $this->messages();
        
     }
-    
     public function changePassword_post(){
         $postData= $this->security->xss_clean($this->input->post());
         $changepwd = $this->requestHandler->changepwd($posData);
