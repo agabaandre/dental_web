@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="Agaba Andrew">
   <title>Employee Scheduling System</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cmxform.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/lib/validationEngine.jquery.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style2.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/cmxform.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/js/lib/validationEngine.jquery.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style2.css">
 	<!-- Scripts -->
-	<script href="<?php echo base_url(); ?>assets/js/lib/jquery.min.js" type="text/javascript"></script>
-	<script href="<?php echo base_url(); ?>assets/js/lib/jquery.validate.min.js" type="text/javascript"></script>
+	<script href="<?php echo base_url();?>assets/js/lib/jquery.min.js" type="text/javascript"></script>
+	<script href="<?php echo base_url();?>assets/js/lib/jquery.validate.min.js" type="text/javascript"></script>
 	<script>
 	/*$.validator.setDefaults({
 		submitHandler: function() { alert("submitted!"); }
