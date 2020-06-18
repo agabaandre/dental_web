@@ -13,7 +13,7 @@ class Clinic extends CI_Controller
         $this->key = urldecode($this->uri->segment(3));
     }
 
-    public function index_get()
+    public function index()
     {
          $this->load->view('login'); 
     }
