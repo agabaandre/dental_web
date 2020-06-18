@@ -4,9 +4,9 @@
 
       <header class="main-header static-top" >
         <a href="" class="logo"  style="background:#7b9f0e url(<?php echo base_url(); ?>.'assets/images/header_title.png') 0 0 repeat-x; color:white;">
-          <span class="logo-lg"><b>ESS</b></span>
+          <span class="logo-lg"><b>E-DENTAL</b></span>
         </a>
-        <nav class="navbar navbar-static-top" role="navigation" style="background-image:url('assets/images/header_bg.png') 0 0; background-color:#7b9f0e; color:white;">
+        <nav class="navbar navbar-static-top" role="navigation" style=" background:linear-gradient(135deg, rgba(30,29,31,1) 0%, rgb(142, 33, 51) 100%); color:white;">
           <a href="#" class="" data-toggle="offcanvas">
             <span class="" style="background:#003248 no-repeat; width:40px; height:40px; float:left; margin-left:2px; margin-top:7px;"></span>
           </a>
@@ -40,10 +40,10 @@
                   </li>
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="<?php echo base_url();?>index.php/Users/newPwd" class="btn btn-default">Change Password</a>
+                      <a href="<?php echo base_url();?>index.php/clinic/change_pwd" class="btn btn-default">Change Password</a>
                     </div>
                     <div class="pull-right">
-                      <a href="<?php echo base_url();?>index.php/Auth/logout" class="btn btn-default">Sign out</a>
+                      <a href="<?php echo base_url();?>index.php/clinic/logout" class="btn btn-default">Sign out</a>
                     </div>
                   </li>
                 </ul>

@@ -25,7 +25,7 @@ class Clinic extends CI_Controller
         $userInfo = $this->authHandler->authenticate($data);
     
         if($userInfo) {
-        $session->set($userInfo);
+            $this->session->set_userdata($userInfo);
         $this->load->view('main','dashbaord');
         } else {
            $data['message']='Authentication Failed';
@@ -183,7 +183,10 @@ class Clinic extends CI_Controller
         return $this->messages();
        
     }
-    public function changePassword_post(){
+    public function changePassword(){
+        $data['title'] = "Change Password";
+        $data['view'] = "change_password";
+        $data['heading'] = "Change Password";
         $postData= $this->security->xss_clean($this->input->post());
         $changepwd = $this->requestHandler->changepwd($posData);
         if ($changepwd){
@@ -194,7 +197,20 @@ class Clinic extends CI_Controller
         $data['message']="Changed";
         $this->load->view("main",$data);
         }
+    }
+    public function changePwd(){
+
+        $postData= $this->security->xss_clean($this->input->post());
+        $changepwd = $this->requestHandler->changepwd($posData);
+        if ($changepwd){
+        $data['message']="Changed";
+        $this->load->view("main",$data);
         }
+        else{
+        $data['message']="Changed";
+        $this->load->view("main",$data);
+        }
+    }
 
 
 }

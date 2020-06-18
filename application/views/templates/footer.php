@@ -1,5 +1,5 @@
-<footer class="main-footer"style="background:url(images/header_bg.png) 0 0 repeat-x; color:white;background-color:#003248; font-size:10px; margin-bottom:0px;" >
-      <strong>Copyright &copy; Agaba Andrew  <?php echo date("Y")." "; ?> <a href="http://takenet.net" target="blank"> </a> TEL: 070278688</strong> All rights reserved <version style="float:right;">Developed by Agaba Andrew</version>
+<footer class="main-footer"style="color:white;background-color:#222d32; font-size:10px; margin-bottom:0px;" >
+      <strong>Copyright &copy; St. Marys Dental Clinic  <?php echo date("Y")." "; ?> <a href="http://timelead.com" target="blank"> </a> TEL: 0702787688</strong> All rights reserved <version style="float:right;">Developed by TimeLead Enterprises</version>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>

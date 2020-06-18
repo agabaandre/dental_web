@@ -3,8 +3,8 @@
 Class Auth extends CI_Model {
 
     public function authenticate($userdata) {
-        $username = $userdata->username;
-        $password = $userdata->password;
+        $username = $userdata['username'];
+        $password = $userdata['password'];
         $this->db->where('username', $username);
         $this->db->where('password', md5($password));
         $this->db->where('status','1');
