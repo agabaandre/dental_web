@@ -19,7 +19,7 @@ class Clinic extends CI_Controller
     }
    
 
-    public function login_post()
+    public function login()
     {
         $data = $this->input->post();
         $userInfo = $this->authHandler->authenticate($data);
