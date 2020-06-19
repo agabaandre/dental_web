@@ -57,12 +57,12 @@ class Clinic extends CI_Controller
         $data['heading']="View Requests";
         $requestData=$this->requestHandler->cancelRequest($requestId);
         if ($requestData){
-        $data['message']='Cancelled';
+            $this->session->set_flashdata('message', '<p style="color:green;">Cancelled!<p>');
         $data['requests'] = $this->requestHandler->get_requests();
         $this->load->view('main', $data);
         }
         else {
-        $data['message']="Failed!";
+            $this->session->set_flashdata('message', '<p style="color:red;">Failed!<p>');
         $data['requests'] = $this->requestHandler->get_requests();
         $this->load->view('main', $data);
 
@@ -113,25 +113,25 @@ class Clinic extends CI_Controller
         $postData = $this->input->post();
         $today=date('Y-m-d');
         if($this->input->post('request_date') < $today){
-        $data['message']='Past date';
+        $this->session->set_flashdata('message', '<p style="color:red;">Past Date<p>');
         $this->load->view('main',$data);
         }
         elseif (empty($this->input->post('name'))) {
-        $data['message']='Provide name';
+        $this->session->set_flashdata('message', '<p style="color:red;">Provide Name!<p>');
         $this->load->view('main',$data);
          }
         elseif (empty($this->input->post('mobile'))) {
-        $data['message']='Provide Contact';
+        $this->session->set_flashdata('message', '<p style="color:red;">Provide Contact!<p>');
         $this->load->view('main',$data);
         }
         else {
         $result = $this->requestHandler->saveRequest($postData);
         if($result) {
-         $data['message']='Sent';
+        $this->session->set_flashdata('message', '<p style="color:green;">Sent!<p>');
          $this->load->view('main',$data);
         } 
         else {
-        $data['message']='Failed';
+        $this->session->set_flashdata('message', '<p style="color:red;"> Failed!<p>');
         $this->load->view('main',$data);
         
         }
@@ -146,22 +146,22 @@ class Clinic extends CI_Controller
         $data['heading'] = "New Doctor";
     
         if(empty($this->input->post('mobile'))){
-            $data['message']='Provide Contact';
+        $this->session->set_flashdata('message', '<p style="color:red;">Provide Contact!<p>');
             $this->load->view('main',$data);
         }
         elseif (empty($postData->name)) {
-            $data['message']='Provide Name';
+        $this->session->set_flashdata('message', '<p style="color:red;">Provide Name!<p>');
             $this->load->view('main',$data);
         }
     
         else {
         $result = $this->requestHandler->add_doctor($postData);
         if($result) {
-            $data['message']='Saved';
+            $this->session->set_flashdata('message', '<p style="color:red;">Saved<p>');
             $this->load->view('main',$data);
           } 
         else {
-            $data['message']='Failed';
+            $this->session->set_flashdata('message', '<p style="color:red;">Failed!<p>');
             $this->load->view('main',$data);
         }
       }
@@ -177,7 +177,7 @@ class Clinic extends CI_Controller
         $this->load->view('main',$data);
         }
         else{
-        $data['message'] = "No Messages";
+        $this->session->set_flashdata('message', '<p style="color:red;">No Messages!<p>');
         $this->load->view('main',$data);
        }
        }
@@ -196,24 +196,18 @@ class Clinic extends CI_Controller
         $postData= $this->security->xss_clean($this->input->post());
         $changepwd = $this->requestHandler->changepwd($posData);
         if ($changepwd){
-        $data['message']="Changed";
+        $this->session->set_flashdata('message', '<p style="color:red;">Changed!<p>');
         $this->load->view("main",$data);
         }
         else{
-        $data['message']="Changed";
+        $this->session->set_flashdata('message', '<p style="color:red;">Failed!<p>');
         $this->load->view("main",$data);
         }
     }
     public function changePwd(){
-
-        $postData= $this->security->xss_clean($this->input->post());
-        $changepwd = $this->requestHandler->changepwd($posData);
-        if ($changepwd){
-        $data['message']="Changed";
-        $this->load->view("main",$data);
-        }
-        else{
-        $data['message']="Changed";
+        $data['title'] = "Change Password";
+        $data['view'] = "change_password";
+        $data['heading'] = "Change Password";
         $this->load->view("main",$data);
         }
     }
