@@ -494,12 +494,13 @@ $(window).on('resize', function(){
     
     <div class='box-login'>
     <img src="<?php echo base_url(); ?>assets/images/dental.png" width="120" height="120">
-    <p style="color:blue;"><?php echo $this->session->flashdata('msg'); ?></p>
+    <p style="color:blue;"><?php echo $this->session->flashdata('message'); ?></p>
       <form class='fieldset-body' id='login_form' role="form" method="post" action="<?php echo base_url(); ?>clinic/login">
         
         <p class='field'>
        
-          <label for='username'>PHONE NO/ USERNAME</label>
+		  <label for='username'>PHONE NO/ USERNAME</label>
+	
           <input type='text'  name='username' title='Username' required>
         </p>
       	  <p class='field'>

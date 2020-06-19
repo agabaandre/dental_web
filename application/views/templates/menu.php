@@ -32,8 +32,8 @@
                     <form class="form-inline" action="" method="post">
                     <select class="form-control" name="language" onchange='this.form.submit()' >
                     <option>Select Language</option>
-                    <option value="en_us.php">English</option>
-                    <option value="fr_fr.php">French</option>
+                    <option value="en_us.php" selected>English</option>
+                   
                     </select>
                     </form>
           </div>
@@ -68,7 +68,7 @@
 		 echo'<li class="treeview">';
 		   }?>
               <a href="<?php echo base_url()?>index.php/Auth/home">
-              <i class="glyphicon glyphicon-home" style="color:lightblue;"></i><span>Home</span> <i class="fa fa-angle-left pull-right"></i>
+              <i class="glyphicon glyphicon-phone fa-lg" style="color:lightblue;"></i><span>Dashboard</span> <i class=""></i>
               </a>
               </li>
 			<?php if (in_array($data['template'],array('rosta'))){
@@ -80,7 +80,7 @@
 			<?php  if  ($_SESSION['usertype']=='admin' || $_SESSION['usertype']=='hr')
 		    	 { ?>
               <a href="<?php echo base_url();?>index.php/Attendance/roster">
-               <i class="glyphicon glyphicon-refresh" style="color:lightblue;"></i>
+               <i class="glyphicon glyphicon-refresh fa-lg" style="color:lightblue;"></i>
                <span>Schedule Employees</span>
                <span class="label label-primary pull-right"></span>
               </a>
@@ -95,7 +95,7 @@
 			  echo'<li class="treeview">';
 		     }?>
               <a href="dashboard.php?action=view_employee">
-                <i class="glyphicon glyphicon-th-list" style="color:lightblue;"></i>
+                <i class="glyphicon glyphicon-th-list fa-lg" style="color:lightblue;"></i>
                 <span>Employee</span>
                 <span class="label label-primary pull-right"></span>
               </a>
@@ -116,7 +116,7 @@
            if  	($_SESSION['usertype'] =='admin')
 		      { ?>
               <a href="<?php echo base_url();?>index.php/Employee/import">
-                <i class="glyphicon glyphicon-upload" style="color:lightblue;"></i>
+                <i class="glyphicon glyphicon-upload fa-lg" style="color:lightblue;"></i>
                 <span>Upload Multiple Employees</span>
                 <span class="label label-primary pull-right"></span>
               </a>
@@ -130,7 +130,7 @@
 			    echo'<li class="treeview">';
 		          }?>
               <a href="<?php echo base_url();?>index.php/Attendance/reports">
-              <i class="glyphicon glyphicon-th-list" style="color:lightblue;"></i>
+              <i class="glyphicon glyphicon-th-list fa-lg" style="color:lightblue;"></i>
               <span>Reports</span>
               <span class="label label-primary pull-right"></span>
               </a>
@@ -142,7 +142,7 @@
 			echo'<li class="treeview">';
 		           }?>
               <a href="">
-                   <i class="glyphicon glyphicon-cog" style="color:lightblue;"></i>
+                   <i class="glyphicon glyphicon-cog fa-lg" style="color:lightblue;"></i>
                   <span class="">System Settings</span>
                    <span class="label label-primary pull-right"></span>
                   </a>
@@ -171,7 +171,7 @@
 			echo'<li class="treeview">';
 		           }?>
               <a href="<?php echo base_url();?>index.php/Users/newPwd">
-                <i class="glyphicon glyphicon-lock" style="color:lightblue;"></i>
+                <i class="glyphicon glyphicon-lock fa-lg" style="color:lightblue;"></i>
                <span>Change Password</span>
                 <span class="label label-primary pull-right"></span>
               </a>

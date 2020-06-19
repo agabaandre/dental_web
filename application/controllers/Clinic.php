@@ -17,19 +17,25 @@ class Clinic extends CI_Controller
     {
          $this->load->view('login'); 
     }
-   
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect("clinic/login");    
+    }
 
     public function login()
     {
         $data = $this->input->post();
         $userInfo = $this->authHandler->authenticate($data);
-    
+        $data['title']="Dashboard";
+        $data['view']="home";
+        $data['heading']="Dashboard";
         if($userInfo) {
             $this->session->set_userdata($userInfo);
-        $this->load->view('main','dashbaord');
+        $this->load->view('main',$data);
         } else {
-           $data['message']='Authentication Failed';
-            $this->load->view('login',$data['mesasge']);
+            $this->session->set_flashdata('message', '<p style="color:red;">Authentification Failed!<p>');
+           $this->load->view('login');
         }
         
     }

@@ -18,7 +18,7 @@
   <div class="content-wrapper">
       <section class="content" >
             <?php
-                  $viewname=$data['template'];
+                  $viewname=$view;
                   include($viewname.'.php');						
             ?>						
       </section>
