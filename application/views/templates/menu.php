@@ -100,7 +100,7 @@
                 <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
-                <li class=""><a href="<?php echo base_url();?>clinic/new_Doctor">Register New Employee</a></li>
+                <li class=""><a href="<?php echo base_url();?>clinic/addDoctor">Register New Employee</a></li>
 			        	<li class=""><a href="<?php echo base_url();?>clinic/viewDoctor">Employee List</a></li>
               </ul>
             </li>
