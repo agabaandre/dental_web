@@ -58,7 +58,8 @@
 			 font:1.5em;
 			 
 			 
-		  }
+      }
+  
       @media print {
     .form-control {
         display: none;

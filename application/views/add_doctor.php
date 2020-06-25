@@ -1,3 +1,4 @@
+
 <script>
 $.fn.datepicker.defaults.format = "yyyy/mm/dd";
 $('.datepicker').datepicker({
@@ -6,15 +7,15 @@ $('.datepicker').datepicker({
 <div class="col-md-12">
           <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
-             <li class="active"><a href="<?php  echo base_url();?>clinic/addDoctor">Register New Employee</a></li>
-				<li class=""><a href="<?php echo base_url();?>clinic/viewDoctor">Employee List</a></li>
+             <li class="active"><a href="<?php  echo base_url();?>clinic/addDoctor">Register Employee</a></li>
+				<!-- <li class=""><a href="<?php echo base_url();?>clinic/viewDoctor">Employee List</a></li>-->
                  </ul>
 		   </div>
                 <div class="box-header with-border">
                   <h5 class="box-title">Register Doctor</h5>
                 </div>
 		    			
-				<div class="col-md-4">
+				<div class="col-md-3">
 				<form name="" id="data_form" method="post" action="<?php echo base_url();?>index.php/Employee/insertEmployee">
 					<div id="">
                       <label>WORK ID:  <span style="color:red"></span></label> 
@@ -37,7 +38,7 @@ $('.datepicker').datepicker({
 					
 				<div id="">
                       <label>Cadre:  <span style="color:red">*</span></label>
-                    <select name="cadre" class="form-control select2" id="myselect" required>
+                    <select name="cadre" class="form-control select2" id="myselect" required style="width:100%;">
 						<option disabled selected>Select Cadre </option>
 							<?php 
 							$jobdata=array("Dental Surgeon"=>"Dental Surgeon","Public Health Dental Officer"=>"Public Health Dental Officer",
@@ -51,13 +52,75 @@ $('.datepicker').datepicker({
 		           </select>
 				</div>
 				   <input type="hidden" value="1" name="flag">
-</div>
-			
 
-<div class="col-md-12">
 			       <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
                      <button  class="btn btn-primary" type="submit" ><span class="glyphicon glyphicon-plus"></span>Save</button>
 					 <button class="btn btn-danger"  type="reset" ><span class="glyphicon glyphicon-repeat"></span> Reset</button>
                      </form>
 				   </div>	  
 </div>
+
+
+<div class="col-md-9"> 
+<div class="box-header with-border">
+                  <h5 class="box-title">Doctor List</h5>
+</div>
+      <table id="mydata" class="table table-bordered table-responsive">
+                    <thead>
+                      <tr>
+					    <th style="width:2%;">No</th>
+					   <th style="width:22%;">Work ID</th>
+                        <th style="width:20%;">Name</th>
+						<th style="width:20%;">Cadre</th>							
+						<th style="width:10%;">Telephone</th>							
+						<th style="width:10%;">Email</th>
+						<?php ?><th style="width:10%;">Status</th>
+						<th style="width:10%;">Edit</th> <?php ?>
+                      </tr>
+                    </thead>
+<tbody>       
+<?php
+    foreach($doctors as $row) {
+    ?>
+	  <tr>  <td><?php echo $i++;?></td>
+	  		<td><?php $row->work_id;?></td>
+            <td><?php $id=$row->id;?><?php echo $row->name;?></td>
+			<td><?php echo  $active_op=$row->cadre;?></td>
+			<td><?php echo $facility=$row->mobile;?></td>
+			<td><?php echo $facility=$row->email;?></td>
+	        <td>
+	           <?php
+                       //Flag Raiser
+				 $status=$row->flag;
+				   $space="----|";
+					  if ($status==0){ ?>
+						  <form action='<?php echo base_url();?>clinic/updateDoctor' method='post'>
+						  <input type='hidden' value="1" name='flag'>
+						  <input type='hidden' value='<?php echo $id; ?> ' name='uuid'>
+						 <button type='submit'  class='btn btn-sm btn-danger' ><span class='glyphicon glyphicon-circle-remove'></span>Not Active</button>
+						        </form>
+					<?php  } 
+					  else { ?>
+						<form action='<?php echo base_url();?>clinic/updateDoctor' method='post'>
+						  <input type='hidden' value="0" name='flag'>
+						  <input type='hidden' value='<?php echo $id; ?>' name='uuid'>
+						 <button type='submit'  class='btn btn-sm btn-success' ><span class='glyphicon glyphicon-ok'></span>Active</button>
+						 </form> 
+					<?php  }
+					  
+					  ?>
+			</td>
+			<td> </td>
+	
+	 </tr>
+    <?php	
+    }
+    ?>
+	 </tbody>
+        <tfoot>
+      </tfoot>
+    </table>
+	</div>
+</div>
+
+	
