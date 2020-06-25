@@ -39,6 +39,16 @@ class Clinic extends CI_Controller
         }
         
     }
+    public function dashboard()
+    {
+        $data = $this->input->post();
+        $userInfo = $this->authHandler->authenticate($data);
+        $data['title']="Dashboard";
+        $data['view']="home";
+        $data['heading']="Dashboard";
+        $this->load->view('main',$data);
+        
+    }
   
     public function requests()
     {
@@ -137,6 +147,14 @@ class Clinic extends CI_Controller
         }
         }
     }
+    public function addDoctor()
+    {
+       // print_r($postData);
+        $data['title'] = "Add Doctor";
+        $data['view'] = "add_doctor";
+        $data['heading'] = "New Doctor";
+        $this->load->view('main',$data);
+     }
     public function newdoctor()
     {
         $postData= $this->input->post();
@@ -210,7 +228,7 @@ class Clinic extends CI_Controller
         $data['heading'] = "Change Password";
         $this->load->view("main",$data);
         }
-    }
+    
 
 
 }

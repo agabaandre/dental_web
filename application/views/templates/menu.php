@@ -8,7 +8,7 @@
         </a>
         <nav class="navbar navbar-static-top" role="navigation" style=" background:linear-gradient(135deg, rgba(30,29,31,1) 0%, rgb(142, 33, 51) 100%); color:white;">
           <a href="#" class="" data-toggle="offcanvas">
-            <span class="" style="background:#003248 no-repeat; width:40px; height:40px; float:left; margin-left:2px; margin-top:7px;"></span>
+            <span class="fa fa-outdent" style="background:#003248 no-repeat; width:40px; height:40px; float:left; margin-left:2px; margin-top:7px;"></span>
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -67,7 +67,7 @@
 		   else{
 		 echo'<li class="treeview">';
 		   }?>
-              <a href="<?php echo base_url()?>index.php/Auth/home">
+              <a href="<?php echo base_url()?>clinic/dashboard">
               <i class="glyphicon glyphicon-phone fa-lg" style="color:lightblue;"></i><span>Dashboard</span> <i class=""></i>
               </a>
               </li>
@@ -79,9 +79,9 @@
 		     }?>
 			<?php  if  ($_SESSION['usertype']=='admin' || $_SESSION['usertype']=='hr')
 		    	 { ?>
-              <a href="<?php echo base_url();?>index.php/Attendance/roster">
+              <a href="<?php echo base_url();?>index.php/climic/schedule">
                <i class="glyphicon glyphicon-refresh fa-lg" style="color:lightblue;"></i>
-               <span>Schedule Employees</span>
+               <span>Schedule Doctors</span>
                <span class="label label-primary pull-right"></span>
               </a>
             </li>
@@ -94,36 +94,19 @@
 		     else{
 			  echo'<li class="treeview">';
 		     }?>
-              <a href="dashboard.php?action=view_employee">
+              <a href="#">
                 <i class="glyphicon glyphicon-th-list fa-lg" style="color:lightblue;"></i>
                 <span>Employee</span>
                 <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
-                <li class=""><a href="<?php echo base_url();?>index.php/Employee/addEmployee">Register New Employee</a></li>
-			        	<li class=""><a href="<?php echo base_url();?>index.php/Employee/viewEmployee">Employee List</a></li>
+                <li class=""><a href="<?php echo base_url();?>clinic/new_Doctor">Register New Employee</a></li>
+			        	<li class=""><a href="<?php echo base_url();?>clinic/viewDoctor">Employee List</a></li>
               </ul>
             </li>
          			  
-		    <?php if (in_array($data['template'],array('import'))){
-          echo'<li class="active treeview">';
-	   		}
-		      else{
-		    	echo'<li class="treeview">';
-		     }?>
-			   	<?php 
-      
-           if  	($_SESSION['usertype'] =='admin')
-		      { ?>
-              <a href="<?php echo base_url();?>index.php/Employee/import">
-                <i class="glyphicon glyphicon-upload fa-lg" style="color:lightblue;"></i>
-                <span>Upload Multiple Employees</span>
-                <span class="label label-primary pull-right"></span>
-              </a>
-             </li>
-		       <?php  } ?>
 			
-			   <?php if (in_array($data['reports'],array('reports'))){
+			   <?php if (in_array($view,array('reports'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -135,7 +118,7 @@
               <span class="label label-primary pull-right"></span>
               </a>
             </li>
-			<?php if ( in_array($data['template'],array('manage_district','manage_departments','manage_job','manage_facility','manage_users'))){
+			<?php if ( in_array($view,array('users','services'))){
                  echo'<li class="active treeview">';
 		          	}
 		           else{
@@ -149,17 +132,13 @@
               <ul class="treeview-menu">
               <?php  if  	($_SESSION['usertype'] =='admin')
 		             { ?>  
-                <li><a href="<?php echo base_url();?>index.php/Users/getUsers"><i class="fa fa-circle-o"></i>Manage Users</a></li>
-		             <li><a href="<?php echo base_url();?>index.php/Employee/viewData/job/manage_job"><i class="fa fa-circle-o"></i>Manage Jobs</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Employee/viewData/departments/manage_departments"><i class="fa fa-circle-o"></i>Manage Departments</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Employee/viewData/facility/manage_facility"><i class="fa fa-circle-o"></i>Manage Facilities</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Employee/viewData/district/manage_district"><i class="fa fa-circle-o"></i>Manage Districts</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Employee/addData/schedules/manage_schedules"><i class="fa fa-circle-o"></i>Manage Schedules</a></li>';
+                <li><a href="<?php echo base_url();?>clinic/users"><i class="fa fa-circle-o"></i>Users</a></li>
+		             <li><a href="<?php echo base_url();?>clinic/services"><i class="fa fa-circle-o"></i>Services</a></li>
                 <?php } 
 			  	else{ ?>
-                <li><a href="<?php echo base_url();?>index.php/Employee/viewData/departments/manage_departments"><i class="fa fa-circle-o"></i>Manage Jobs</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Employee/viewData/departments/manage_departments"><i class="fa fa-circle-o"></i>Manage Departments</a></li>';
-			    <?php	}
+                <li><a href="<?php echo base_url();?>clinic/users"><i class="fa fa-circle-o"></i>Users</a></li>
+		             <li><a href="<?php echo base_url();?>clinic/services"><i class="fa fa-circle-o"></i>Services</a></li>
+                 <?php	}
 				?>
 				
            </ul>
@@ -170,7 +149,7 @@
 		       else{
 			echo'<li class="treeview">';
 		           }?>
-              <a href="<?php echo base_url();?>index.php/Users/newPwd">
+              <a href="<?php echo base_url();?>clinic/newPwd">
                 <i class="glyphicon glyphicon-lock fa-lg" style="color:lightblue;"></i>
                <span>Change Password</span>
                 <span class="label label-primary pull-right"></span>

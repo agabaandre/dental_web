@@ -12,6 +12,7 @@
 <?php 
 	  include_once("templates/header.php");
 ?>
+ <span class="baseurl" style="display:none;"><?php echo base_url(); ?></span>  
 <?php 
 	  include_once("templates/menu.php");
 ?>
