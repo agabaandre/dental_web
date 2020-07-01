@@ -11,11 +11,11 @@
                		</div>
 
                 <div class="col-md-12 panel-body" style="overflow-x: scroll;">
-                	<form class="form" autocomplete="false" style="padding-bottom: 2em;" action="<?php echo base_url(); ?>clinic/scheduleDoctor" method="post">
+                	<form class="form" autocomplete="off" style="padding-bottom: 2em;" action="<?php echo base_url(); ?>clinic/scheduleDoctor" method="post">
 				    <div class="form-group">
 					<label for="">Date</label>
 					  <div class='input-group date datepicker'>
-						<input type='text' name="date" id="autooff" class="form-control" required>
+						<input type='text' autocomplete="off" name="date" id="auto" class="form-control" required>
 						<span class="input-group-addon">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -25,9 +25,11 @@
     				<label for="">Select Doctors</label>
 					
 					<select multiple class="form-control form-control-lg" id="doctors" name="doctors[]" style="min-height:200px; overflow:auto;" required>
-					<?php foreach ($doctors as $doctor) {
+					<?php 
+					$i=1;
+					foreach ($doctors as $doctor) {
 					 ?>
-					<option class="btn btn-default" value="<?php echo $doctor->id;?>"><?php echo $doctor->name;?></option>
+					<option class="" value="<?php echo $doctor->id;?>"><?php  echo $i++.'. '. $doctor->name;?></option>
 					<?php } ?>
 					
 					</select>
