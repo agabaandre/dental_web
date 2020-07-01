@@ -24,6 +24,16 @@ class Employee extends CI_Model
         return array();
         }
     }
+    public function scheduleDoctor($insert){
+       
+        $query=$this->db->insert_batch('schedules',$insert);
+        if ($query){
+        return "Successful";
+        }
+        else{
+        return "Failed";
+        }
+    }
    
     public function get_services(){
         $query=$this->db->get('services');
