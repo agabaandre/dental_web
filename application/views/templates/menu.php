@@ -71,23 +71,24 @@
               <i class="glyphicon glyphicon-phone fa-lg" style="color:lightblue;"></i><span>Dashboard</span> <i class=""></i>
               </a>
               </li>
-			<?php if (in_array($data['template'],array('rosta'))){
+              <?php if (in_array($data['template'],array('add_employee','view_employee'))){
             echo'<li class="active treeview">';
 			}
 		     else{
-			echo'<li class="treeview">';
+			  echo'<li class="treeview">';
 		     }?>
-			<?php  if  ($_SESSION['usertype']=='admin' || $_SESSION['usertype']=='hr')
-		    	 { ?>
-              <a href="<?php echo base_url();?>clinic/scheduleDoctors">
-               <i class="glyphicon glyphicon-user fa-lg" style="color:lightblue;"></i>
-               <span>Schedule Doctors</span>
-               <span class="label label-primary pull-right"></span>
+              <a href="#">
+                <i class="glyphicon glyphicon-question-sign fa-lg" style="color:lightblue;"></i>
+                <span>Requests</span>
+                <span class="label label-primary pull-right"></span>
               </a>
+              <ul class="treeview-menu">
+                <li class=""><a href="<?php echo base_url();?>clinic/addDoctor">New Request</a></li>
+                <li class=""><a href="<?php echo base_url();?>clinic/scheduleDoctors">Requests</a></li>
+			          
+			          </ul>
             </li>
-
-			   <?php }
-			?>	
+		
             <?php if (in_array($data['template'],array('add_employee','view_employee'))){
             echo'<li class="active treeview">';
 			}
@@ -95,12 +96,14 @@
 			  echo'<li class="treeview">';
 		     }?>
               <a href="#">
-                <i class="glyphicon glyphicon-th-list fa-lg" style="color:lightblue;"></i>
+                <i class="glyphicon glyphicon-user fa-lg" style="color:lightblue;"></i>
                 <span>Employee</span>
                 <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
                 <li class=""><a href="<?php echo base_url();?>clinic/addDoctor">Register New Employee</a></li>
+                <li class=""><a href="<?php echo base_url();?>clinic/scheduleDoctors">Schedule Doctors</a></li>
+			          
 			          </ul>
             </li>
          			  
