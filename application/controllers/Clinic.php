@@ -177,6 +177,7 @@ class Clinic extends CI_Controller
         
         $prepare['doctor_id']=$doctor;
         $prepare['date']=$date;
+        $prepare['entry_id']=$date.'-'.$doctor;
         array_push($insert,$prepare);
         
         }
