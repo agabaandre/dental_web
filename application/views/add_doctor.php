@@ -12,28 +12,44 @@ $('.datepicker').datepicker({
                  </ul>
 		   </div>
                 <div class="box-header with-border">
-                  <h5 class="box-title">Register Doctor</h5>
+                  <h5 class="box-title">Register Employee</h5>
                 </div>
+									<?php 
+									if(isset($message)){
+                                      echo'<div id="alert" class="alert alert-success alert-dismissable">
+                                      <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                      <strong>'.$message.'</strong>
+                                      </div>';
+                                    }  ?>
 		    			
-				<div class="col-md-3">
-				<form name="" id="data_form" method="post" action="<?php echo base_url();?>index.php/Employee/insertEmployee">
+				<button data-toggle="modal" data-target="#adddoctor" title="Update User" class="btn btn-sm btn-primary"><i class="edit"></i>Add Employee</button>
+					<div class="col-md-12 offset-2">
+					<div class="modal fade" id="adddoctor" tabindex="-1" role="dialog" data-backdrop="static">
+													<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+															<h4 class="modal-title"><center><i class=""></i>Add Doctor</center></h4>
+														</div>
+														<div class="modal-body">
+														<form name="" id="data_form" method="post" action="<?php echo base_url();?>index.php/Employee/insertEmployee">
 					<div id="">
                       <label>WORK ID:  <span style="color:red"></span></label> 
-                      <input class="form-control" name="work_id" id="work_id" value="" type="text" placeholder="ID">
+                      <input class="form-control" name="work_id" id="work_id" value="" type="text" placeholder="ID" style="width:100%;" >
 					</div>
 	
 				<div id="">
 					  <label>Full Name:  <span style="color:red">*</span></label>
-                      <input class="form-control" name="name" id="name" value="" placeholder="Full Name"type="text" required>
+                      <input class="form-control" name="name" id="name" value="" placeholder="Full Name"type="text" required style="width:100%;" >
 				</div>
 				<div id="">
                       <label>Email:  <span style="color:red"></span></label>
-				      <input class="form-control" name="email" id="email" value="" placeholder="Email" type="email"/>
+				      <input class="form-control" name="email" id="email" value="" placeholder="Email" type="email"/ style="width:100%;" >
 			    </div>	
                    
 				<div id="">
                       <label>Mobile Contact:  <span style="color:red">*</span></label>
-				      <input class="form-control" name="contact" id="Contact" value="" placeholder="Contact" type="tel" required>
+				      <input class="form-control" name="contact" id="Contact" value="" placeholder="Contact" type="tel" required style="width:100%;" >
 			     </div>	
 					
 				<div id="">
@@ -58,12 +74,17 @@ $('.datepicker').datepicker({
 					 <button class="btn btn-danger"  type="reset" ><span class="glyphicon glyphicon-repeat"></span> Reset</button>
                      </form>
 				   </div>	  
+				
+				</div>
+                </div>
+                </div>
+             </div>  
 </div>
 
 
-<div class="col-md-9"> 
+<div class="col-md-12"> 
 <div class="box-header with-border">
-                  <h5 class="box-title">Doctor List</h5>
+                  <h5 class="box-title">Employee List</h5>
 </div>
       <table id="mydata" class="table table-bordered table-responsive">
                     <thead>
