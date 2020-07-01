@@ -16,4 +16,5 @@
       <script src="<?php echo base_url(); ?>assets/dist/js/notify.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/dental.js"></script>
 </footer>
