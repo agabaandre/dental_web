@@ -17,8 +17,3 @@
       <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 </footer>
-<script>
-$.fn.datepicker.defaults.format = "yyyy/mm/dd";
-$('.datepicker').datepicker({
-});
-</script>
