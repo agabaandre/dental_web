@@ -2,6 +2,7 @@
       <strong>Copyright &copy; St. Marys Dental Clinic  <?php echo date("Y")." "; ?> <a href="http://timelead.com" target="blank"> </a> TEL: 0702787688</strong> All rights reserved <version style="float:right;">Developed by TimeLead Enterprises</version>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
+      <script src="../../bower_components/moment/min/moment.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/select2/select2.full.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -16,4 +17,8 @@
       <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 </footer>
-      
+<script>
+$.fn.datepicker.defaults.format = "yyyy/mm/dd";
+$('.datepicker').datepicker({
+});
+</script>
