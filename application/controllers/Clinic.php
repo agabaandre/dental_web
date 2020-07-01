@@ -156,6 +156,23 @@ class Clinic extends CI_Controller
         $data['doctors'] = $this->employeeHandler->get_doctor();
         $this->load->view('main',$data);
      }
+     public function scheduleDoctors()
+     {
+        // print_r($postData);
+         $data['title'] = "Schedule Doctor";
+         $data['view'] = "rosta";
+         $data['heading'] = "Schedule  Doctors";
+         $data['doctors'] = $this->employeeHandler->get_doctor();
+         $this->load->view('main',$data);
+      }
+     public function scheduleDoctor()
+    {
+        $doctors=$this->input->post();
+
+        $data['doctors'] = $this->employeeHandler->get_doctor();
+        $data['message'] = $this->employeeHandler->scheduleDoctor($doctors);
+        $this->load->view('main',$data);
+     }
     public function newdoctor()
     {
         $postData= $this->input->post();

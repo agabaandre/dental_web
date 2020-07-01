@@ -79,7 +79,7 @@
 		     }?>
 			<?php  if  ($_SESSION['usertype']=='admin' || $_SESSION['usertype']=='hr')
 		    	 { ?>
-              <a href="<?php echo base_url();?>index.php/climic/schedule">
+              <a href="<?php echo base_url();?>clinic/scheduleDoctors">
                <i class="glyphicon glyphicon-refresh fa-lg" style="color:lightblue;"></i>
                <span>Schedule Doctors</span>
                <span class="label label-primary pull-right"></span>
