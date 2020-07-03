@@ -100,11 +100,12 @@ $('.datepicker').datepicker({
                       </tr>
                     </thead>
 <tbody>       
-<?php
+<?php 
+	$i=0;
     foreach($doctors as $row) {
     ?>
 	  <tr>  <td><?php echo $i++;?></td>
-	  		<td><?php $row->work_id;?></td>
+	  		<td><?php echo $row->work_id;?></td>
             <td><?php $id=$row->id;?><?php echo $row->name;?></td>
 			<td><?php echo  $active_op=$row->cadre;?></td>
 			<td><?php echo $facility=$row->mobile;?></td>
