@@ -6,6 +6,7 @@ class Employee extends CI_Model
    
     public function get_doctor(){
         $this->db->where ('flag',1);
+        $this->db->order_by('name','ASC');
         $query=$this->db->get('doctors');
         if ($query){
         return $query->result();

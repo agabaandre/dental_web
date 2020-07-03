@@ -149,13 +149,24 @@ class Clinic extends CI_Controller
     }
     public function addDoctor()
     {
-       // print_r($postData);
+       // load view for add doctor
         $data['title'] = "Add Doctor";
         $data['view'] = "add_doctor";
         $data['heading'] = "New Doctor";
         $data['doctors'] = $this->employeeHandler->get_doctor();
         $this->load->view('main',$data);
      }
+     public function saveDoctor()
+     {
+        // save doctor to database
+         $doctor=$this->input->post();
+         $data['title'] = "Add Doctor";
+         $data['view'] = "add_doctor";
+         $data['heading'] = "New Doctor";
+         $data['doctors'] = $this->employeeHandler->get_doctor();
+         $data['message'] = $this->employeeHandler->save_doctor($doctor);
+         $this->load->view('main',$data);
+      }
      public function scheduleDoctors()
      {
          $data['title'] = "Schedule Doctor";
