@@ -58,6 +58,14 @@ class Clinic extends CI_Controller
         $data['requests'] = $this->requestHandler->get_requests();
         $this->load->view('main', $data);
     }
+    public function clinic()
+    {
+        $data['title']="Request";
+        $data['view']="requests";
+        $data['heading']="View Requests";
+        $data['clinics'] = $this->requestHandler->get_clinic();
+        return $data;
+    }
 
     public function cancelRequest()
     {
@@ -111,13 +119,14 @@ class Clinic extends CI_Controller
     public function newRequest()
     {
         $data['title'] = "Send Request";
-        $data['view'] = "requests";
+        $data['view'] = "request";
         $data['heading'] = "Request Dental Services";
+        $data['clinics'] = $this->requestHandler->get_clinic();
         $this->load->view('main',$data);
     }
     public function saverequest()
     {
-        $data['title'] = "Send Request";
+        $data['title'] = "New Request";
         $data['view'] = "requests";
         $data['heading'] = "Request Dental Services";
         $postData = $this->input->post();
