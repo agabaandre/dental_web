@@ -20,14 +20,17 @@
 </footer>
 <?php
 
-if($message="Succesful"){
+if($message=="Successful"){
       ?>
       <script>
-      $.notify("Succesful", "success")
+     $.notify("Succesful", "success", { showAnimation: 'slideDown',
+       showDuration: 40000,
+       hideAnimation: 'slideUp'});
       </script>
       <?php 
        } else { ?>
        <script>
-      $.notify("Failed", "warn");
+       $.notify("Failed", "warn");
+       </script>
    <?php   }
 ?>

@@ -15,13 +15,7 @@ $('.datepicker').datepicker({
                   <h5 class="box-title">Register Employee</h5>
                 </div>
 
-									<?php 
-									if(isset($message)){ ?>
-                                      <div id="alert" class="alert <?php if ($message="Successful") { echo "alert-success"; } else { echo "alert-warning"; }?> alert-dismissable">
-                                      <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                      <strong><?php echo $message; ?></strong>
-                                      </div>
-                                   <?php }  ?>
+				  <span class="notification" style="margin: 0 auto;"></span>
 		    			
 					<div class="col-md-12 offset-2">
 					<button data-toggle="modal" data-target="#adddoctor" title="Add Doctor" class="btn btn-md btn-primary" style="margin:4px;"><i class="add"></i>Add Employee</button>
