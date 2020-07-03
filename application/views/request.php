@@ -70,6 +70,7 @@ $('.datepicker').datepicker({
 		               	</select>
 					  <a href="#" target="blank">Add New Clinic</a>
 					</div>
+					
 					<div id="">
                       <label>Doctor:  <span style="color:red"></span></label> 
                         <select class="form-control select2" name="supervisor" id="supervisor myselect" style="width:100%;">
@@ -79,7 +80,7 @@ $('.datepicker').datepicker({
 														<?php } ?>
 		               							
 		               	</select>
-					  <a href="#" target="blank">Add New Clinic</a>
+					  <a href="#" target="blank">Add Doctor</a>
 					</div>
 </div>
 <div class="col-md-4 offset-2">

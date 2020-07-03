@@ -122,6 +122,7 @@ class Clinic extends CI_Controller
         $data['title'] = "Send Request";
         $data['view'] = "request";
         $data['heading'] = "Request Dental Services";
+        $data['doctors'] = $this->employeeHandler->get_doctor();
         $data['clinics'] = $this->requestHandler->get_clinic();
         $this->load->view('main',$data);
     }
