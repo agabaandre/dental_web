@@ -63,6 +63,7 @@ class Clinic extends CI_Controller
         $data['title']="Request";
         $data['view']="requests";
         $data['heading']="View Requests";
+        $data['doctors'] = $this->employeeHandler->get_doctor();
         $data['clinics'] = $this->requestHandler->get_clinic();
         return $data;
     }

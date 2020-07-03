@@ -68,7 +68,18 @@ $('.datepicker').datepicker({
 														<?php } ?>
 		               							
 		               	</select>
-					  <a href="?action=add_supervisors" target="blank">Add New Supervisor</a>
+					  <a href="#" target="blank">Add New Clinic</a>
+					</div>
+					<div id="">
+                      <label>Doctor:  <span style="color:red"></span></label> 
+                        <select class="form-control select2" name="supervisor" id="supervisor myselect" style="width:100%;">
+                          							  <?php foreach ($doctors as $doctor) { ?>
+							
+														<option value="<?php echo $doctor->id; ?>"><?php echo $doctor->name; ?></option>
+														<?php } ?>
+		               							
+		               	</select>
+					  <a href="#" target="blank">Add New Clinic</a>
 					</div>
 </div>
 <div class="col-md-4 offset-2">

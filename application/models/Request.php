@@ -23,12 +23,8 @@ class Request extends CI_Model
     }
     public function get_clinic()
     {
-        if(!empty($key)) {
-            $query = $this->db->query("SELECT * from clinic");
+            $query = $this->db->get('clinic');
             return $query->result();
-        } else {
-            return array();
-        }
     }
     public function get_userrequest($key)
     {
