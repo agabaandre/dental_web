@@ -19,7 +19,7 @@
       <script src="<?php echo base_url(); ?>assets/js/dental.js"></script>
 </footer>
 <?php
-
+if (isset($message)){
 if($message=="Successful"){
       ?>
       <script>
@@ -33,4 +33,5 @@ if($message=="Successful"){
        $.notify("Failed", "warn");
        </script>
    <?php   }
+   }
 ?>

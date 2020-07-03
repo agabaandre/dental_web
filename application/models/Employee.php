@@ -5,7 +5,7 @@ class Employee extends CI_Model
 {
    
     public function get_doctor(){
-        $this->db->where ('flag',1);
+        //$this->db->where ('flag',1);
         $this->db->order_by('name','ASC');
         $query=$this->db->get('doctors');
         if ($query){
@@ -17,6 +17,17 @@ class Employee extends CI_Model
     }
     public function save_doctor($data){
         $query=$this->db->insert('doctors',$data);
+        if ($query){
+        return "Successful";
+        }
+        else{
+        return "Failed";
+        }
+    }
+    public function update_doctor($data,$id){
+
+        $this->db->where('id', $id);
+        $query=$this->db->update('doctors', $data);
         if ($query){
         return "Successful";
         }

@@ -101,11 +101,11 @@ $('.datepicker').datepicker({
     foreach($doctors as $row) {
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
-	  		<td><?php echo $row->work_id;?></td>
-            <td><?php $id=$row->id;?><?php echo $row->name;?></td>
+	  		<td><?php echo $workid=$row->work_id;?></td>
+            <td><?php $id=$row->id;?><?php echo $name=$row->name;?></td>
 			<td><?php echo  $active_op=$row->cadre;?></td>
-			<td><?php echo $facility=$row->mobile;?></td>
-			<td><?php echo $facility=$row->email;?></td>
+			<td><?php echo $mobile=$row->mobile;?></td>
+			<td><?php echo $email=$row->email;?></td>
 	        <td>
 	           <?php
                        //Flag Raiser
@@ -114,14 +114,14 @@ $('.datepicker').datepicker({
 					  if ($status==0){ ?>
 						  <form action='<?php echo base_url();?>clinic/updateDoctor' method='post'>
 						  <input type='hidden' value="1" name='flag'>
-						  <input type='hidden' value='<?php echo $id; ?> ' name='uuid'>
+						  <input type='hidden' value='<?php echo $id; ?> ' name='id'>
 						 <button type='submit'  class='btn btn-sm btn-danger' ><span class='glyphicon glyphicon-circle-remove'></span>Not Active</button>
 						        </form>
 					<?php  } 
 					  else { ?>
 						<form action='<?php echo base_url();?>clinic/updateDoctor' method='post'>
 						  <input type='hidden' value="0" name='flag'>
-						  <input type='hidden' value='<?php echo $id; ?>' name='uuid'>
+						  <input type='hidden' value='<?php echo $id; ?>' name='id'>
 						 <button type='submit'  class='btn btn-sm btn-success' ><span class='glyphicon glyphicon-ok'></span>Active</button>
 						 </form> 
 					<?php  }
@@ -139,24 +139,25 @@ $('.datepicker').datepicker({
 															<h4 class="modal-title"><center><i class=""></i>Edit</center></h4>
 														</div>
 														<div class="modal-body">
-														<form name="" id="data_form" method="post" action="<?php echo base_url();?>index.php/Employee/insertEmployee">
+														<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/updateDoctor">
 					<div id="">
                       <label>WORK ID:  <span style="color:red"></span></label> 
-                      <input class="form-control" name="work_id" id="work_id" value="" type="text" placeholder="ID" style="width:100%;" >
+                      <input class="form-control" name="work_id" id="work_id" value="<?php echo $workid; ?>" type="text" placeholder="ID" style="width:100%;" >
 					</div>
 	
 				<div id="">
 					  <label>Full Name:  <span style="color:red">*</span></label>
-                      <input class="form-control" name="name" id="name" value="" placeholder="Full Name"type="text" required style="width:100%;" >
+                      <input class="form-control" name="name" id="name" value="<?php echo $name; ?>" placeholder="Full Name"type="text" required style="width:100%;" >
 				</div>
 				<div id="">
                       <label>Email:  <span style="color:red"></span></label>
-				      <input class="form-control" name="email" id="email" value="" placeholder="Email" type="email"/ style="width:100%;" >
+				      <input class="form-control" name="email" id="email" value="<?php echo $email; ?>" placeholder="Email" type="email"/ style="width:100%;" >
 			    </div>	
                    
 				<div id="">
                       <label>Mobile Contact:  <span style="color:red">*</span></label>
-				      <input class="form-control" name="contact" id="Contact" value="" placeholder="Contact" type="tel" required style="width:100%;" >
+					  <input type="hidden" name="id" value="<?php echo $id; ?>">
+				      <input class="form-control" name="mobile" id="Contact" value="<?php echo $mobile; ?>" placeholder="Contact" type="tel" required style="width:100%;" >
 			     </div>	
 					
 				<div id="">
@@ -169,13 +170,12 @@ $('.datepicker').datepicker({
 							"Orthodontist"=>"Orthodontist","Periodontologist"=>"Periodontologist","Dental Assistant"=>"Dental Assistant");
 							foreach($jobdata as $key => $value){
 							   ?>
-							  <option value="<?php echo $key; ?>"><?php  echo $value; ?>
+							  <option value="<?php echo $key; ?>" <?php if ($key==$active_op){ echo "selected"; }?> ><?php  echo $value; ?>
 							  </option>
 							<?php } ?>
 		           </select>
 				</div>
-				   <input type="hidden" value="1" name="flag">
-
+				   
 			       <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
                      <button  class="btn btn-primary" type="submit" ><span class="glyphicon glyphicon-plus"></span>Save</button>
 					 <button class="btn btn-danger"  type="reset" ><span class="glyphicon glyphicon-repeat"></span> Reset</button>
