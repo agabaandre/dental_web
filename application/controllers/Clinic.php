@@ -163,8 +163,8 @@ class Clinic extends CI_Controller
          $data['title'] = "Add Doctor";
          $data['view'] = "add_doctor";
          $data['heading'] = "New Doctor";
-         $data['doctors'] = $this->employeeHandler->get_doctor();
          $data['message'] = $this->employeeHandler->save_doctor($doctor);
+         $data['doctors'] = $this->employeeHandler->get_doctor();
          $this->load->view('main',$data);
       }
      public function scheduleDoctors()

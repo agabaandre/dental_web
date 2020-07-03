@@ -32,24 +32,24 @@ $('.datepicker').datepicker({
 															<h4 class="modal-title"><center><i class=""></i>Add Doctor</center></h4>
 														</div>
 														<div class="modal-body">
-														<form name="" id="data_form" method="post" action="<?php echo base_url();?>index.php/Employee/insertEmployee">
+														<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/saveDoctor">
 					<div id="">
                       <label>WORK ID:  <span style="color:red"></span></label> 
-                      <input class="form-control" name="work_id" id="work_id" value="" type="text" placeholder="ID" style="width:100%;" >
+                      <input class="form-control" name="work_id" id="work_id" autocomplete="off" value="" type="text" placeholder="ID" style="width:100%;" >
 					</div>
 	
 				<div id="">
 					  <label>Full Name:  <span style="color:red">*</span></label>
-                      <input class="form-control" name="name" id="name" value="" placeholder="Full Name"type="text" required style="width:100%;" >
+                      <input class="form-control" name="name" id="name" value="" autocomplete="off" placeholder="Full Name"type="text" required style="width:100%;" >
 				</div>
 				<div id="">
                       <label>Email:  <span style="color:red"></span></label>
-				      <input class="form-control" name="email" id="email" value="" placeholder="Email" type="email"/ style="width:100%;" >
+				      <input class="form-control" name="email" id="email" value="" autocomplete="off" placeholder="Email" type="email"/ style="width:100%;" >
 			    </div>	
                    
 				<div id="">
                       <label>Mobile Contact:  <span style="color:red">*</span></label>
-				      <input class="form-control" name="contact" id="Contact" value="" placeholder="Contact" type="tel" required style="width:100%;" >
+				      <input class="form-control" name="mobile" id="mobile" value="" autocomplete="off" placeholder="Contact" type="tel" required style="width:100%;" >
 			     </div>	
 					
 				<div id="">
