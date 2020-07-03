@@ -14,6 +14,7 @@ $('.datepicker').datepicker({
                 <div class="box-header with-border">
                   <h5 class="box-title">Register Employee</h5>
                 </div>
+
 									<?php 
 									if(isset($message)){ ?>
                                       <div id="alert" class="alert <?php if ($message="Successful") { echo "alert-success"; } else { echo "alert-warning"; }?> alert-dismissable">

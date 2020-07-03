@@ -18,3 +18,16 @@
       <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/dental.js"></script>
 </footer>
+<?php
+
+if($message="Succesful"){
+      ?>
+      <script>
+      $.notify("Succesful", "success")
+      </script>
+      <?php 
+       } else { ?>
+       <script>
+      $.notify("Failed", "warn");
+   <?php   }
+?>
