@@ -15,15 +15,16 @@ $('.datepicker').datepicker({
                   <h5 class="box-title">Register Employee</h5>
                 </div>
 									<?php 
-									if(isset($message)){
-                                      echo'<div id="alert" class="alert alert-success alert-dismissable">
+									if(isset($message)){ ?>
+                                      <div id="alert" class="alert <?php if ($message="Successful") { echo "alert-success"; } else { echo "alert-warning"; }?> alert-dismissable">
                                       <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                      <strong>'.$message.'</strong>
-                                      </div>';
-                                    }  ?>
+                                      <strong><?php echo $message; ?></strong>
+                                      </div>
+                                   <?php }  ?>
 		    			
-				<button data-toggle="modal" data-target="#adddoctor" title="Update User" class="btn btn-sm btn-primary"><i class="edit"></i>Add Employee</button>
 					<div class="col-md-12 offset-2">
+					<button data-toggle="modal" data-target="#adddoctor" title="Add Doctor" class="btn btn-md btn-primary" style="margin:4px;"><i class="add"></i>Add Employee</button>
+			
 					<div class="modal fade" id="adddoctor" tabindex="-1" role="dialog" data-backdrop="static">
 													<div class="modal-dialog">
 													<div class="modal-content">
@@ -61,7 +62,7 @@ $('.datepicker').datepicker({
 							"Oral Maxillofacial Surgeon"=>"Oral Maxillofacial Surgeon","Paediatric Dentist"=>"Paediatric Dentist",
 							"Orthodontist"=>"Orthodontist","Periodontologist"=>"Periodontologist","Dental Assistant"=>"Dental Assistant");
 							foreach($jobdata as $key => $value){
-							  $i++; ?>
+							  ?>
 							  <option value="<?php echo $key; ?>"><?php  echo $value; ?>
 							  </option>
 							<?php } ?>
@@ -70,7 +71,7 @@ $('.datepicker').datepicker({
 				   <input type="hidden" value="1" name="flag">
 
 			       <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
-                     <button  class="btn btn-primary" type="submit" ><span class="glyphicon glyphicon-plus"></span>Save</button>
+                     <button  class="btn btn-primary" id="submit" type="submit" ><span class="glyphicon glyphicon-plus"></span>Save</button>
 					 <button class="btn btn-danger"  type="reset" ><span class="glyphicon glyphicon-repeat"></span> Reset</button>
                      </form>
 				   </div>	  
@@ -101,10 +102,10 @@ $('.datepicker').datepicker({
                     </thead>
 <tbody>       
 <?php 
-	$i=0;
+	$c=1;
     foreach($doctors as $row) {
     ?>
-	  <tr>  <td><?php echo $i++;?></td>
+	  <tr>  <td><?php echo $c++; ?></td>
 	  		<td><?php echo $row->work_id;?></td>
             <td><?php $id=$row->id;?><?php echo $row->name;?></td>
 			<td><?php echo  $active_op=$row->cadre;?></td>
@@ -172,7 +173,7 @@ $('.datepicker').datepicker({
 							"Oral Maxillofacial Surgeon"=>"Oral Maxillofacial Surgeon","Paediatric Dentist"=>"Paediatric Dentist",
 							"Orthodontist"=>"Orthodontist","Periodontologist"=>"Periodontologist","Dental Assistant"=>"Dental Assistant");
 							foreach($jobdata as $key => $value){
-							  $i++; ?>
+							   ?>
 							  <option value="<?php echo $key; ?>"><?php  echo $value; ?>
 							  </option>
 							<?php } ?>
