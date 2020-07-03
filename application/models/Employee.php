@@ -15,6 +15,15 @@ class Employee extends CI_Model
         return array();
         }
     }
+    public function save_doctor($data){
+        $query=$this->db->insert('doctors',$data);
+        if ($query){
+        return "Successful";
+        }
+        else{
+        return "Failed";
+        }
+    }
     public function get_availabledoctors($date){
        
         $query=$this->db->query("SELECT doctors.id,doctors.name,doctors.cadre FROM doctors, schedules where doctors.id=schedules.doctor_id and schedules.date like'$date' ");
