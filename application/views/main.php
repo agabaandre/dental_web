@@ -11,13 +11,13 @@
 <html class="no-js">
 <?php 
 	  include_once("templates/header.php");
-?>
- <span class="baseurl" style="display:none;"><?php echo base_url(); ?></span>  
+?>  
 <?php 
 	  include_once("templates/menu.php");
 ?>
   <div class="content-wrapper">
       <section class="content" >
+      <input type=text id="baseurl" style="display:none;" value="<?php echo base_url();?>">
             <?php
                   $viewname=$view;
                   include($viewname.'.php');						

@@ -77,7 +77,11 @@ class Request extends CI_Model
     }
     }
     public function saveRequest($data)
-    {
+    { 
+        $services=$data['services'];
+        foreach ($services as $service){ 
+            
+        }
         $datas=array(
             'name' => $data->name,
             'mobile' => $data->mobile,

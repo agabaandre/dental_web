@@ -8,9 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/icons.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/skins-green.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/flat/blue.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/morris/morris.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
@@ -40,11 +38,6 @@
         $(function(){
         $('.select2').select2();
         });
-
-      $.widget.bridge('uibutton', $.ui.button);r
-       $(".timepicker").timepicker({
-      showInputs: false
-    });
   </script>
   <style>
         .content{

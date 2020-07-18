@@ -113,9 +113,14 @@ class Clinic extends CI_Controller
         $this->load->view('main', $data);
     }
     public function availableDoctors(){
-        
+        $date = $this->input->post('date');
+        if(!empty($date)){ 
         $doctorData = $this->employeeHandler->get_availabledoctors($date);
-    return $doctorData;
+    echo json_encode($doctorData);
+        }
+        else{
+    echo  json_encode(array("Select Value"=>"Select Value"));
+        }
     }
     public function newRequest()
     {
@@ -123,40 +128,43 @@ class Clinic extends CI_Controller
         $data['view'] = "request";
         $data['heading'] = "Request Dental Services";
         $data['doctors'] = $this->employeeHandler->get_doctor();
+        $data['services'] = $this->employeeHandler->get_services();
         $data['clinics'] = $this->requestHandler->get_clinic();
+        
         $this->load->view('main',$data);
     }
     public function saverequest()
     {
-        $data['title'] = "New Request";
-        $data['view'] = "requests";
+        $data['title'] = "Send Request";
+        $data['view'] = "request";
         $data['heading'] = "Request Dental Services";
+        $data['doctors'] = $this->employeeHandler->get_doctor();
+        $data['services'] = $this->employeeHandler->get_services();
+        $data['clinics'] = $this->requestHandler->get_clinic();
         $postData = $this->input->post();
         $today=date('Y-m-d');
-        if($this->input->post('request_date') < $today){
-        $this->session->set_flashdata('message', '<p style="color:red;">Past Date<p>');
-        $this->load->view('main',$data);
-        }
-        elseif (empty($this->input->post('name'))) {
-        $this->session->set_flashdata('message', '<p style="color:red;">Provide Name!<p>');
-        $this->load->view('main',$data);
-         }
-        elseif (empty($this->input->post('mobile'))) {
-        $this->session->set_flashdata('message', '<p style="color:red;">Provide Contact!<p>');
-        $this->load->view('main',$data);
-        }
-        else {
+            $services = $postData['services'];
+            $servs=array();
+            foreach ($services as $service) {
+            $prepared['services']=$service;
+            array_push($services,$prepared);
+            
+            }
+            $fs=implode(",",$services);
+           $final= str_replace(',Array','',$fs);
+       
         $result = $this->requestHandler->saveRequest($postData);
+
         if($result) {
-        $this->session->set_flashdata('message', '<p style="color:green;">Sent!<p>');
+         $data['message']="Successful";
          $this->load->view('main',$data);
         } 
         else {
-        $this->session->set_flashdata('message', '<p style="color:red;"> Failed!<p>');
+        $data['message']="Failed";
         $this->load->view('main',$data);
         
         }
-        }
+        
     }
     public function addDoctor()
     {
@@ -232,22 +240,22 @@ class Clinic extends CI_Controller
         $data['heading'] = "New Doctor";
     
         if(empty($this->input->post('mobile'))){
-        $this->session->set_flashdata('message', '<p style="color:red;">Provide Contact!<p>');
+            $data['message']="Failed";
             $this->load->view('main',$data);
         }
         elseif (empty($postData->name)) {
-        $this->session->set_flashdata('message', '<p style="color:red;">Provide Name!<p>');
+            $data['message']="Failed";
             $this->load->view('main',$data);
         }
     
         else {
         $result = $this->requestHandler->add_doctor($postData);
         if($result) {
-            $this->session->set_flashdata('message', '<p style="color:red;">Saved<p>');
+            $data['message']="Succesful";
             $this->load->view('main',$data);
           } 
         else {
-            $this->session->set_flashdata('message', '<p style="color:red;">Failed!<p>');
+            $data['message']='Failed';
             $this->load->view('main',$data);
         }
       }

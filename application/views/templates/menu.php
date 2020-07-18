@@ -1,5 +1,5 @@
-<?php if (in_array($data['template'],array('rosta'))){ echo'<body class="hold-transition skin-red sidebar-collapse sidebar-mini" id="index" onload="startTime()">';} 
- else { echo'<body class="hold-transition skin-red sidebar-mini" id="index" onload="startTime()">';} ?>
+<?php if (in_array($data['template'],array('rosta'))){ echo'<body class="hold-transition skin-red sidebar-collapse sidebar-mini" id="index">';} 
+ else { echo'<body class="hold-transition skin-red sidebar-mini" id="index">';} ?>
     <div class="wrapper">
 
       <header class="main-header static-top" >
@@ -23,7 +23,7 @@
                         <small><?php echo date('jF,Y H:i:s');?></small>
                         <span id="txt1"></span>
                   
-                          </br></br>
+                          <br/><br/>
                           <?php echo $_SESSION['usertype'];?>
                   </p>
                   </li>

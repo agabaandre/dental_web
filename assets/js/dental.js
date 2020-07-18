@@ -4,10 +4,40 @@ $('.datepicker').datepicker({
     
 });
 
+
 $('#alert').fadeTo(2000, 500).slideUp(500, function(){
     $('#alert').slideUp(500);
 });
 
+$(document).ready(function(){
+  $("#reqdate").change(function(){
+    var reqdate = $("#reqdate").val();
+    var baseurl = $("#baseurl").val();
+
+    if(reqdate!=""){
+   // console.log(baseurl);
+    $.ajax({
+      url: baseurl+"clinic/availableDoctors",
+      method: "post",
+      data: "date=" + reqdate
+      
+     }).done(function(availables){
+     console.log(availables);
+     
+     availables = JSON.parse(availables);
+     $("#doctor").empty();
+     availables.forEach(function(availables) {
+
+       $("#doctor").append('<option>'+availables.name+'</option>')
+      
+       
+     })
+
+    })
+
+  }})
+
+});
 
 // $('#data_form').submit(function(e){
 // 	e.preventDefault();
@@ -44,9 +74,5 @@ $('#alert').fadeTo(2000, 500).slideUp(500, function(){
 
 // });//close submit and its function
 
-$('#data_form').submit(function(e){
-  $('#adddoctor').modal('show'); 
-	
-},2000);
 
 
