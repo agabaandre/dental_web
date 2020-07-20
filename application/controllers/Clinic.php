@@ -122,6 +122,16 @@ class Clinic extends CI_Controller
     echo  json_encode(array("Select Value"=>"Select Value"));
         }
     }
+    public function monthlyDoctors(){
+        $date = $this->input->post('date');
+        if(!empty($date)){ 
+        $doctorData = $this->employeeHandler->get_availabledoctors($date);
+    echo json_encode($doctorData);
+        }
+        else{
+    echo  json_encode(array("Select Value"=>"Select Value"));
+        }
+    }
     public function newRequest()
     {
         $data['title'] = "Send Request";
@@ -148,12 +158,10 @@ class Clinic extends CI_Controller
             foreach ($services as $service) {
             $prepared['services']=$service;
             array_push($services,$prepared);
-            
             }
             $fs=implode(",",$services);
-           $final= str_replace(',Array','',$fs);
-       
-        $result = $this->requestHandler->saveRequest($postData);
+            $final= str_replace(',Array',' ',$fs);
+        $result=$data['user_details']= $this->requestHandler->saveRequest($postData,$final);
 
         if($result) {
          $data['message']="Successful";
@@ -204,6 +212,8 @@ class Clinic extends CI_Controller
          $data['view'] = "schedule_doctors";
          $data['heading'] = "Schedule  Doctors";
          $data['doctors'] = $this->employeeHandler->get_doctor();
+         $data['schedules'] = $this->employeeHandler->monthlyDoctors();
+         
          $this->load->view('main',$data);
       }
      public function scheduleDoctor()
@@ -225,6 +235,7 @@ class Clinic extends CI_Controller
         }
        //print_r($insert);
         $data['doctors'] = $this->employeeHandler->get_doctor();
+        $data['schedules'] = $this->employeeHandler->monthlyDoctors();
         $data['message'] = $this->employeeHandler->scheduleDoctor($insert);
        
        // print_r($data);

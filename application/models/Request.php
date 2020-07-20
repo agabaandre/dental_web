@@ -60,12 +60,12 @@ class Request extends CI_Model
     }
     public function replyMessages($data){
         $datas=array(
-            'request_id' => $data->request_id,
-            'body' => $data->message_body,
-            'message_id' => $data->message_id,
-            'name' => $data->name,
-            'mobile' => $data->mobile,
-            'role' => $data->usertype
+            'request_id' => $data['request_id'],
+            'body' => $data['message_body'],
+            'message_id' => $data['message_id'],
+            'name' => $data['name'],
+            'mobile' => $data['mobile'],
+            'role' => $data['usertype']
         );
             $query=$this->db->insert("messages",$datas);
             $rows=$this->db->affected_rows();
@@ -76,53 +76,67 @@ class Request extends CI_Model
     return array('dbstatus'=>'Failed');
     }
     }
-    public function saveRequest($data)
-    { 
-        $services=$data['services'];
-        foreach ($services as $service){ 
-            
-        }
+    public function saveRequest($data,$final)
+        { 
+       
         $datas=array(
-            'name' => $data->name,
-            'mobile' => $data->mobile,
-            'email' => $data->email,
-            'clinic' => $data->clinic,
-            'doctor' => $data->doctor,
-            'address'=>$data->address, 
-            'request_date' => $data->request_date,
-            'requested_date' =>$data->requested_date,
-            'services' => $data->services,
-            'remarks' => $data->remarks
+            'name' => $data['name'],
+            'mobile' => $data['mobile'],
+            'email' => $data['email'],
+            'clinic' => $data['clinic'],
+            'doctor' => $data['doctor'],
+            'address'=>$data['address'], 
+            'request_date' => date('Y-m-d'),
+            'requested_date' =>$data['requested_date'],
+            'services' => $final,
+            'remarks' => $data['remarks']
             );
-            $this->db->insert('request',$datas);
+           $query= $this->db->insert('request',$datas);
+           if($query){
             $insert_id = $this->db->insert_id();
             $rows=$this->db->affected_rows();
-            $this->followup($data,$insert_id);
-              //create user account
-           if($rows>0){
-            if ($this->new_user($data)=='Success'){
-                $this->db->where('username',$data->mobile);
+            $this->followup($data,$insert_id,$final);
+            $this->make_appointment($data,$insert_id,$final);
+            // add users
+            if ($this->new_user($data)=='Successful'){
+                $this->db->where('username',$data['mobile']);
                 $query=$this->db->get('users');
              return $query->result();
              }
-             else{
-             return array();
-             }
-         }
-         else{
-         return array();
-         }
+            else{
+                $this->db->where('username',$data['mobile']);
+                $query=$this->db->get('users');
+            return $query->result();
+            }
+           }
+           else{
+           return 'Failed';
+           }
+        
+        
         }
+    public function make_appointment($data,$insert_id,$final){
+        $data=array(
+            'start_date'=>$data['requested_date'],
+            'end_date' => $data['requested_date'],
+            'Time' => NULL,
+            'allDay' => 'true',
+            'request_id'=>$insert_id,
+            'doctor' =>$data['doctor']
 
+        );
+        $this->db->insert('appointments',$data);
+
+    }
     public function add_doctor($data){
         $datas =array(
-            "work_id"=>$data->work_id,
-            "name"=>$data->name,
-            "email"=>$data->email,
-            "mobile"=>$data->mobile,
-            "cadre"=>$data->cadre
+            "work_id"=>$data['work_id'],
+            "name"=>$data['name'],
+            "email"=>$data['email'],
+            "mobile"=>$mobile=$data['mobile'],
+            "cadre"=>$data['cadre']
         );
-        $users=$this->db->query("SELECT mobile from doctors where mobile='$data->mobile'");
+        $users=$this->db->query("SELECT mobile from doctors where mobile='$mobile'");
         $rows=$users->num_rows();
         if($rows>0){
         return array('dbstatus'=>'Duplicate Mobile Number');
@@ -132,7 +146,7 @@ class Request extends CI_Model
         if ($query){
         //create user account
         if ($this->new_user($data)){
-           $this->db->where('username',$data->mobile);
+           $this->db->where('username',$data['mobile']);
            $query=$this->db->get('users');
         }
         return $query->result();
@@ -140,49 +154,49 @@ class Request extends CI_Model
         else{
         return array();
         }
-    }
+        }
    }
     //comfirm
-    public function followup($data,$request_id){
+    public function followup($data,$request_id,$final){
         
         $data=array(
             'request_id' => $request_id,
-            'name' => $data->name,
-            'mobile'=>$data->mobile,
-            'entry_id' => $data->mobile.$data->services.date('Y-m-d'),
-            'body' => 'I need your assistance on '.$data->services,
+            'name' => $data['name'],
+            'mobile'=>$data['mobile'],
+            'entry_id' => $data['mobile'].$final.date('Y-m-d'),
+            'body' => 'I need your assistance on '.$final,
             'role' => 'Patient'
         );
        $notify = $this->db->insert('messages',$data);
        if($notify){
-           return array('dbstatus'=>'Success');
+           return 'Successful';
        }
     }
     //create user acccount comfirm
     public function new_user($data){
         $password=md5("login");
         $data=array(
-            'username' => $number=$data->mobile,
-            'name' => $data->name,
+            'username' => $number=$data['mobile'],
+            'name' => $data['name'],
             'password' => $password,
-            'usertype' => $data->usertype
+            'usertype' => 'Patient'
         );
         //check if user already exists{
       $users=$this->db->query("SELECT username from users where username='$number'");
       $rows=$users->num_rows();
      if($rows>0){
-        return array('dbstatus'=>'Duplicate Mobile Number');
+        return 'Duplicate Mobile Number';
      }
      else{
        $notify = $this->db->insert('users',$data);
        if($notify){
-           return 'Success';
+           return 'Successful';
        }
     }
   }
     public function changePwd($data){
 		$oldpwd=$data->oldpwd;
-		$newpwd=md5($data->newpwd);
+		$newpwd=md5($data['newpwd']);
 		$realoldpwd=md5($oldpwd);
 		$username=$data->username;
         $query=$this->db->query("SELECT password from users where username='$username'");

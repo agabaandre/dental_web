@@ -18,7 +18,7 @@
                       <div id="">
                 
                       <label>Patient's Name:  <span style="color:red">*</span></label> 
-                        <input type="text" class="form-control" name="name" id="name" style="width:100%;" required>
+                        <input type="text" class="form-control" name="name" id="name" style="width:100%;" autocomplete="off" required>
     
 					</div>
                        
@@ -26,7 +26,7 @@
                     
 					<div class="input-group date" data-provide="datepicker">
 					<label>Preferred Appointment date:  <span style="color:red">*</span></label> 
-                      <input name="requsted_date"  type="text" id="reqdate"   class="form-control" value="" required>
+                      <input name="requested_date"  type="text" id="reqdate"   class="form-control" value="" autocomplete="off" required>
                       <div class="input-group-addon">
                       <span class="glyphicon glyphicon-th"></span>
 					  
@@ -42,7 +42,7 @@
 					 <div id="">
                      	<div id="">
                       <label>Contact:  <span style="color:red">*</span></label> 
-                        <input type="tel" class="form-control" name="name" id="contact" style="width:100%;" required>
+                        <input type="tel" class="form-control" name="mobile" id="contact" autocomplete="off" style="width:100%;" required>
     
 					</div>
 					</div>
@@ -50,7 +50,7 @@
 					<div id="">
                      	<div id="">
                       <label>Email:  <span style="color:red">*</span></label> 
-                        <input type="tel" class="form-control" name="email" id="email" style="width:100%;" required>
+                        <input type="tel" class="form-control" name="email" id="email" autocomplete="off" style="width:100%;" required>
     
 					</div>
 					</div>
@@ -79,7 +79,7 @@
 					$i=1;
 					foreach ($services as $service) {
 					 ?>
-					<option class="" value="<?php echo $service->name;?>"><?php  echo $i++.'. '. $service->name;?></option>
+					<option class="btn btn-default list-group-item" value="<?php echo $service->name;?>"><?php  echo $i++.'. '. $service->name;?></option>
 					<?php } ?>
 					
 					</select>
@@ -87,22 +87,63 @@
 					</div>
 			       <div id="">
                       <label>Remarks:  <span style="color:red"></span></label>
-				      <textarea class="form-control" name="remarks" id="remarks" name="editor1" rows="4" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
+				      <textarea class="form-control" name="remarks" id="remarks" name="editor1" rows="2" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
 		            </div>
 					<div id="">
                       <label>Address:  <span style="color:red"></span></label>
-				      <textarea class="form-control" name="address" id="address" name="editor1" rows="4" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
+				      <textarea class="form-control" name="address" id="address" name="editor1" rows="2" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
 		            </div>
 		            
 			     
 			        
                         <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
-                     <button  class="btn btn-primary" name="name" type="submit"  ><span class="glyphicon glyphicon-arrow-right"></span>Save</button>
+                     <button  class="btn btn-primary" type="submit"  ><span class="glyphicon glyphicon-arrow-right"></span>Save</button>
 					 <button class="btn btn-danger"  type="reset" ><span class="glyphicon glyphicon-repeat"></span> Reset Form</button>
                      </form>
 				   </div>	  
 	
 			</div>
 			<div class="col-md-4">
+			<?php  if(!empty($user_details)){ ?>
+			 <div class="box box-info">
+            	<div class="box-header with-border">
+              <h3 class="box-title">New Clients App Login Info</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-borderless">
+			  <thead>
+			  <tr>
+			  <th>Name</th>
+			  <th>Username</th>
+			  <th>Password</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  <?php 
+			
+			 foreach ($user_details as $user){?>
+			  <tr>
+			  <td><?php echo $user->name; ?></td>
+			  <td><?php echo $user->username; ?></td>
+			  <td><?php echo 'login'; ?></td>
+			  </tr>
+			  	 
+			 <?php }
+				 
+				
+			   ?>
+			  </tbody>
+			  </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+			 <?php } ?>
+		  
+
 			</div>
 			

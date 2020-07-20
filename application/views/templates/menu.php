@@ -1,4 +1,4 @@
-<?php if (in_array($data['template'],array('rosta'))){ echo'<body class="hold-transition skin-red sidebar-collapse sidebar-mini" id="index">';} 
+<?php if (in_array($view,array('rosta'))){ echo'<body class="hold-transition skin-red sidebar-collapse sidebar-mini" id="index">';} 
  else { echo'<body class="hold-transition skin-red sidebar-mini" id="index">';} ?>
     <div class="wrapper">
 
@@ -61,7 +61,9 @@
               <!-- <p style="text-align:center;">Attendance Tracker</p> -->
           </div>
           <ul class="sidebar-menu">
-		   <?php if (in_array($data['template'],array('home'))){
+
+          
+		   <?php if (in_array($view,array('home'))){
             echo'<li class="active treeview">';
 			}
 		   else{
@@ -71,7 +73,23 @@
               <i class="glyphicon glyphicon-phone fa-lg" style="color:lightblue;"></i><span>Dashboard</span> <i class=""></i>
               </a>
               </li>
-              <?php if (in_array($data['template'],array('add_employee','view_employee'))){
+
+
+
+              <?php if (in_array($view,array('appointment','view_appointments'))){
+            echo'<li class="active treeview">';
+			}
+		   else{
+		 echo'<li class="treeview">';
+		   }?>
+              <a href="<?php echo base_url()?>clinic/appointments">
+              <i class="glyphicon glyphicon-briefcase fa-lg" style="color:lightblue;"></i><span>Appointmnets</span> <i class=""></i>
+              </a>
+              </li>
+
+
+
+     <?php if (in_array($view,array('request','view_requests'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -89,7 +107,7 @@
 			          </ul>
             </li>
 		
-            <?php if (in_array($data['template'],array('add_employee','view_employee'))){
+            <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -145,7 +163,7 @@
 				
            </ul>
             </li>
-				   <?php if (in_array($data['template'],array('change_password'))){
+				   <?php if (in_array($view,array('change_password'))){
             echo'<li class="active treeview">';
 		        	}
 		       else{

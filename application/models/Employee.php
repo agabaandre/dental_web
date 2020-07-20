@@ -41,6 +41,22 @@ class Employee extends CI_Model
         return array();
         }
     }
+    public function monthlyDoctors(){
+        $dt = new DateTime();
+        $dt->sub(new DateInterval('P1D'));
+            //yesterday
+        $date=$dt->format('Y-m-d');
+        //after a month
+        $new_date=strtotime("20 days", strtotime($date));
+        $dateto = date("Y-m-d", $new_date);
+            $query=$this->db->query("SELECT doctors.id,doctors.name,doctors.cadre,schedules.date FROM doctors, schedules where doctors.id=schedules.doctor_id and schedules.date BETWEEN '$date' AND '$dateto' order by schedules.date ASC");
+        if ($query){
+        return $query->result();
+        }
+        else{
+        return array();
+        }
+    }
     public function scheduleDoctor($insert){
        
         $query=$this->db->insert_batch('schedules',$insert);

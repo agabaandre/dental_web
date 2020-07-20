@@ -28,7 +28,7 @@ $(document).ready(function(){
      $("#doctor").empty();
      availables.forEach(function(availables) {
 
-       $("#doctor").append('<option>'+availables.name+'</option>')
+       $("#doctor").append('<option value="'+availables.id+'">'+availables.name+'</option>');
       
        
      })
