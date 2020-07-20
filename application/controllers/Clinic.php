@@ -87,6 +87,7 @@ class Clinic extends CI_Controller
 
         }
     }
+   
     
     public function searchRequest()
     {
@@ -162,6 +163,26 @@ class Clinic extends CI_Controller
             $fs=implode(",",$services);
             $final= str_replace(',Array',' ',$fs);
         $result=$data['user_details']= $this->requestHandler->saveRequest($postData,$final);
+
+        if($result) {
+         $data['message']="Successful";
+         $this->load->view('main',$data);
+        } 
+        else {
+        $data['message']="Failed";
+        $this->load->view('main',$data);
+        
+        }
+        
+    }
+    public function makeAppointment()
+    {
+        $data['title'] = "Make Apppointment";
+        $data['view'] = "add_appointment";
+        $data['heading'] = "Make Appointmnet";
+        $data['appointments'] = $this->requestHandler->get_appointments();
+        $postData = $this->input->post();
+        $result=$data['user_details']= $this->requestHandler->saveAppointment($postData);
 
         if($result) {
          $data['message']="Successful";
