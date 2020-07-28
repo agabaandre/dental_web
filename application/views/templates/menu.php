@@ -102,7 +102,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class=""><a href="<?php echo base_url();?>clinic/newRequest">New Request</a></li>
-                <li class=""><a href="<?php echo base_url();?>clinic/">Requests</a></li>
+                
 			          
 			          </ul>
             </li>
