@@ -319,19 +319,10 @@ class Clinic extends CI_Controller
       }
         
     }
-    public function messages(){
-        $data['title'] = "Messages";
-        $data['view'] = "requests";
-        $data['heading'] = "Chat";
-        $username = $_SESSION['username'];
-        $data['messages'] = $this->requestHandler->getMessages($username);
-        if ($data){
-        $this->load->view('main',$data);
-        }
-        else{
-        $this->session->set_flashdata('message', '<p style="color:red;">No Messages!<p>');
-        $this->load->view('main',$data);
-       }
+    public function getMessages($requestId){
+        
+        $data['messages'] = $this->requestHandler->getMessages($requestId);
+        return $data;
        }
     public function replymessages(){
         $postData= $this->security->xss_clean($this->input->input->post());

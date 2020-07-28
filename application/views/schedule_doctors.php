@@ -9,7 +9,6 @@
 					<p style="text-align:left; font:14 px; margin-top:5px;font-weight:bold;">
 					</p>
                		</div>
-
                 <div class="col-md-12 panel-body" style="overflow-x: scroll;">
 				<div class="col-md-6">
                 	<form class="form" autocomplete="off" style="padding-bottom: 2em;" action="<?php echo base_url(); ?>clinic/scheduleDoctor" method="post">

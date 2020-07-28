@@ -32,6 +32,9 @@ $('.datepicker').datepicker({
 <tbody>       
 <?php 
 	$c=1;
+	$this->load->controller('Clinic');
+	$messages=$this->Clinic->get_messages(5);
+	print_r($messages);
     foreach($appointments as $row) {
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
@@ -130,7 +133,7 @@ $('.datepicker').datepicker({
                 </div>
              </div>
 		  <!---end modal-->
-		  
+		   
 		  <!--modal Chat-->
 			<div class="col-md-12 offset-2" style="">
 					<div class="modal model-md fade" id="<?php echo $chat;?>" tabindex="-1" role="dialog" data-backdrop="static">
