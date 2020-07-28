@@ -31,8 +31,9 @@ $('.datepicker').datepicker({
                     </thead>
 <tbody>       
 <?php 
+$this->load->model("Request", "requestHandler");
 	$c=1;
-	$this->load->model("Request", "requestHandler");
+	
 	
 	
     foreach($appointments as $row) {
@@ -41,7 +42,7 @@ $('.datepicker').datepicker({
 	  		<td><?php echo $row->patient;?></td>
               <td><?php echo $row->mobile;?></td>
 			  <td><?php echo $row->time;?></td>
-            <td><?php $id=$row->id;?><?php echo $name=$row->start_date;?></td>
+            <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $name=$row->start_date;?></td>
 			<td><?php echo  $row->end_date;?></td>
 			<td><?php echo $row->doctor;?></td>
 	        <td>
@@ -133,7 +134,8 @@ $('.datepicker').datepicker({
                 </div>
              </div>
 		  <!---end modal-->
-		  <?php $messages=$this->requestHandler->getMessages($id); 
+
+		  <?php $messages=$this->requestHandler->getMessages($requestid); 
 	  
 		  
 		 ?>
@@ -164,13 +166,13 @@ $('.datepicker').datepicker({
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-				<?php  print_r($messages); ?>
+				<?php  //print_r($messages['message']->body); ?>
               <!-- Conversations are loaded here -->
               <div class="direct-chat-messages">
                 <!-- Message. Default to the left -->
                 <div class="direct-chat-msg">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                    <span class="direct-chat-name pull-left"><?php $messages['message']->name; ?></span>
                     <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
                   </div>
                   <!-- /.direct-chat-info -->

@@ -15,7 +15,7 @@ class Request extends CI_Model
     public function get_appointments()
     {            
         $query = $this->db->query("SELECT appointments.start_date,appointments.id,appointments.end_date,appointments.time, request.mobile, doctors.name as doctor,doctors.mobile,request.name as patient,appointments.allDay, 
-        appointments.status  FROM appointments,request,doctors
+        appointments.status,appointments.request_id  FROM appointments,request,doctors
          WHERE appointments.request_id=request.id AND appointments.doctor=doctors.id;");
         if ($query){
             return $query->result();
@@ -98,8 +98,10 @@ class Request extends CI_Model
             $reply['reply'] = $mreplies->result();
             array_push($mstring,$reply);
             }
-        return $mstring;
-        }
+            foreach ($mstring as $message) {
+            return   $message;
+            }
+           }
         else{
         return array();
         }
