@@ -32,9 +32,9 @@ $('.datepicker').datepicker({
 <tbody>       
 <?php 
 	$c=1;
-	$this->load->controller('Clinic');
-	$messages=$this->Clinic->get_messages(5);
-	print_r($messages);
+	$this->load->model("Request", "requestHandler");
+	
+	
     foreach($appointments as $row) {
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
@@ -133,7 +133,11 @@ $('.datepicker').datepicker({
                 </div>
              </div>
 		  <!---end modal-->
-		   
+		  <?php $messages=$this->requestHandler->getMessages($id); 
+	  
+		  
+		 ?>
+
 		  <!--modal Chat-->
 			<div class="col-md-12 offset-2" style="">
 					<div class="modal model-md fade" id="<?php echo $chat;?>" tabindex="-1" role="dialog" data-backdrop="static">
@@ -160,6 +164,7 @@ $('.datepicker').datepicker({
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+				<?php  print_r($messages); ?>
               <!-- Conversations are loaded here -->
               <div class="direct-chat-messages">
                 <!-- Message. Default to the left -->

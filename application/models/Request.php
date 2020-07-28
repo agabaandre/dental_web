@@ -82,11 +82,10 @@ class Request extends CI_Model
             return array();
         }
     }
-    public function getMessages($data=NULL){
-                 if(!empty($data->username)){
-                 $this->db->where("mobile","$data->username");  
-                 }
+    public function getMessages($requestId){
+        
                  $this->db->where("message_id",NULL);
+                 $this->db->where('request_id',"$requestId");
         $query = $this->db->get("messages");
         $mstring=array();
         if ($query){
