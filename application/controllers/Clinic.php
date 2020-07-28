@@ -182,7 +182,10 @@ class Clinic extends CI_Controller
         $data['heading'] = "Make Appointmnet";
         $data['appointments'] = $this->requestHandler->get_appointments();
         $postData = $this->input->post();
-        $result=$data['user_details']= $this->requestHandler->saveAppointment($postData);
+        $id = $this->input->post('id');
+        if($postData){
+        $result=$data['user_details']= $this->requestHandler->saveAppointment($postData,$id);
+
 
         if($result) {
          $data['message']="Successful";
@@ -190,9 +193,32 @@ class Clinic extends CI_Controller
         } 
         else {
         $data['message']="Failed";
-        $this->load->view('main',$data);
+        } }
+
+        $this->load->view('main',$data); 
         
-        }
+    }
+    public function updateAppointment()
+    {
+        $data['title'] = "Make Apppointment";
+        $data['view'] = "add_appointment";
+        $data['heading'] = "Make Appointmnet";
+        $data['appointments'] = $this->requestHandler->get_appointments();
+        $postData = $this->input->post();
+        $id = $this->input->post('id');
+        if($postData){
+        $result=$data['user_details']= $this->requestHandler->updateAppointment($postData,$id);
+
+
+        if($result) {
+         $data['message']="Successful";
+         $this->load->view('main',$data);
+        } 
+        else {
+        $data['message']="Failed";
+        } }
+
+        $this->load->view('main',$data); 
         
     }
     public function addDoctor()

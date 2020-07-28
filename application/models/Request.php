@@ -3,7 +3,7 @@ class Request extends CI_Model
 {
     public function get_requests()
     {            $this->db->order_by('status', 'ASC');
-                 $this->db->limit(20);
+                 $this->db->limit(100);
         $query = $this->db->get("request");
         if ($query){
             return $query->result();
@@ -11,6 +11,30 @@ class Request extends CI_Model
         else{
             return array();
         }
+    }
+    public function get_appointments()
+    {            
+        $query = $this->db->query("SELECT appointments.start_date,appointments.id,appointments.end_date,appointments.time, request.mobile, doctors.name as doctor,doctors.mobile,request.name as patient,appointments.allDay, 
+        appointments.status  FROM appointments,request,doctors
+         WHERE appointments.request_id=request.id AND appointments.doctor=doctors.id;");
+        if ($query){
+            return $query->result();
+        }
+        else{
+            return array();
+        }
+    }
+    public function saveAppointment($data,$id){
+    $data=array(
+        "start_date" => $data['start_date'],
+        "end_date" =>$data['end_date'],
+        "Time" => $data['time'],
+        "doctor"=>$data['doctor']
+
+    );
+    $this->db->where('appoitments.id',$id);
+    $this->db->update('appointments',$data);
+
     }
     public function get_request($key)
     {

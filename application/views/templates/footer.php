@@ -15,9 +15,15 @@
       <script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/notify.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
-      <!-- <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script> -->
+      
       <script src="<?php echo base_url(); ?>assets/js/dental.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/jquery.1.4.1.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/wickedpicker.min.js"></script>         
+
 </footer>
+<script>
+$('.timepicker').wickedpicker();
+</script>
 <?php
 if (isset($message)){
 if($message=="Successful"){
@@ -26,6 +32,7 @@ if($message=="Successful"){
      $.notify("Succesful", "success", { showAnimation: 'slideDown',
        showDuration: 40000,
        hideAnimation: 'slideUp'});
+      
       </script>
       <?php 
        } else { ?>

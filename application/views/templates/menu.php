@@ -76,13 +76,13 @@
 
 
 
-              <?php if (in_array($view,array('appointment','view_appointments'))){
+              <?php if (in_array($view,array('makeAppointment','view_appointments'))){
             echo'<li class="active treeview">';
 			}
 		   else{
 		 echo'<li class="treeview">';
 		   }?>
-              <a href="<?php echo base_url()?>clinic/appointments">
+              <a href="<?php echo base_url()?>clinic/makeAppointment">
               <i class="glyphicon glyphicon-briefcase fa-lg" style="color:lightblue;"></i><span>Appointmnets</span> <i class=""></i>
               </a>
               </li>

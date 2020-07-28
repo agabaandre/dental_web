@@ -7,6 +7,7 @@
     <link rel="icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
+
      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/flat/blue.css">
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/skin-red.css">	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script> 
-   <script>
+      <script>
       $(function() {
         $('#mydata').DataTable({
           "paging": true,
@@ -38,6 +39,7 @@
         $(function(){
         $('.select2').select2();
         });
+        
   </script>
   <style>
         .content{

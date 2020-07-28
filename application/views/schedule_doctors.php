@@ -30,7 +30,7 @@
 					$i=1;
 					foreach ($doctors as $doctor) {
 					 ?>
-					<option class="" value="<?php echo $doctor->id;?>"><?php  echo $i++.'. '. $doctor->name;?></option>
+					<option class="list-group-item" value="<?php echo $doctor->id;?>"><?php  echo $i++.'. '. $doctor->name;?></option>
 					<?php } ?>
 					
 					</select>
