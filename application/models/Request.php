@@ -24,6 +24,7 @@ class Request extends CI_Model
             return array();
         }
     }
+
     public function saveAppointment($data,$id){
     $data=array(
         "start_date" => $data['start_date'],
@@ -32,10 +33,32 @@ class Request extends CI_Model
         "doctor"=>$data['doctor']
 
     );
-    $this->db->where('appoitments.id',$id);
+    $this->db->where('appointments.id',$id);
     $this->db->update('appointments',$data);
+    
+    return "Successful";
 
     }
+    public function updateAppointment($data,$id){
+        if(!empty($data['Time'])){
+        $data=array(
+            "start_date" => $data['start_date'],
+            "end_date" =>$data['start_date'],
+            "Time" => $data['Time'],
+            "status" => $data['status'],
+            "doctor" => $data['doctor']
+        );
+        }
+        else{
+         $data=array(
+             "status" => $data['status']
+         );   
+        }
+        $this->db->where('appointments.id',$id);
+        $this->db->update('appointments',$data);
+
+    return "Successful";
+        }
     public function get_request($key)
     {
         if(!empty($key)) {

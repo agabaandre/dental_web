@@ -180,6 +180,7 @@ class Clinic extends CI_Controller
         $data['title'] = "Make Apppointment";
         $data['view'] = "add_appointment";
         $data['heading'] = "Make Appointmnet";
+        $data['doctors']= $this->employeeHandler->get_doctor();
         $data['appointments'] = $this->requestHandler->get_appointments();
         $postData = $this->input->post();
         $id = $this->input->post('id');
@@ -203,13 +204,12 @@ class Clinic extends CI_Controller
         $data['title'] = "Make Apppointment";
         $data['view'] = "add_appointment";
         $data['heading'] = "Make Appointmnet";
-        $data['appointments'] = $this->requestHandler->get_appointments();
+        $data['doctors']= $this->employeeHandler->get_doctor();
         $postData = $this->input->post();
         $id = $this->input->post('id');
         if($postData){
         $result=$data['user_details']= $this->requestHandler->updateAppointment($postData,$id);
-
-
+        $data['appointments'] = $this->requestHandler->get_appointments();
         if($result) {
          $data['message']="Successful";
          $this->load->view('main',$data);
