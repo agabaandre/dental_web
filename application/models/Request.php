@@ -14,7 +14,7 @@ class Request extends CI_Model
     }
     public function get_appointments()
     {            
-        $query = $this->db->query("SELECT appointments.start_date,appointments.id,appointments.end_date,appointments.time, request.mobile, doctors.name as doctor,doctors.mobile,request.name as patient,appointments.allDay, 
+        $query = $this->db->query("SELECT appointments.start_date,appointments.id,appointments.end_date,appointments.time, request.mobile, doctors.name as doctor,request.name as patient,appointments.allDay, 
         appointments.status,appointments.request_id  FROM appointments,request,doctors
          WHERE appointments.request_id=request.id AND appointments.doctor=doctors.id;");
         if ($query){
@@ -109,19 +109,19 @@ class Request extends CI_Model
     public function replyMessages($data){
         $datas=array(
             'request_id' => $data['request_id'],
-            'body' => $data['message_body'],
+            'body' => $data['body'],
             'message_id' => $data['message_id'],
             'name' => $data['name'],
             'mobile' => $data['mobile'],
-            'role' => $data['usertype']
+            'role' => $data['role']
         );
             $query=$this->db->insert("messages",$datas);
             $rows=$this->db->affected_rows();
     if ($rows>0){
-     return array('dbstatus'=>'Success');
+     return 'Successful';
     }
     else{
-    return array('dbstatus'=>'Failed');
+    return 'Failed';
     }
     }
     public function saveRequest($data,$final)
@@ -164,13 +164,20 @@ class Request extends CI_Model
         
         }
     public function make_appointment($data,$insert_id,$final){
+        if($data['doctor']==''){
+         $doctor = $data['doctor']='1';
+        }
+          else {
+            $doctor=$data['doctor'];
+          }
+        
         $data=array(
             'start_date'=>$data['requested_date'],
             'end_date' => $data['requested_date'],
             'Time' => NULL,
             'allDay' => 'true',
             'request_id'=>$insert_id,
-            'doctor' =>$data['doctor']
+            'doctor' =>$doctor
 
         );
         $this->db->insert('appointments',$data);

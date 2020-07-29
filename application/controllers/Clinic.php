@@ -324,12 +324,15 @@ class Clinic extends CI_Controller
         $data['messages'] = $this->requestHandler->getMessages($requestId);
         return $data;
        }
-    public function replymessages(){
-        $postData= $this->security->xss_clean($this->input->input->post());
-        
-        $replyStatus = $this->requestHandler->replyMessages($postData);
-        $data['messages'] = $this->requestHandler->getMessages($postData);
-        return $this->messages();
+    public function replyMessages(){
+        $data['title'] = "Make Apppointment";
+        $data['view'] = "add_appointment";
+        $data['heading'] = "Make Appointmnet";
+        $data['doctors']= $this->employeeHandler->get_doctor();
+        $data['appointments'] = $this->requestHandler->get_appointments();
+        $postData = $this->input->post();
+        $data['message'] = $this->requestHandler->replyMessages($postData);
+        $this->load->view('main',$data); 
        
     }
     public function changePassword(){

@@ -87,7 +87,7 @@ $this->load->model("Request", "requestHandler");
                     <li><a href="" data-toggle="modal" data-target="#<?php echo $modalid='my'.$id;?>" title="Set Appointment Time"><i class="glyphicon glyphicon-list"></i>Set Time</a></li>
                     <li><a href="" data-toggle="modal" data-target="#<?php echo $chat='request'.$id;?>" title="Messaage Client"><i class="glyphicon glyphicon-upload"></i>Message</a></li>
                  </ul>
-					</div>
+			</div>
 			<!--modal Update -->
 			<div class="col-md-12 offset-2">
 					<div class="modal model-md fade" id="<?php echo $modalid;?>" tabindex="-1" role="dialog" data-backdrop="static">
@@ -132,26 +132,27 @@ $this->load->model("Request", "requestHandler");
 				</div>
                 </div>
                 </div>
-             </div>
+			 </div>
+				</div>
+				
 		  <!---end modal-->
-
+		  
 		  <?php $messages=$this->requestHandler->getMessages($requestid); 
 	  
 		  
 		 ?>
 
 		  <!--modal Chat-->
-			<div class="col-md-12 offset-2" style="">
-					<div class="modal model-md fade" id="<?php echo $chat;?>" tabindex="-1" role="dialog" data-backdrop="static">
-													<div class="modal-dialog modal-sm modal-dialog-centered" style="margin-right:50px; margin-top:200px;">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-															<h4 class="modal-title" style="text-align:center;"><i class=""></i><?php echo $row->patient; ?></h4>
-														</div>
-														<div class="modal-body">
+		<div class="modal model-md fade" id="<?php echo $chat;?>" tabindex="-1" role="dialog" data-backdrop="static">
+		 <div class="modal-dialog modal-sm modal-dialog-centered" style="margin-right: 50px; margin-top: 200px; height:60%; overflow: auto; background:#FEFFFF;">
+		  <div class="modal-content">
+						<div class="modal-header">
+							<button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+							<h4 class="modal-title" style="text-align: center;"><i class=""></i><?php echo "Chatting with ".$row->patient; ?></br><?php echo$messages['message']->mobile; ?></h4>
+						</div>
+		   <div class="modal-body">
 															
-														<div class="box box-danger direct-chat direct-chat-danger">
+			<div class="box box-danger direct-chat direct-chat-info" style="background:#feffff;">
             <div class="box-header with-border">
               <h3 class="box-title">Chat</h3>
 
@@ -159,89 +160,74 @@ $this->load->model("Request", "requestHandler");
                 <span data-toggle="tooltip" title="" class="badge bg-red" data-original-title="3 New Messages">3</span>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
-                  <i class="fa fa-comments"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
+            </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-				<?php  //print_r($messages['message']->body); ?>
+		
               <!-- Conversations are loaded here -->
               <div class="direct-chat-messages">
                 <!-- Message. Default to the left -->
                 <div class="direct-chat-msg">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-left"><?php $messages['message']->name; ?></span>
-                    <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                    <span class="direct-chat-name pull-left"><?php echo $messages['message']->name; ?></span>
+                    <span class="direct-chat-timestamp pull-right"><?php echo date('j F, Y H:i a',strtotime($messages['message']->followupdate)); ?></span>
                   </div>
                   <!-- /.direct-chat-info -->
-                  <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+                  <img class="direct-chat-img" src="<?php echo base_url();?>assets/images/user.png" alt="Message User Image"><!-- /.direct-chat-img -->
                   <div class="direct-chat-text">
-                    Is this template really for free? That's unbelievable!
+				  <?php echo $messages['message']->body;?>
                   </div>
                   <!-- /.direct-chat-text -->
-                </div>
+               
                 <!-- /.direct-chat-msg -->
 
-                <!-- Message to the right -->
-                <div class="direct-chat-msg right">
+				<!-- ReplyMessage to the right -->
+				<?php foreach ($messages['reply'] as $reply) {
+				?>
+			
+                <div class="direct-chat-msg <?php if ($reply->role!='Patient') echo'right';?>">
                   <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                    <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+                    <span class="direct-chat-name <?php if ($reply->role!='Patient') { echo"pull-right"; } else { echo "pull-left"; } ?>"><?php echo $reply->name;?></span>
+                    <span class="direct-chat-timestamp <?php if ($reply->role!='Patient') { echo"pull-left"; } else{ echo "pull-right"; }?>"><?php echo date('j F, Y H:i a',strtotime($reply->followupdate));?></span>
                   </div>
                   <!-- /.direct-chat-info -->
-                  <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+                  <img class="direct-chat-img" src="<?php echo base_url();?>assets/images/user.png" alt="Message User Image">
                   <div class="direct-chat-text">
-                    You better believe it!
+                    <?php echo $reply->body; ?>
                   </div>
                   <!-- /.direct-chat-text -->
                 </div>
                 <!-- /.direct-chat-msg -->
-              </div>
-              <!--/.direct-chat-messages-->
-
-              <!-- Contacts are loaded here -->
-              <div class="direct-chat-contacts">
-                <ul class="contacts-list">
-                  <li>
-                    <a href="#">
-                      <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
-
-                      <div class="contacts-list-info">
-                            <span class="contacts-list-name">
-                              Count Dracula
-                              <small class="contacts-list-date pull-right">2/28/2015</small>
-                            </span>
-                        <span class="contacts-list-msg">How have you been? I was...</span>
-                      </div>
-                      <!-- /.contacts-list-info -->
-                    </a>
-                  </li>
-                  <!-- End Contact Item -->
-                </ul>
-                <!-- /.contatcts-list -->
-              </div>
-              <!-- /.direct-chat-pane -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-              <form action="#" method="post">
+			  
+				<?php } ?>
+              <div class="box-footer">
+              <form action="<?php echo base_url()?>Clinic/replyMessages" method="post">
                 <div class="input-group">
-                  <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+				<input type="hidden" value="Doctor" name="role"/>
+				<input type="hidden" value="<?php echo $_SESSION['name']; ?>" name="name">
+				<input type="hidden" value="<?php echo $messages['message']->request_id; ?>" name="request_id">
+				<input type="hidden" value="<?php echo $messages['message']->id;?>" name="message_id"/>
+                  <input type="text" name="body" placeholder="Type Message ..." class="form-control">
                       <span class="input-group-btn">
                         <button type="submit" class="btn btn-danger btn-flat">Send</button>
                       </span>
                 </div>
               </form>
-            </div>
-            <!-- /.box-footer-->
-          </div>
-				
-				</div>
-                </div>
-                </div>
              </div>
+            <!-- /.box-footer-->
+		  </div>
+		</div>
+	  </div>
+	</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+               
+			
+
           <!---end Chat-->
 
 			
