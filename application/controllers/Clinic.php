@@ -110,6 +110,15 @@ class Clinic extends CI_Controller
         $data['title'] = "Services";
         $data['view'] = "services";
         $data['heading'] = "Services";
+        if($this->input->post('add')){
+        $data['message'] = $this->employeeHandler->add_services();
+        }
+        if($this->input->post('update')){
+            $data['message'] = $this->employeeHandler->update_services();
+        }
+        if($this->input->post('delete')){
+                $data['message'] = $this->employeeHandler->delete_services();
+        }
         $data['services'] = $this->employeeHandler->get_services();
         $this->load->view('main', $data);
     }
@@ -377,10 +386,14 @@ class Clinic extends CI_Controller
         $data['title'] = "Users Logs";
         $data['view'] = "user_logs";
         $data['heading'] = "User Logs";
-        $changepwd['userlogs'] = $this->requestHandler->getLogs();
+        if($this->input->post('clearlogs')){
+                            
+            $data['message']=$this->db->Delete('logs');
+            }
+        $data['userslogs'] = $this->requestHandler->getLogs();
         $this->load->view("main",$data);
     }
-    
+   
 
 
 }

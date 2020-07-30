@@ -77,5 +77,34 @@ class Employee extends CI_Model
         return array();
         }
     }
+    public function add_services($data){
+        $query=$this->db->insert('services',$data);
+        if ($query){
+        return 'Successful';
+        }
+        else{
+        return 'Failed';
+        }
+    }
+    public function update_services(){
+        $this->db->where('id',$data['id']);
+        $query=$this->db->update('services');
+        if ($query){
+            return 'Successful';
+            }
+            else{
+            return 'Failed';
+        }
+    }
+    public function delete_services(){
+        $this->db->where('id',$data['id']);
+        $query=$this->db->Delete('services');
+        if ($query){
+            return 'Successful';
+            }
+            else{
+            return 'Failed';
+        }
+    }
 
    }
