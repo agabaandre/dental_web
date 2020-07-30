@@ -45,6 +45,8 @@ class Clinic extends CI_Controller
         $userInfo = $this->authHandler->authenticate($data);
         $data['title']="Dashboard";
         $data['view']="home";
+        $data['schedules'] = $this->employeeHandler->monthlyDoctors();
+         
         $data['dashdata'] = $this->requestHandler->dashboard();
         $data['heading']="Dashboard";
         //print_r($data['dashdata']);
@@ -397,6 +399,17 @@ class Clinic extends CI_Controller
             $data['message']=$this->db->Delete('logs');
             }
         $data['userslogs'] = $this->requestHandler->getLogs();
+        $this->load->view("main",$data);
+    }
+    public function reports(){
+        $data['title'] = "Reports";
+        $data['view'] = "home_reports";
+        $data['heading'] = "Reports";
+        // if($this->input->post('clearlogs')){
+                            
+        //     $data['message']=$this->db->Delete('logs');
+        //     }
+        // $data['userslogs'] = $this->requestHandler->getLogs();
         $this->load->view("main",$data);
     }
    

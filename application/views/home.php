@@ -79,8 +79,42 @@
 		
 				
 				
-                <div class="col-md-12">
-                               <div id='calendar'></div>
+      <div class="col-md-12">
+                <div class="box box-info">
+            	<div class="box-header with-border">
+              <h3 class="box-title">Next 20 Days Doctors Schedule</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="mydata" class="table table-striped">
+			  <thead>
+			  <tr>
+			  <th>Date</th>
+			  <th>Doctor</th>
+			 
+			  </tr>
+			  </thead>
+			  <tbody>
+			  
+			  <?php 
+			  //today
+			
+			 foreach ($schedules as $schedule){?>
+			 <tr>
+			  <td><?php  $date= ($schedule->date); echo date('D, d F, Y',strtotime($date)); ?></td>
+			  <td><?php echo $schedule->name; ?></td>
+			  </tr>
+			 <?php }?>
+
+			  </tbody>
+			  </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
                 </div>	
                       
                 
