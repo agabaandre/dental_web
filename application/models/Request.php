@@ -267,6 +267,10 @@ class Request extends CI_Model
 
      return $query->result();
     }
+    public function getLogs(){
+         $query=$this->db->get('logs');
+      return $query->result();
+     }
     public function updateusers($data){
         $this->db->where('uuid !=','2');
         $this->db->where('uuid',$data['uuid']);

@@ -1,7 +1,7 @@
 <div class="col-md-12" style=" background:white; border-radius: 5px;">
     <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
-			      <li class="active"><a href="<?php echo base_url();?>clinic/getUsers">Manage Users</a></li>
+			      <li class="active"><a href="<?php echo base_url();?>clinic/Users">Manage Users</a></li>
 			      <li class=""><a href="<?php echo base_url();?>clinic/userLogs">User Logs</a></li>
                  </ul>
 				</div>

@@ -377,10 +377,7 @@ class Clinic extends CI_Controller
         $data['title'] = "Users Logs";
         $data['view'] = "user_logs";
         $data['heading'] = "User Logs";
-        if(!empty($this->input->post('password'))){
-        $postData= $this->input->post();
-        $changepwd['message'] = $this->requestHandler->usersLogs($postData);
-        }
+        $changepwd['userlogs'] = $this->requestHandler->getLogs();
         $this->load->view("main",$data);
     }
     
