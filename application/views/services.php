@@ -30,11 +30,11 @@
 				   </div>
                    <div id="">
 					 <label>Image URL</label> 
-                      <input class="form-control" name="img_url" id="" value="d56b699830e77ba53855679cb1d252da" placeholder="http:google.com/images/" type="text" >
+                      <input class="form-control" name="img_url" id="" value="" placeholder="http:google.com/images/" type="text" >
 					</div>
 				   <div id="">
 					  <label>Description: *</label>
-                      <input type="text" class="form-control" name="description" id="" value="" placeholder="Sescription" type="text" required>
+                      <input type="text" class="form-control" name="description" id="" value="" placeholder="Description" type="text" required>
 				   </div>
 				     <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
                      <button  class="btn btn-primary" type="submit" ><span class="add"></span>Save</button>
@@ -44,7 +44,7 @@
 <div class="col-md-8"> 
 <div id="CollapsiblePanel1" class="CollapsiblePanel" style="margin:0 auto; overflow-x:hidden; overflow-y:auto;">
 								
-<div class="CollapsiblePanelTab" tabindex="0"><p>View System Users</p></div>
+<div class="CollapsiblePanelTab" tabindex="0"><p>Services</p></div>
 <div class="CollapsiblePanelContent"> 
       <table id="mydata" class="table table-bordered table-responsive">
                     <thead>
@@ -61,9 +61,9 @@
     foreach($services as $row) {
     ?>
       <tr>  <td><?php echo $i++;?></td>
-            <td><?php $id=$row['id'];?><?php echo $row['name'];?></td>
-			<td><?php echo $row['img_url'];?></td>
-			<td><?php echo $facility=$row['description'];?></td>
+            <td><?php $id=$row->id;?><?php echo $row->name;?></td>
+			<td><?php echo $row->img_url;?></td>
+			<td><?php echo $facility=$row->description;?></td>
 	        <td>
                 <button data-toggle="modal" data-target="#<?php echo $modalid='my'.$uuid;?>" title="Update User" class="btn btn-sm btn-info"><i class="edit"></i>Edit</button>
                 <div class="col-md-12 offset-2">
@@ -75,21 +75,21 @@
                                               <h4 class="modal-title"><center><i class=""></i>Edit User Details</center></h4>
                                           </div>
                                           <div class="modal-body">
-	            <form method="post" action="<?php echo base_url();?>index.php/Users/updateUser">
+	            <form method="post" action="<?php echo base_url();?>clinic/services">
 	  	           <div id="">
 					<label>Name: *</label>
-                      <input class="form-control" name="name" id="title" value="<?php echo $row['name'];?>" placeholder="Name" type="text" style="width:100%;" readonly>
+                      <input class="form-control" name="name" id="title" value="<?php echo $row->name;?>" placeholder="Name" type="text" style="width:100%;" readonly>
 				  </div>
                   <div id="">
 					<label> Image URL<br/>
 				     </label> 
-                     <input class="form-control" name="img_url" id="" style="width:100%;" value="<?php echo $row['img_url'];?>" type="hidden">
+                     <input class="form-control" name="img_url" id="" style="width:100%;" value="<?php echo $row->img_url;?>" type="text">
 					 <input class="form-control" name="id"  value="<?php echo $id;?>" placeholder="" type="hidden">
 				   </div>
 				   
 				    <div id="">
 					  <label>Description:</label>
-                      <input class="form-control" style="width:100%;" name="description" id="" value="<?php echo $row['description']?>" placeholder="" type="text">
+                      <input class="form-control" style="width:100%;" name="description" id="" value="<?php echo $row->description;?>" placeholder="" type="text">
 				   </div>
 				     <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
                      <button  class="btn btn-primary" type="submit" ><span class="add"></span>Update User</button>

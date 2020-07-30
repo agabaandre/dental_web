@@ -169,7 +169,7 @@
 		       else{
 			echo'<li class="treeview">';
 		           }?>
-              <a href="<?php echo base_url();?>clinic/newPwd">
+              <a href="<?php echo base_url();?>clinic/changepwd">
                 <i class="glyphicon glyphicon-lock fa-lg" style="color:lightblue;"></i>
                <span>Change Password</span>
                 <span class="label label-primary pull-right"></span>

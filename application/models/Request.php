@@ -227,14 +227,25 @@ class Request extends CI_Model
            return 'Successful';
        }
     }
+    
     //create user acccount comfirm
     public function new_user($data){
+        if(!empty($this->input->post('usertype'))){
+            $usertype=$this->input->post('usertype');
+            $name=$this->input->post('name');
+            $username=$this->input->post('username');
+        }
+        else{
+            $usertype='Patient';
+            $username=$data['mobile'];
+            $name=$data['name'];
+        }
         $password=md5("login");
         $data=array(
-            'username' => $number=$data['mobile'],
-            'name' => $data['name'],
+            'username' =>$username ,
+            'name' => $name,
             'password' => $password,
-            'usertype' => 'Patient'
+            'usertype' => $usertype
         );
         //check if user already exists{
       $users=$this->db->query("SELECT username from users where username='$number'");
@@ -245,10 +256,23 @@ class Request extends CI_Model
      else{
        $notify = $this->db->insert('users',$data);
        if($notify){
-           return 'Successful';
+        return 'Successful';
        }
     }
-  }
+    }
+    //get users
+    public function getUsers(){
+        $this->db->where('status','1');
+        $query=$this->db->get('users');
+
+     return $query->result();
+    }
+    public function updateUsers($data){
+        $this->db->where('uuid',$data['uuid']);
+        $this->db->update('users',$data);
+        
+    }
+   
     public function changePwd($data){
 		$oldpwd=$data->oldpwd;
 		$newpwd=md5($data['newpwd']);
@@ -264,18 +288,18 @@ class Request extends CI_Model
 		if($realoldpwd==$dboldpwd){
 		$sql=$this->db->query("UPDATE `users` SET `password` = '$newpwd' WHERE `users`.`username` = '$username'");
 	     if($sql){
-		 return array('dbstatus'=>'Success');	 
+		 return 'Successful';	 
 		 }
 		 else{
-		return array('dbstatus'=>'Failed');
+		return 'Failed';
 		 }
 		}
 		else{
-		return array('dbstatus'=>'Failed');
+		return 'Failed';
 		}
       }
       else{
-        return array('dbstatus'=>'Failed');
+        return 'Failed';
       }
   }
    public function cancelRequest($id){

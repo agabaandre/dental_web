@@ -335,27 +335,30 @@ class Clinic extends CI_Controller
         $this->load->view('main',$data); 
        
     }
-    public function changePassword(){
-        $data['title'] = "Change Password";
-        $data['view'] = "change_password";
-        $data['heading'] = "Change Password";
-        $postData= $this->security->xss_clean($this->input->post());
-        $changepwd = $this->requestHandler->changepwd($posData);
-        if ($changepwd){
-        $this->session->set_flashdata('message', '<p style="color:red;">Changed!<p>');
-        $this->load->view("main",$data);
+    public function users(){
+        $data['title'] = "Manage Users";
+        $data['view'] = "manage_users";
+        $data['heading'] = "Manage Users";
+        $postData= $this->input->post();
+        
+        if(!empty($this->input->post('password'))){
+        $data['message'] = $this->requestHandler->new_user($posData);
         }
-        else{
-        $this->session->set_flashdata('message', '<p style="color:red;">Failed!<p>');
-        $this->load->view("main",$data);
-        }
+        $data['userdata'] = $this->requestHandler->getUsers();
+        //print_r($data['users']);
+      $this->load->view("main",$data);
+        
     }
     public function changePwd(){
         $data['title'] = "Change Password";
         $data['view'] = "change_password";
         $data['heading'] = "Change Password";
-        $this->load->view("main",$data);
+        if(!empty($this->input->post('password'))){
+        $postData= $this->input->post();
+        $changepwd['message'] = $this->requestHandler->changepwd($posData);
         }
+        $this->load->view("main",$data);
+    }
     
 
 

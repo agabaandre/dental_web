@@ -1,7 +1,5 @@
 <div class="col-md-12" style=" background:white; border-radius: 5px;">
-<?php	$i=1;
-	//print_r($facilitydata);
-?>      <div class="nav-tabs-custom">
+    <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
 			      <li class="active"><a href="<?php echo base_url();?>clinic/getUsers">Manage Users</a></li>
 			      <li class=""><a href="<?php echo base_url();?>clinic/userLogs">User Logs</a></li>
@@ -14,16 +12,9 @@
 									
  <hr style="border:1px solid rgb(140, 141, 137);"/>
 
- 									<?php 
-									if(isset($data['msg'])){
-                                      echo'<div id="alert" class="alert alert-success alert-dismissable">
-                                      <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                      <strong>'.$data['msg'].'</strong>
-                                      </div>';
-                                    }  ?>
   <div class="col-md-4">
       <p>Add Users</p>
-	          <form method="post" action="<?php echo base_url();?>index.php/Users/addUser" autocomplte="off">
+	          <form method="post" action="<?php echo base_url();?>clinic/users" autocomplte="off">
 	  	             <div id="">
 					<label>Username: *</label>
                       <input class="form-control" name="username" id="title" value="" placeholder="Username" type="text" required>
@@ -62,19 +53,44 @@
                       <tr>
 					    <th style="width:2%;">No</th>
 					   <th style="width:22%;">Username</th>
-                        <th style="width:20%;">User Type</th>
-						<th style="width:20%;">Name</th>													
-						<th style="width:10%;">Edit</th>
+                        <th style="width:10%;">User Type</th>
+						<th style="width:20%;">Name</th>							
+						<th style="width:10%;">status</th>							
+						<th style="width:15%;">Edit</th>
+						<th style="width:15%;">Reset Password</th>
                       </tr>
                     </thead>
 <tbody>       
 <?php
-    foreach($users as $row) {
+   // print_r($usersdata);
+    foreach($userdata as $row) {
     ?>
       <tr>  <td><?php echo $i++;?></td>
-            <td><?php $uuid=$row['uuid'];?><?php echo $row['username'];?></td>
-			<td><?php echo  $active_op=$row['usertype'];?></td>
-			<td><?php echo $facility=$row['name'];?></td>
+            <td><?php $uuid=$row->uuid;?><?php echo $row->username;?></td>
+			<td><?php echo  $active_op=$row->usertype;?></td>
+			<td><?php echo $name=$row->name;?></td>
+	    <td>
+	<?php
+                       //Flag Raiser
+					  $status=$row->status;
+				   $space="----|";
+					  if ($status==0){ ?>
+						  <form action='<?php echo base_url();?>index.php/Users/updateUser' method='post'>
+						  <input type='hidden' value="1" name='status'>
+						  <input type='hidden' value='<?php echo $uuid; ?> ' name='uuid'>
+						 <button type='submit'  class='btn btn-sm btn-danger' ><span class='glyphicon glyphicon-circle-remove'></span>Not Active</button>
+						        </form>
+					<?php  } 
+					  else { ?>
+						<form action='<?php echo base_url();?>index.php/Users/updateUser' method='post'>
+						  <input type='hidden' value="0" name='status'>
+						  <input type='hidden' value='<?php echo $uuid; ?>' name='uuid'>
+						 <button type='submit'  class='btn btn-sm btn-success' ><span class='glyphicon glyphicon-ok'></span>Active</button>
+						 </form> 
+					<?php  }
+					  
+					  ?>
+		</td>
 	<td>
     <button data-toggle="modal" data-target="#<?php echo $modalid='my'.$uuid;?>" title="Update User" class="btn btn-sm btn-info"><i class="edit"></i>Edit</button>
 	<div class="col-md-12 offset-2">
@@ -86,16 +102,13 @@
                                               <h4 class="modal-title"><center><i class=""></i>Edit User Details</center></h4>
                                           </div>
                                           <div class="modal-body">
-	            <form method="post" action="<?php echo base_url();?>index.php/Users/updateUser">
+	            <form method="post" action="<?php echo base_url();?>clinic/updateUser">
 	  	           <div id="">
 					<label>Username: *</label>
-                      <input class="form-control" name="username" id="title" value="<?php echo $row['username'];?>" placeholder="Surname" type="text" style="width:100%;" readonly>
+                      <input class="form-control" name="username" id="title" value="<?php echo $row->username;?>" placeholder="Surname" type="text" style="width:100%;" readonly>
 				  </div>
                   <div id="">
-					<label> NB: Password is reset to a system default password<br/>
-				     </label> 
-                     <input class="form-control" name="password" id="" style="width:100%;" value="d56b699830e77ba53855679cb1d252da" type="hidden">
-					 <input class="form-control" name="uuid"  value="<?php echo $uuid;?>" placeholder="" type="hidden">
+                    	<input class="form-control" name="uuid"  value="<?php echo $uuid;?>" placeholder="" type="hidden">
 				   </div>
 				   <div id="">
 					  <label>User Type: *</label>
@@ -111,17 +124,26 @@
 				   </div>
 				    <div id="">
 					  <label>Name:</label>
-                      <input class="form-control" style="width:100%;" name="name" id="" value="<?php echo $row['name']?>" placeholder="" type="text">
+                      <input class="form-control" style="width:100%;" name="name" id="" value="<?php echo $row->name;?>" placeholder="" type="text">
 				   </div>
 				     <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
-                     <button  class="btn btn-primary" name="" type="submit" ><span class="add"></span>Update User</button>
+                     <button  class="btn btn-primary"  type="submit" ><span class="add"></span>Update User</button>
                    </form>
 				   </div>
                                          </div>
                                       </div>
                                     </div>
-             </div>
+			 </div>
+			
 			 </td>
+			 <td>
+			 <form action="<?php echo base_url();?>clinic/updateUser">
+					<input class="form-control" name="uuid"  value="<?php echo $uuid;?>" placeholder="" type="hidden">
+					<input class="form-control" name="password"  value="login" placeholder="" type="hidden">
+					<button  class="btn btn-primary"  type="submit" ><span class="add"></span>Reset</button>
+             </form>
+			</td>
+
 			 </tr>
     <?php	
     }
@@ -133,5 +155,5 @@
 	</div>
 </div>
 </div>
-</div>
+
 	
