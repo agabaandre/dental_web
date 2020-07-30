@@ -78,6 +78,11 @@ class Employee extends CI_Model
         }
     }
     public function add_services($data){
+        $data=array(
+            'name' => $data['name'],
+            'img_url' => $data['img_url'],
+            'description' =>$data['description']
+        );
         $query=$this->db->insert('services',$data);
         if ($query){
         return 'Successful';
@@ -86,7 +91,12 @@ class Employee extends CI_Model
         return 'Failed';
         }
     }
-    public function update_services(){
+    public function update_services($data){
+        $data=array(
+            'name' => $data['name'],
+            'img_url' => $data['img_url'],
+            'description' => $data['description']
+        );
         $this->db->where('id',$data['id']);
         $query=$this->db->update('services');
         if ($query){
@@ -96,7 +106,7 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
-    public function delete_services(){
+    public function delete_services($data){
         $this->db->where('id',$data['id']);
         $query=$this->db->Delete('services');
         if ($query){
