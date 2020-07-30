@@ -3,9 +3,8 @@
 	//print_r($facilitydata);
 ?>      <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
-			      <li class="active"><a href="<?php echo base_url();?>index.php/Users/getUsers">Manage Users</a></li>
-			      <!-- <li class=""><a href="<?php echo base_url();?>index.php/Users/getLogs">User Logs</a></li>
--->
+			      <li class="active"><a href="<?php echo base_url();?>clinic/getUsers">Manage Users</a></li>
+			      <li class=""><a href="<?php echo base_url();?>clinic/userLogs">User Logs</a></li>
                  </ul>
 				</div>
                 <div class="box-header with-border">
@@ -64,42 +63,18 @@
 					    <th style="width:2%;">No</th>
 					   <th style="width:22%;">Username</th>
                         <th style="width:20%;">User Type</th>
-						<th style="width:20%;">Name</th>							
-						<th style="width:10%;">status</th>							
+						<th style="width:20%;">Name</th>													
 						<th style="width:10%;">Edit</th>
                       </tr>
                     </thead>
 <tbody>       
 <?php
-$users=$data['users'];
     foreach($users as $row) {
     ?>
       <tr>  <td><?php echo $i++;?></td>
             <td><?php $uuid=$row['uuid'];?><?php echo $row['username'];?></td>
 			<td><?php echo  $active_op=$row['usertype'];?></td>
 			<td><?php echo $facility=$row['name'];?></td>
-	    <td>
-	<?php
-                       //Flag Raiser
-					  $status=$row['status'];
-				   $space="----|";
-					  if ($status==0){ ?>
-						  <form action='<?php echo base_url();?>index.php/Users/updateUser' method='post'>
-						  <input type='hidden' value="1" name='status'>
-						  <input type='hidden' value='<?php echo $uuid; ?> ' name='uuid'>
-						 <button type='submit'  class='btn btn-sm btn-danger' ><span class='glyphicon glyphicon-circle-remove'></span>Not Active</button>
-						        </form>
-					<?php  } 
-					  else { ?>
-						<form action='<?php echo base_url();?>index.php/Users/updateUser' method='post'>
-						  <input type='hidden' value="0" name='status'>
-						  <input type='hidden' value='<?php echo $uuid; ?>' name='uuid'>
-						 <button type='submit'  class='btn btn-sm btn-success' ><span class='glyphicon glyphicon-ok'></span>Active</button>
-						 </form> 
-					<?php  }
-					  
-					  ?>
-		</td>
 	<td>
     <button data-toggle="modal" data-target="#<?php echo $modalid='my'.$uuid;?>" title="Update User" class="btn btn-sm btn-info"><i class="edit"></i>Edit</button>
 	<div class="col-md-12 offset-2">
