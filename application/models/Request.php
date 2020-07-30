@@ -262,14 +262,21 @@ class Request extends CI_Model
     }
     //get users
     public function getUsers(){
-        $this->db->where('status','1');
+       // $this->db->where('status','1');
         $query=$this->db->get('users');
 
      return $query->result();
     }
-    public function updateUsers($data){
+    public function updateusers($data){
+        $this->db->where('uuid !=','2');
         $this->db->where('uuid',$data['uuid']);
-        $this->db->update('users',$data);
+        $query=$this->db->update('users',$data);
+        if($query){
+          return 'Successful';  
+        }
+        else{
+          return 'Failed';
+        }
         
     }
    

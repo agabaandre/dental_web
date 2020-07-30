@@ -28,9 +28,9 @@ include("db_connector/mysqli_conn.php");
   <?php foreach($userlogs as $row){
     ?>
       <tr> 
-        <td><?php echo $row['uuid'];?></td>
-			<td><?php echo $row['actions'];?></td>
-			<td><?php echo $row['time'];?></td>
+        <td><?php echo $row->uuid;?></td>
+			<td><?php echo $row->actions;?></td>
+			<td><?php echo $row->time;?></td>
 	  </tr>
     <?php }
 	?>

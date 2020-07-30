@@ -342,7 +342,21 @@ class Clinic extends CI_Controller
         $postData= $this->input->post();
         
         if(!empty($this->input->post('password'))){
-        $data['message'] = $this->requestHandler->new_user($posData);
+        $data['message'] = $this->requestHandler->new_user($postData);
+        }
+        $data['userdata'] = $this->requestHandler->getUsers();
+        //print_r($data['users']);
+      $this->load->view("main",$data);
+        
+    }
+    public function updateuser(){
+        $data['title'] = "Manage Users";
+        $data['view'] = "manage_users";
+        $data['heading'] = "Manage Users";
+        $postData= $this->input->post();
+        
+        if(!empty($this->input->post('uuid'))){
+        $data['message'] = $this->requestHandler->updateUsers($postData);
         }
         $data['userdata'] = $this->requestHandler->getUsers();
         //print_r($data['users']);
@@ -355,7 +369,17 @@ class Clinic extends CI_Controller
         $data['heading'] = "Change Password";
         if(!empty($this->input->post('password'))){
         $postData= $this->input->post();
-        $changepwd['message'] = $this->requestHandler->changepwd($posData);
+        $changepwd['message'] = $this->requestHandler->changepwd($postData);
+        }
+        $this->load->view("main",$data);
+    }
+    public function userLogs(){
+        $data['title'] = "Users Logs";
+        $data['view'] = "user_logs";
+        $data['heading'] = "User Logs";
+        if(!empty($this->input->post('password'))){
+        $postData= $this->input->post();
+        $changepwd['message'] = $this->requestHandler->usersLogs($postData);
         }
         $this->load->view("main",$data);
     }

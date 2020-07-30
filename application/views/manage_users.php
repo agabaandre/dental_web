@@ -75,14 +75,14 @@
 					  $status=$row->status;
 				   $space="----|";
 					  if ($status==0){ ?>
-						  <form action='<?php echo base_url();?>index.php/Users/updateUser' method='post'>
+						  <form action='<?php echo base_url();?>clinic/updateuser' method='post'>
 						  <input type='hidden' value="1" name='status'>
 						  <input type='hidden' value='<?php echo $uuid; ?> ' name='uuid'>
 						 <button type='submit'  class='btn btn-sm btn-danger' ><span class='glyphicon glyphicon-circle-remove'></span>Not Active</button>
 						        </form>
 					<?php  } 
 					  else { ?>
-						<form action='<?php echo base_url();?>index.php/Users/updateUser' method='post'>
+						<form action='<?php echo base_url();?>clinic/updateUser' method='post'>
 						  <input type='hidden' value="0" name='status'>
 						  <input type='hidden' value='<?php echo $uuid; ?>' name='uuid'>
 						 <button type='submit'  class='btn btn-sm btn-success' ><span class='glyphicon glyphicon-ok'></span>Active</button>
@@ -137,10 +137,10 @@
 			
 			 </td>
 			 <td>
-			 <form action="<?php echo base_url();?>clinic/updateUser">
-					<input class="form-control" name="uuid"  value="<?php echo $uuid;?>" placeholder="" type="hidden">
-					<input class="form-control" name="password"  value="login" placeholder="" type="hidden">
-					<button  class="btn btn-primary"  type="submit" ><span class="add"></span>Reset</button>
+			 <form action="<?php echo base_url();?>clinic/updateUser" method="post">
+			 <input class="form-control" name="uuid"  value="<?php echo $uuid;?>" placeholder="" type="hidden">
+	         <input class="form-control" name="password"  value="login" placeholder="" type="hidden">
+			 <button  class="btn btn-primary"  type="submit" ><span class=""></span>Reset</button>
              </form>
 			</td>
 
