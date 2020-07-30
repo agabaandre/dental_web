@@ -7,16 +7,15 @@
                  <h5 class="box-title"><strong><?php  echo $heading; ?></strong></h5>
                 </div>
         <div class="col-md-12">
-           <?php $widgets=$data['widgets'];
-                // print_r($widgets);
-                 $employees=$data['employees'];
+           <?php
+            //print_r($dashdata);
            ?>
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?php echo $widgets['staff']; ?></h3>
+              <h3><?php echo $dashdata[0]['monthly_requests'][0]->monthly_requests; ?></h3>
 
               <p>Monthly Requests</p>
             </div>
@@ -31,8 +30,8 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-            <h3><?php echo $widgets['schedules']; ?></h3>
-              <p>Monthly Approved Request</p>
+            <h3><?php echo $dashdata[0]['monthly_appointments'][0]->monthly_appointments ;?></h3>
+              <p>Comfirmed Appoitments</p>
             </div>
             <div class="icon">
               <i class="fa fa-clock"></i>
@@ -45,9 +44,10 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-            <h3><?php echo $widgets['duty']; ?></h3>
+            <h3><?php echo $dashdata[0]['doctors'][0]->doctors ?></h3>
+          
 
-              <p>Cancelled Requests</p>
+              <p>Doctors on Duty</p>
             </div>
             <div class="icon">
               <i class="fa fa-calendar"></i>
@@ -57,14 +57,14 @@
           </div>
           <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-red">
             <div class="inner">
-            <h3><?php echo $widgets['duty']; ?></h3>
-
-              <p>Doctors</p>
+            <h3><?php echo $dashdata[0]['patients'][0]->patients ?></h3>
+          
+              <p>Total Patients</p>
             </div>
             <div class="icon">
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-user"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>

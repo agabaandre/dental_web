@@ -9,9 +9,9 @@
                  <p class="box-title"><strong>Schedule Reports</strong></p>
            </div>
                     <ol>
-                      <li><a href="<?php echo base_url();?>index.php/Attendance/staffList">Staff List</a></p>-Shows the Current Active Staff in the reporting Month</li>
-                      <li><a href="<?php echo base_url();?>index.php/Attendance/schedulesReport">Scheduled Workers</a><p> - With A list of workers scheduled to work this month</p></li>
-                      <li><a href="<?php echo base_url();?>index.php/Attendance/summaryReport">Monthly Summary Report</a><p> - Groups each work day by schedule</p></li>
+                      <li><a href="<?php echo base_url();?>Clinic/stafflist">Staff List</a></p>-Shows the Current Active Staff and contacts</li>
+                      <li><a href="<?php echo base_url();?>clinic/patients">Scheduled Workers</a><p> - With A list of patients and their contacts</p></li>
+
                       
 					 
                      			

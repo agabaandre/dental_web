@@ -132,7 +132,7 @@
 		     else{
 			    echo'<li class="treeview">';
 		          }?>
-              <a href="<?php echo base_url();?>index.php/Attendance/reports">
+              <a href="<?php echo base_url();?>clinic/reports">
               <i class="glyphicon glyphicon-th-list fa-lg" style="color:lightblue;"></i>
               <span>Reports</span>
               <span class="label label-primary pull-right"></span>

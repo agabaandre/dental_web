@@ -45,7 +45,9 @@ class Clinic extends CI_Controller
         $userInfo = $this->authHandler->authenticate($data);
         $data['title']="Dashboard";
         $data['view']="home";
+        $data['dashdata'] = $this->requestHandler->dashboard();
         $data['heading']="Dashboard";
+        //print_r($data['dashdata']);
         $this->load->view('main',$data);
         
     }
@@ -110,17 +112,21 @@ class Clinic extends CI_Controller
         $data['title'] = "Services";
         $data['view'] = "services";
         $data['heading'] = "Services";
-        if($this->input->post('add')){
-        $data['message'] = $this->employeeHandler->add_services();
+        $process=$this->input->post();
+
+        if($this->input->post('add')=='add'){
+
+        $data['message'] = $this->employeeHandler->add_services($process);
         }
-        if($this->input->post('update')){
-            $data['message'] = $this->employeeHandler->update_services();
+        if($this->input->post('update')=='update'){
+            $data['message'] = $this->employeeHandler->update_services($process);
         }
-        if($this->input->post('delete')){
-                $data['message'] = $this->employeeHandler->delete_services();
+        if($this->input->post('delete')=='delete'){
+                $data['message'] = $this->employeeHandler->delete_services($process);
         }
         $data['services'] = $this->employeeHandler->get_services();
-        $this->load->view('main', $data);
+       //print_r($process);
+       $this->load->view('main', $data);
     }
     public function availableDoctors(){
         $date = $this->input->post('date');
@@ -393,6 +399,7 @@ class Clinic extends CI_Controller
         $data['userslogs'] = $this->requestHandler->getLogs();
         $this->load->view("main",$data);
     }
+   
    
 
 

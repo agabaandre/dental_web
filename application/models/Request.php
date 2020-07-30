@@ -326,4 +326,25 @@ class Request extends CI_Model
     }
 
    }
-}
+
+ public function dashboard(){
+     //monthly requests
+     $dashbaord=array();
+     $date=date('Y-m');
+     $query=$this->db->query("select count(id) as monthly_requests from request where request_date like'$date%'");
+     $data['monthly_requests']=$query->result();
+     //comfirmed Appointments
+     $query=$this->db->query("select count(id) as monthly_appointments from appointments where start_date like'$date%' and status='1'");
+     $data['monthly_appointments']=$query->result();
+     // doctors
+     $query=$this->db->query("select count(id) as doctors from  doctors where flag='1'");
+     $data['doctors']=$query->result();
+     // Patients
+     $query=$this->db->query("select count(uuid) as patients from  users where usertype='Patient'");
+     $data['patients']=$query->result();
+
+     array_push($dashbaord,$data);
+
+ return $dashbaord;
+ }
+ }

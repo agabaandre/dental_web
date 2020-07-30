@@ -92,13 +92,13 @@ class Employee extends CI_Model
         }
     }
     public function update_services($data){
-        $data=array(
+        $datas=array(
             'name' => $data['name'],
             'img_url' => $data['img_url'],
             'description' => $data['description']
         );
-        $this->db->where('id',$data['id']);
-        $query=$this->db->update('services');
+        $this->db->where('id',$data['sid']);
+        $query=$this->db->update('services',$datas);
         if ($query){
             return 'Successful';
             }
