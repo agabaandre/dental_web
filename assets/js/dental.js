@@ -39,40 +39,36 @@ $(document).ready(function(){
 
 });
 
-// $('#data_form').submit(function(e){
-// 	e.preventDefault();
+$('#messages').submit(function(e){
+	e.preventDefault();
 
-// 	var method =$(this).attr('method');
-// 	var path =$(this).attr('action');
-// 	var form_data=$(this).serialize();
-// 	console.log(form_data);
-// 	//$('.msg').html('<center><img src="assets/images/processing.gif"></center>');
-//     $.ajax({
-//     method:method,
-//     data:form_data,
-//     url:path,
-//     success : function(res){
-// 	console.log(res);
-// 	setTimeout(function(){
-// 	//$('.msg').html(res);
-	
-	
-// 	// $('#modal_id').modal('show'); //shows modal
-	
+	var method =$(this).attr('method');
+	var path =$(this).attr('action');
+	var form_data=$(this).serialize();
+	console.log(form_data);
+	  $.ajax({
+    method:method,
+    data:form_data,
+    url:path,
+    success : function(res){
+    $.notify("Succesful", "success", { showAnimation: 'slideDown',
+    showDuration: 40000,
+    hideAnimation: 'slideUp'});
+  	//console.log(res);
+  	setTimeout(function(){
 	
 		
-// 	},1000);
+	},1000);
 	
-// }
+}
 
 
-// });//close $.ajax amd the param array
-
-// //auto show modalmodal
+});//close $.ajax amd the param array
 
 
 
-// });//close submit and its function
+
+});//close submit and its function
 
 
 

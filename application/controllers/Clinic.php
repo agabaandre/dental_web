@@ -30,6 +30,8 @@ class Clinic extends CI_Controller
         $data['title']="Dashboard";
         $data['view']="home";
         $data['heading']="Dashboard";
+        $data['schedules'] = $this->employeeHandler->monthlyDoctors();
+        $data['dashdata'] = $this->requestHandler->dashboard();
         if($userInfo) {
             $this->session->set_userdata($userInfo);
         $this->load->view('main',$data);
@@ -411,6 +413,9 @@ class Clinic extends CI_Controller
         //     }
         // $data['userslogs'] = $this->requestHandler->getLogs();
         $this->load->view("main",$data);
+    }
+    public function app_notifications(){
+
     }
    
    

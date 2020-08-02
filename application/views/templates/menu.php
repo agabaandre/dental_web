@@ -124,6 +124,39 @@
 			          
 			          </ul>
             </li>
+            <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
+            echo'<li class="active treeview">';
+			}
+		     else{
+			  echo'<li class="treeview">';
+		     }?>
+              <a href="#">
+                <i class="fa fa-ambulance" style="color:lightblue;"></i>
+                <span>Diagnosis</span>
+                <span class="label label-primary pull-right"></span>
+              </a>
+              <ul class="treeview-menu">
+                <li class=""><a href="<?php echo base_url();?>clinic/diagonosis">New Diagnisis</a></li>
+                
+			          </ul>
+            </li>
+            <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
+            echo'<li class="active treeview">';
+			}
+		     else{
+			  echo'<li class="treeview">';
+		     }?>
+              <a href="#">
+                <i class="fa fa-credit-card" style="color:lightblue;"></i>
+                <span>Billing</span>
+                <span class="label label-primary pull-right"></span>
+              </a>
+              <ul class="treeview-menu">
+                <li class=""><a href="<?php echo base_url();?>clinic/capturebill">Capture Bill</a></li>
+                
+			          </ul>
+            </li>
+         			  
          			  
 			
 			   <?php if (in_array($view,array('reports'))){
@@ -158,6 +191,7 @@
 			  	else{ ?>
                 <li><a href="<?php echo base_url();?>clinic/users"><i class="fa fa-circle-o"></i>Users</a></li>
 		             <li><a href="<?php echo base_url();?>clinic/services"><i class="fa fa-circle-o"></i>Services</a></li>
+                 <li><a href="<?php echo base_url();?>clinic/clinics"><i class="fa fa-circle-o"></i>Clinics</a></li>
                  <?php	}
 				?>
 				

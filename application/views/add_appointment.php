@@ -202,7 +202,7 @@ $this->load->model("Request", "requestHandler");
 			  
 				<?php } ?>
               <div class="box-footer">
-              <form action="<?php echo base_url()?>Clinic/replyMessages" method="post">
+              <form action="<?php echo base_url()?>Clinic/replyMessages" method="post" id="messages">
                 <div class="input-group">
 				<input type="hidden" value="Doctor" name="role"/>
 				<input type="hidden" value="<?php echo $_SESSION['name']; ?>" name="name">
@@ -215,16 +215,15 @@ $this->load->model("Request", "requestHandler");
                 </div>
               </form>
              </div>
-            <!-- /.box-footer-->
 		  </div>
 		</div>
 	  </div>
 	</div>
-				</div>
-				</div>
-				</div>
-				</div>
-				
+	</div>
+	</div>
+	</div>
+	</div>
+	
                
 			
 
