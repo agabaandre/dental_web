@@ -116,5 +116,43 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
+ 
+    public function add_clinic($data){
+        $data=array(
+            'name' => $data['clinic'],
+     
+        );
+        $query=$this->db->insert('clinic',$data);
+        if ($query){
+        return 'Successful';
+        }
+        else{
+        return 'Failed';
+        }
+    }
+    public function update_clinic($data){
+        $datas=array(
+            'name' => $data['clinic'],
+            
+        );
+        $this->db->where('id',$data['id']);
+        $query=$this->db->update('clinic',$datas);
+        if ($query){
+            return 'Successful';
+            }
+            else{
+            return 'Failed';
+        }
+    }
+    public function delete_clinic($data){
+        $this->db->where('id',$data['id']);
+        $query=$this->db->Delete('clinic');
+        if ($query){
+            return 'Successful';
+            }
+            else{
+            return 'Failed';
+        }
+    }
 
    }

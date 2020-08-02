@@ -70,8 +70,28 @@ class Clinic extends CI_Controller
         $data['view']="requests";
         $data['heading']="View Requests";
         $data['doctors'] = $this->employeeHandler->get_doctor();
-        $data['clinics'] = $this->requestHandler->get_clinic();
+      
         return $data;
+    }
+    public function clinics(){
+        $data['title'] = "Clinics";
+        $data['view'] = "clinics";
+        $data['heading'] = "Clinics";
+        $process=$this->input->post();
+
+        if($this->input->post('add')=='add'){
+
+        $data['message'] = $this->employeeHandler->add_clinic($process);
+        }
+        if($this->input->post('update')=='update'){
+            $data['message'] = $this->employeeHandler->update_clinic($process);
+        }
+        if($this->input->post('delete')=='delete'){
+                $data['message'] = $this->employeeHandler->delete_clinic($process);
+        }
+        $data['clinics'] = $this->requestHandler->get_clinic();
+       //print_r($process);
+       $this->load->view('main', $data);
     }
 
     public function cancelRequest()
@@ -132,6 +152,7 @@ class Clinic extends CI_Controller
        //print_r($process);
        $this->load->view('main', $data);
     }
+    
     public function availableDoctors(){
         $date = $this->input->post('date');
         if(!empty($date)){ 
@@ -249,6 +270,7 @@ class Clinic extends CI_Controller
         $data['doctors'] = $this->employeeHandler->get_doctor();
         $this->load->view('main',$data);
      }
+     
      public function saveDoctor()
      {
         // save doctor to database

@@ -187,6 +187,8 @@
 		             { ?>  
                 <li><a href="<?php echo base_url();?>clinic/users"><i class="fa fa-circle-o"></i>Users</a></li>
 		             <li><a href="<?php echo base_url();?>clinic/services"><i class="fa fa-circle-o"></i>Services</a></li>
+                 <li><a href="<?php echo base_url();?>clinic/clinics"><i class="fa fa-circle-o"></i>Clinics</a></li>
+               
                 <?php } 
 			  	else{ ?>
                 <li><a href="<?php echo base_url();?>clinic/users"><i class="fa fa-circle-o"></i>Users</a></li>

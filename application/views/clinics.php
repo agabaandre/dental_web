@@ -3,7 +3,7 @@
 	//print_r($facilitydata);
 ?>      <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
-			      <li class="active"><a href="<?php echo base_url();?>Clinic/services">Manage Clinics</a></li>
+			      <li class="active"><a href="<?php echo base_url();?>Clinic/clinics">Manage Clinics</a></li>
 			    
                  </ul>
 				</div>
@@ -15,7 +15,7 @@
  <hr style="border:1px solid rgb(140, 141, 137);"/>
   <div class="col-md-4">
       <p>Add Clinic</p>
-	          <form method="post" action="<?php echo base_url();?>Clinic/services" autocomplte="off">
+	          <form method="post" action="<?php echo base_url();?>Clinic/clinics" autocomplte="off">
 	  	             <div id="">
 					<label>Clinic: *</label>
                       <input class="form-control" name="clinic" id="title" value="" placeholder="Clinic" type="text" required autocomplete="off">
@@ -36,13 +36,15 @@
                     <thead>
                       <tr>
 					    <th style="width:2%;">No</th>
-					   <th style="width:10%;">Clinic</th>
+					   <th style="width:70%;">Clinic</th>
+                       <th style="width:10%;">Edit</th>
+                       <th style="width:10%;">Delete</th>
                     
                       </tr>
                     </thead>
 <tbody>       
 <?php
-    foreach($services as $row) {
+    foreach($clinics as $row) {
     ?>
       <tr>  <td><?php echo $i++;?></td>
             <td><?php $id=$row->id;?><?php echo $row->clinic;?></td>
@@ -57,10 +59,12 @@
                                               <h4 class="modal-title"><center><i class=""></i>Edit Clinic</center></h4>
                                           </div>
                                           <div class="modal-body">
-	            <form method="post" action="<?php echo base_url();?>clinic/clinic">
+	            <form method="post" action="<?php echo base_url();?>clinic/clinics">
 	  	           <div id="">
 					<label>Clinic: *</label>
-                      <input class="form-control" name="name" id="title" value="<?php echo $row->clinic;?>" placeholder="Name" type="text" style="width:100%;" readonly>
+                    <input class="form-control" name="id" id="title" value="<?php echo $row->id;?>" placeholder="Name" type="hidden" style="width:100%;">
+				
+                      <input class="form-control" name="clinic" id="title" value="<?php echo $row->clinic;?>" placeholder="Name" type="text" style="width:100%;">
 				  </div>
 				     <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
                      <button  class="btn btn-primary" type="submit"  ><span class="update"></span>Update</button>
@@ -89,7 +93,7 @@
 			<div class="modal-body">
 				<p><center>This process cannot be undone</center></p>
             </div>
-             <form method="post" action="<?php echo base_url();?>clinic/services">
+             <form method="post" action="<?php echo base_url();?>clinic/clinics">
              <input class="form-control" name="id"  value="<?php echo $id;?>" placeholder="" type="hidden">	
              <input class="form-control" name="delete"  value="delete" placeholder="" type="hidden">
 			<div class="modal-footer justify-content-center">
