@@ -45,8 +45,8 @@ if($message=="Successful"){
 <script>
 $(document).ready(function () {
       
-    $("#add_bill").click(function(){
-        $("#bill_item").append('<div class="col-md-6"><input type="text" class="form-control" name="description[]" id="contact" autocomplete="off" style="width:100%; margin-top:4px;" required></div><div class="col-md-6"><input type="text" class="form-control" name="bill[]" id="contact" autocomplete="off" style="width:100%; margin-top:4px;" required></div>'
+    $('.add_bill').click(function(){
+        $('.bill_item').append('<div class="col-md-6"><input type="text" class="form-control" name="description[]" id="contact" autocomplete="off" style="width:100%; margin-top:4px;" required></div><div class="col-md-6"><input type="text" class="form-control" name="bill[]" id="contact" autocomplete="off" style="width:100%; margin-top:4px;" required></div>'
 );      
 
 });

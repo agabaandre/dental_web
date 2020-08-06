@@ -1,8 +1,8 @@
 <script>
-$.fn.datepicker.defaults.format = "yyyy/mm/dd";
-$('.datepicker').datepicker({
-});
-</script>	
+// $.fn.datepicker.defaults.format = "yyyy/mm/dd";
+// $('.datepicker').datepicker({
+// });
+// </script>	
 <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -98,12 +98,12 @@ $this->load->model("Request", "requestHandler");
 															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Bill</h4>
 														</div>
 														<div class="modal-body">
-                <button  class="btn btn-primary" id="add_bill" ><span class="glyphicon glyphicon-plus"></span>New Bill Item</button>
+                <button  class="btn btn-primary add_bill"  ><span class="glyphicon glyphicon-plus"></span>New Bill Item</button>
 				<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/billing">
                 <div class="form-group">
 					<div class="col-md-6">Description</div><div class="col-md-6">Amount</div>
                     <div class="col-md-6"><input type="text" class="form-control" name="bill[]"  autocomplete="off" style="width:100%;" required></div><div class="col-md-6"><input type="text" class="form-control" name="bill[]"  autocomplete="off" style="width:100%;" required></div>'
-				<p id="bill_item"></p>
+				<p class="bill_item"></p>
 				</div>
                 </div>
                 <div class="modal-footer">
@@ -141,14 +141,4 @@ $this->load->model("Request", "requestHandler");
 	</div>
 
 
-<script>
-	$(function(){
-	$("#addClass").click(function (e) {
-		e.preventDefault();
-		$('#qnimate').addClass('popup-box-on');
-	});          
-	$("#removeClass").click(function () {
-		$('#qnimate').removeClass('popup-box-on');
-	});
-});
-</script>
+

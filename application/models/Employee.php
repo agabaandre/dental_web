@@ -154,5 +154,15 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
+    public function post_bill($data){
+       
+        $query=$this->db->insert('clinic',$data);
+        if ($query){
+            return 'Successful';
+            }
+            else{
+            return 'Failed';
+        }
+    }
 
    }

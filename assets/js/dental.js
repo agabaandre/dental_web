@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 });
 
-$('#messages').submit(function(e){
+$('.messages').submit(function(e){
 	e.preventDefault();
 
 	var method =$(this).attr('method');

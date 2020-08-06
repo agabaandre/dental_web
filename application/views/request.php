@@ -29,7 +29,6 @@
                       <input name="requested_date"  type="text" id="reqdate"   class="form-control" value="" autocomplete="off" required>
                       <div class="input-group-addon">
                       <span class="glyphicon glyphicon-th"></span>
-					  
                      </div>
 					 </div>
 					 <div id="">
@@ -79,7 +78,7 @@
 					$i=1;
 					foreach ($services as $service) {
 					 ?>
-					<option class="btn btn-default list-group-item" value="<?php echo $service->name;?>"><?php  echo $i++.'. '. $service->name;?></option>
+					<option class="btn btn-default btn-sm list-group-item" value="<?php echo $service->name;?>"><?php  echo $i++.'. '. $service->name;?></option>
 					<?php } ?>
 					
 					</select>

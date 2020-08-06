@@ -202,7 +202,7 @@ $this->load->model("Request", "requestHandler");
 			  
 				<?php } ?>
               <div class="box-footer">
-              <form action="<?php echo base_url()?>Clinic/replyMessages" method="post" id="messages">
+              <form action="<?php echo base_url()?>Clinic/replyMessages" method="post" class="messages">
                 <div class="input-group">
 				<input type="hidden" value="Doctor" name="role"/>
 				<input type="hidden" value="<?php echo $_SESSION['name']; ?>" name="name">
@@ -230,7 +230,7 @@ $this->load->model("Request", "requestHandler");
           <!---end Chat-->
 
 			
-			</td>
+ </td>
 			
 	
 	 </tr>
