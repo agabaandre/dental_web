@@ -18,6 +18,8 @@
 	          <form method="post" action="<?php echo base_url();?>Clinic/clinics" autocomplte="off">
 	  	             <div id="">
 					<label>Clinic: *</label>
+                    <input class="form-control" name="add" id="title" value="add" placeholder="Name" type="hidden" style="width:100%;">
+				   
                       <input class="form-control" name="clinic" id="title" value="" placeholder="Clinic" type="text" required autocomplete="off">
 				   </div>
                    
@@ -63,11 +65,13 @@
 	  	           <div id="">
 					<label>Clinic: *</label>
                     <input class="form-control" name="id" id="title" value="<?php echo $row->id;?>" placeholder="Name" type="hidden" style="width:100%;">
+				      
+                    <input class="form-control" name="update" id="title" value="update" placeholder="Name" type="hidden" style="width:100%;">
 				
                       <input class="form-control" name="clinic" id="title" value="<?php echo $row->clinic;?>" placeholder="Name" type="text" style="width:100%;">
 				  </div>
 				     <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
-                     <button  class="btn btn-primary" type="submit"  ><span class="update"></span>Update</button>
+                     <button  class="btn btn-primary" type="submit"   ><span class="update"></span>Update</button>
                    </form>
 				   </div>
                         </div>

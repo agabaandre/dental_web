@@ -119,7 +119,7 @@ class Employee extends CI_Model
  
     public function add_clinic($data){
         $data=array(
-            'name' => $data['clinic'],
+            'clinic' => $data['clinic'],
      
         );
         $query=$this->db->insert('clinic',$data);
@@ -132,7 +132,7 @@ class Employee extends CI_Model
     }
     public function update_clinic($data){
         $datas=array(
-            'name' => $data['clinic'],
+            'clinic' => $data['clinic'],
             
         );
         $this->db->where('id',$data['id']);

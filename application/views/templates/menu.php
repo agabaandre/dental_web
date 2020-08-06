@@ -152,7 +152,7 @@
                 <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
-                <li class=""><a href="<?php echo base_url();?>clinic/capturebill">Capture Bill</a></li>
+                <li class=""><a href="<?php echo base_url();?>clinic/billing">Capture Bill</a></li>
                 
 			          </ul>
             </li>

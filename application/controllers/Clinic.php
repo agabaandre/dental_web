@@ -429,16 +429,35 @@ class Clinic extends CI_Controller
         $data['title'] = "Reports";
         $data['view'] = "home_reports";
         $data['heading'] = "Reports";
-        // if($this->input->post('clearlogs')){
-                            
-        //     $data['message']=$this->db->Delete('logs');
-        //     }
-        // $data['userslogs'] = $this->requestHandler->getLogs();
+        
         $this->load->view("main",$data);
     }
     public function app_notifications(){
 
     }
+    public function billing(){
+        $data['title'] = "Billing";
+        $data['view'] = "billing";
+        $data['heading'] = "Billing";
+        $postdata=$this->input->post();
+        $final=array();
+        $bill=$postdata['bill'];
+        foreach ($bill as $key => $value) {
+           
+            $datas['values']=$value;
+         
+            
+        }
+                
+           
+        
+        $data['appointments'] = $this->requestHandler->get_appointments();
+      $this->load->view("main",$data);
+    
+        
+    
+}
+   
    
    
 
