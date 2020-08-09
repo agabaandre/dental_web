@@ -1,8 +1,8 @@
 <script>
-// $.fn.datepicker.defaults.format = "yyyy/mm/dd";
-// $('.datepicker').datepicker({
-// });
-// </script>	
+$.fn.datepicker.defaults.format = "yyyy/mm/dd";
+$('.datepicker').datepicker({
+});
+ </script>	
 <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -39,8 +39,8 @@ $this->load->model("Request", "requestHandler");
     foreach($appointments as $row) {
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
-	  		<td><?php echo $row->patient;?></td>
-              <td><?php echo $row->mobile;?></td>
+	  		<td><?php echo $patient=$row->patient;?></td>
+              <td><?php echo $mobile=$row->mobile;?></td>
 			  <td><?php echo $row->time;?></td>
             <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $name=$row->start_date;?></td>
 			<td><?php echo  $row->end_date;?></td>
@@ -95,14 +95,27 @@ $this->load->model("Request", "requestHandler");
 													<div class="modal-content">
 														<div class="modal-header">
 															<button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Bill</h4>
+															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Bill <?php echo " ". $patient; ?></h4>
 														</div>
 														<div class="modal-body">
                 <button  class="btn btn-primary add_bill"  ><span class="glyphicon glyphicon-plus"></span>New Bill Item</button>
 				<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/billing">
-                <div class="form-group">
+				<div class="form-group" style="margin-left:12px;">
+				     
+					<label for="" style="width:100%;">Date</label>
+					  <div class='input-group date datepicker'>
+						<input type='text' autocomplete="off" name="posting_date" id="auto" class="form-control" required>
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+						</div>
+				</div>
+				<div class="form-group">
+				    
+				    <input type="hidden" name="appointment_id" value="<?php echo $id; ?>">
+					<input type="hidden" name="patient" value="<?php echo $mobile; ?>">
 					<div class="col-md-6">Description</div><div class="col-md-6">Amount</div>
-                    <div class="col-md-6"><input type="text" class="form-control" name="bill[]"  autocomplete="off" style="width:100%;" required></div><div class="col-md-6"><input type="text" class="form-control" name="bill[]"  autocomplete="off" style="width:100%;" required></div>'
+                    <div class="col-md-6"><input type="text" class="form-control" name="description[]"  autocomplete="off" style="width:100%;" required></div><div class="col-md-6"><input type="number" class="form-control" name="bill[]"  autocomplete="off" style="width:100%;" required></div>'
 				<p class="bill_item"></p>
 				</div>
                 </div>

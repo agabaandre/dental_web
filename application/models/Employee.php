@@ -156,7 +156,7 @@ class Employee extends CI_Model
     }
     public function post_bill($data){
        
-        $query=$this->db->insert('clinic',$data);
+        $query=$this->db->insert_batch('bill',$data);
         if ($query){
             return 'Successful';
             }

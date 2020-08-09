@@ -440,23 +440,60 @@ class Clinic extends CI_Controller
         $data['view'] = "billing";
         $data['heading'] = "Billing";
         $postdata=$this->input->post();
-        $final=array();
-        $bill=$postdata['bill'];
-        foreach ($bill as $key => $value) {
-           
-            $datas['values']=$value;
-         
-            
-        }
-                
-           
         
-        $data['appointments'] = $this->requestHandler->get_appointments();
-      $this->load->view("main",$data);
+        $bill=$this->input->post('bill');
+        $description=$this->input->post('description');
+        $appointment_id=$this->input->post('appointment_id');
+        $patient=$this->input->post('patient');
+       $final= array();
+         for ($x = 0; $x < count($bill); $x++ ) {
+         $insert=array("amount" => $bill[$x],
+                        "description" => $description[$x],
+                        "posting_date" => $this->input->post('posting_date'),
+                        "appointment_id" => $appointment_id,
+                        "patient" => $patient,
+                        "posted_by" => $_SESSION['name'],
+         );
+         array_push($final,$insert);
+       
+         }
+         if(!empty($this->input->post('appointment_id'))){
+         $data['message'] = $this->employeeHandler->post_bill($final);
+         }
+        // print_r($final);
+        
+       $data['appointments'] = $this->requestHandler->get_appointments();
+       $this->load->view("main",$data);
     
         
     
 }
+    Public function print_bill($date,$appointment_id)
+	{
+
+
+		$this->load->library('M_pdf');
+
+		$data['bill']=$this->rosta_model->fetch_report($date);
+
+		$html=$this->load->view('printable',$data,true);
+
+        $patient=$data['bill'][0]['name'];
+        
+
+        $filename=$patient."_Bill_". $date."pdf";
+
+
+        ini_set('max_execution_time',0);
+        $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+
+
+        ini_set('max_execution_time',0);
+        $this->m_pdf->pdf->WriteHTML($PDFContent); 
+        $this->m_pdf->pdf->Output($filename,'I');
+
+
+ }
    
    
    
