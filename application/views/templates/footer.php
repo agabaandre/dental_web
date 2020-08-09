@@ -43,13 +43,30 @@ if($message=="Successful"){
    }
 ?>
 <script>
-$(document).ready(function () {
-      
-    $('.add_bill').click(function(){
-        $('.bill_item').append('<div class="col-md-6"><input type="text" class="form-control" name="description[]" id="contact" autocomplete="off" style="width:100%; margin-top:4px;" required></div><div class="col-md-6"><input type="number" class="form-control" name="bill[]" id="contact" autocomplete="off" style="width:100%; margin-top:4px;" required></div>'
-);      
 
+$(document).ready(function() {
+    var max_fields = 5; 
+    var x = 1; 
+    $('.add_bill').click(function(e){ 
+        e.preventDefault();
+        if(x < max_fields){ 
+            x++; 
+            $('.bill_item').append('<div><div class="col-md-6"><input type="text" class="form-control" name="description[]" autocomplete="off" style="width:100%; margin-top:4px;" required></div><div class="col-md-6"><input type="number" class="form-control bills" name="bill[]" autocomplete="off" style="width:100%; margin-top:4px;" required></div><a href="#"  style="margin-left:14px;" class=" btn btn-sm btn-default remove_field"><i class="fa fa-minus" aria-hidden="true"></i></a></div>'); //add input box
+        }
+    });
+
+    $('.bill_item').on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
 });
 
-})
+
+$(document).on("keyup", ".bills", function() {
+    var sum = 0;
+    $(".bills").each(function(){
+        sum += +$(this).val();
+    });
+    $(".result").html(sum);
+});
+
 </script>

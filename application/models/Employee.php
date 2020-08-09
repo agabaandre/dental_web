@@ -164,5 +164,15 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
+    public function get_bill($data){
+       
+        $query=$this->db->query();
+        if ($query){
+            return 'Successful';
+            }
+            else{
+            return 'Failed';
+        }
+    }
 
    }

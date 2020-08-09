@@ -40,8 +40,8 @@ $this->load->model("Request", "requestHandler");
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
 	  		<td><?php echo $row->patient;?></td>
-              <td><?php echo $row->mobile;?></td>
-			  <td><?php echo $row->time;?></td>
+			<td><?php echo $row->mobile;?></td>
+			<td><?php echo $row->time;?></td>
             <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $name=$row->start_date;?></td>
 			<td><?php echo  $row->end_date;?></td>
 			<td><?php echo $row->doctor;?></td>
@@ -223,17 +223,8 @@ $this->load->model("Request", "requestHandler");
 	</div>
 	</div>
 	</div>
-	
-               
-			
-
-          <!---end Chat-->
-
-			
- </td>
-			
-	
-	 </tr>
+   </td>
+   </tr>
     <?php	
     }
     ?>

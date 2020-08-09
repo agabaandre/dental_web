@@ -226,8 +226,6 @@ class Clinic extends CI_Controller
         $id = $this->input->post('id');
         if($postData){
         $result=$data['user_details']= $this->requestHandler->saveAppointment($postData,$id);
-
-
         if($result) {
          $data['message']="Successful";
          $this->load->view('main',$data);
@@ -257,8 +255,10 @@ class Clinic extends CI_Controller
         else {
         $data['message']="Failed";
         } }
+        else{
 
         $this->load->view('main',$data); 
+        }
         
     }
     public function addDoctor()
@@ -459,29 +459,28 @@ class Clinic extends CI_Controller
          }
          if(!empty($this->input->post('appointment_id'))){
          $data['message'] = $this->employeeHandler->post_bill($final);
-         }
+        
+        }
         // print_r($final);
         
        $data['appointments'] = $this->requestHandler->get_appointments();
-       $this->load->view("main",$data);
+       $this->load->view("main",$data);      
     
-        
-    
-}
-    Public function print_bill($date,$appointment_id)
+   }
+    Public function print_bill($appointment_id)
 	{
 
 
 		$this->load->library('M_pdf');
 
-		$data['bill']=$this->rosta_model->fetch_report($date);
+		//$data['bill']=$this->rosta_model->fetch_report($date);
 
-		$html=$this->load->view('printable',$data,true);
+		$html=$this->load->view('print_bill',$data,true);
 
-        $patient=$data['bill'][0]['name'];
+        //$patient=$data['bill'][0]['name'];
         
 
-        $filename=$patient."_Bill_". $date."pdf";
+        //$filename=$patient."_Bill_". $date."pdf";
 
 
         ini_set('max_execution_time',0);

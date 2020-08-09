@@ -42,17 +42,18 @@
         
   </script>
   <style>
-        .content{
+      .content{
 	     min-height:640px;
 	     background:#FEFFFF;
 	     width:98%;
-         overflow:auto;
+       overflow:auto;
           }
 		  .noborder{
 			 border:hidden;
 			 font:1.5em;
-			 
-			 
+      }
+      .col-md-12{
+        overflow:auto;
       }
   
       @media print {
