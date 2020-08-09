@@ -112,7 +112,7 @@
                             
                             <td>
                                 Invoice #: 123<br>
-                                Created: <?php echo date('j F, Y'); ?><br>
+                                Date: <?php echo date('j F, Y'); ?><br>
                                 Due: All accounts are on demand
                             </td>
                         </tr>
@@ -133,9 +133,11 @@
                             </td>
                             
                             <td>
-                                Acme Corp.<br>
-                                John Doe<br>
-                                john@example.com
+                          <?php  
+                         // print_r($bill);
+                            echo $patient=$bill[0]->name. ' <br>'.
+                            date('j F, Y',strtotime($bill[0]->posting_date)).'<br>'. $bill[0]->mobile;
+                         ?>
                             </td>
                         </tr>
                     </table>
@@ -146,23 +148,24 @@
             
             <tr class="heading">
                 <td>
-                    Item
+                    Item Description
                 </td>
                 
                 <td>
                     Price
                 </td>
             </tr>
-            
+           <?php foreach($bill as $row){ ?>
             <tr class="item">
                 <td>
-                    Website design
+                    <?php echo $row->description; ?>
                 </td>
                 
                 <td>
-                    $300.00
+                    <?php echo $row->amount;  $sum += $row->amount;?>
                 </td>
             </tr>
+           <?php } ?>
             
             
             
@@ -170,7 +173,7 @@
                 <td></td>
                 
                 <td>
-                   Total: $385.00
+                   UGX: <?php echo $sum; ?>
                 </td>
             </tr>
         </table>

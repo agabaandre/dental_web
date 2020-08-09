@@ -471,16 +471,19 @@ class Clinic extends CI_Controller
 	{
 
 
-		$this->load->library('M_pdf');
+	     $this->load->library('M_pdf');
 
-		//$data['bill']=$this->rosta_model->fetch_report($date);
+        $data['bill'] = $this->employeeHandler->get_bill($appointment_id);
+        
+        //print_r($data);
 
 		$html=$this->load->view('print_bill',$data,true);
-
-        //$patient=$data['bill'][0]['name'];
-        
-
-        //$filename=$patient."_Bill_". $date."pdf";
+      
+          $patient=$data['bill'][0]->name;
+          $date=$data['bill'][0]->posting_date;
+         
+        $filename=$patient."_Bill_". $date.".pdf";
+        //print_r($filename);
 
 
         ini_set('max_execution_time',0);
@@ -493,6 +496,23 @@ class Clinic extends CI_Controller
 
 
  }
+  public function diagnosis(){
+    $data['title'] = "Diagnosis";
+    $data['view'] = "diagnise";
+    $data['heading'] = "Diagnosis";
+    $postdata=$this->input->post();
+    
+     if(!empty($this->input->post('appointment_id'))){
+     $data['message'] = $this->employeeHandler->post_bill($final);
+    
+    }
+    // print_r($final);
+    
+   $data['treatment'] = $this->requestHandler->get_appointments();
+   $this->load->view("main",$data);
+
+
+  }
    
    
    

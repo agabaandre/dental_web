@@ -164,11 +164,11 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
-    public function get_bill($data){
+    public function get_bill($id){
        
-        $query=$this->db->query();
+        $query=$this->db->query("SELECT * FROM bill,appointments,request where bill.appointment_id=appointments.id AND appointments.request_id=request.id and bill.appointment_id='$id'");
         if ($query){
-            return 'Successful';
+            return $query->result();
             }
             else{
             return 'Failed';

@@ -6,14 +6,14 @@ $('.datepicker').datepicker({
 <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-             <li class="active"><a href="#">Billing</a></li>
+             <li class="active"><a href="#">Diagnosis</a></li>
 			</ul>
 		   </div>
 		</div>
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/wickedpicker.min.css">
 <div class="col-md-12"> 
 <div class="box-header with-border">
-                  <h5 class="box-title">Client</h5>
+                  <h5 class="box-title">Clients</h5>
 </div>
       <table id="mydata" class="table table-bordered table-responsive">
                     <thead>
@@ -26,7 +26,7 @@ $('.datepicker').datepicker({
 						<th style="width:10%;">End Date</th>							
                         <th style="width:20%;">Doctor</th>
 						
-						<th style="width:20%;">Bill</th> <?php ?>
+						<th style="width:25%;">Diagnosis /Treatment</th> <?php ?>
                       </tr>
                     </thead>
 <tbody>       
@@ -50,12 +50,12 @@ $this->load->model("Request", "requestHandler");
 
 			<div class="dropdown show">
 			<a class="btn btn-sm btn-default dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Bill Options
+				 Options
 			</a>
 
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-				<li><a href="" data-toggle="modal" data-target="#<?php echo $modalid='my'.$id;?>" title="Set Appointment Time"><i class="fa fa-money-bill"></i>Post Bill</a></li>
-				<li><a href="<?php echo base_url();?>Clinic/print_bill/<?php echo $id;?>" target="_blank" title="Print Bill"><i class="fa fa-print"></i>Print Bill</a></li>
+				<li><a href="" data-toggle="modal" data-target="#<?php echo $modalid='my'.$id;?>" title="Post"><i class="fa-paper-plane"></i>Post</a></li>
+				<li><a href="<?php echo base_url();?>Clinic/print_diagnosis/<?php echo $id;?>" target="_blank" title="Print Bill"><i class="fa fa-print"></i>Print</a></li>
 				
 			</div>
 			</div>
@@ -67,32 +67,24 @@ $this->load->model("Request", "requestHandler");
 													<div class="modal-content">
 														<div class="modal-header">
 															<button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Bill <?php echo " ". $patient; ?></h4>
+															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Treatment and Diagnosis For: <?php echo " ". $patient; ?></h4>
 														</div>
 														<div class="modal-body">
                 <button  class="btn btn-primary add_bill"  ><span class="glyphicon glyphicon-plus"></span>New Bill Item</button>
-				<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/billing">
-				<div class="form-group" style="margin-left:12px;">
-				     
-					<label for="" style="width:100%;">Date</label>
-					  <div class='input-group date datepicker'>
-					  <input type='text' autocomplete="off" name="posting_date" id="auto" class="form-control" style="width:100%;" required>
-					  <span class="input-group-addon">
-					  <span class="glyphicon glyphicon-calendar"></span>
-				</span>
-				</div>
-				</div>
-				<div class="form-group">
-				    
-				    <input type="hidden" name="appointment_id" value="<?php echo $id; ?>">
+				<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/diagnosis">
+				
+                <div id="">
+                      <label>Diagnosis:  <span style="color:red"></span></label>
+				      <textarea class="form-control" name="diagnosis" id="diagnosis" name="editor1" rows="5" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
+		            </div>
+					<div id="">
+                      <label>Treatment:  <span style="color:red"></span></label>
+				      <textarea class="form-control" name="treatment" id="treatment" name="editor1" rows="5" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
+		            </div>
+                      
+                    <input type="hidden" name="appointment_id" value="<?php echo $id; ?>">
 					<input type="hidden" name="patient" value="<?php echo $mobile; ?>">
-					<div class="col-md-6">Description</div><div class="col-md-6">Amount</div>
-                    <div class="col-md-6"><input type="text" class="form-control" name="description[]"  autocomplete="off" style="width:100%;" required></div><div class="col-md-6"><input type="number" class="form-control bills" name="bill[]"  autocomplete="off" style="width:100%;" required></div>'
-				<p class="bill_item"></p>
-			
-               
-			    <div style="margin-left:12px; font-weight:bold; font-size:16px;">UGX: <span class="result" ></span></div>
-				</div>
+				
                 <div class="modal-footer">
 
 				
