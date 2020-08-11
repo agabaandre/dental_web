@@ -63,6 +63,7 @@
 <tbody>       
 <?php
    // print_r($usersdata);
+    $i=1;
     foreach($userdata as $row) {
     ?>
       <tr>  <td><?php echo $i++;?></td>

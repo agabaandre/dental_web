@@ -461,12 +461,14 @@ class Clinic extends CI_Controller
          $data['message'] = $this->employeeHandler->post_bill($final);
         
         }
+
         // print_r($final);
         
        $data['appointments'] = $this->requestHandler->get_appointments();
        $this->load->view("main",$data);      
     
    }
+   
     Public function print_bill($appointment_id)
 	{
 
@@ -498,21 +500,67 @@ class Clinic extends CI_Controller
  }
   public function diagnosis(){
     $data['title'] = "Diagnosis";
-    $data['view'] = "diagnise";
+    $data['view'] = "diagnose";
     $data['heading'] = "Diagnosis";
     $postdata=$this->input->post();
     
      if(!empty($this->input->post('appointment_id'))){
-     $data['message'] = $this->employeeHandler->post_bill($final);
+     $data['message'] = $this->requestHandler->post_diagnosis($postdata);
     
     }
-    // print_r($final);
     
-   $data['treatment'] = $this->requestHandler->get_appointments();
+   $data['appointments'] = $this->requestHandler->get_appointments();
    $this->load->view("main",$data);
 
-
+   
   }
+  public function manage_billing(){
+    $data['title'] = "Manage Bills";
+    $data['view'] = "manage_bill";
+    $data['heading'] = "Manage Bill";
+    $postdata=$this->input->post('appointment_id');
+     if(!empty($this->input->post('appointment_id'))) {
+     $data['message'] = $this->employeeHandler->update_bill($postdata);
+    
+    }
+    
+   $data['bill'] = $this->employeeHandler->get_bill();
+   $this->load->view("main",$data);
+
+   
+  }
+
+    
+  
+  Public function print_diagnosis($appointment_id)
+  {
+
+
+       $this->load->library('M_pdf');
+
+      $data['assessment'] = $this->requestHandler->get_diagnosis($appointment_id);
+      
+      //print_r($data);
+
+      $html=$this->load->view('print_diagnosis',$data,true);
+    
+        $patient=$data['assessment'][0]->name;
+        $date=$data['assessment'][0]->posting_date;
+       
+      $filename=$patient."_Assesment_". $date.".pdf";
+      //print_r($filename);
+
+
+      ini_set('max_execution_time',0);
+      $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+
+
+      ini_set('max_execution_time',0);
+      $this->m_pdf->pdf->WriteHTML($PDFContent); 
+      $this->m_pdf->pdf->Output($filename,'I');
+
+
+}
    
    
    

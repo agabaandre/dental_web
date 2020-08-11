@@ -73,6 +73,8 @@ $this->load->model("Request", "requestHandler");
                 <button  class="btn btn-primary add_bill"  ><span class="glyphicon glyphicon-plus"></span>New Bill Item</button>
 				<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/billing">
 				<div class="form-group" style="margin-left:12px;">
+				<label for="" style="width:100%;">Paid</label>
+				<input type="checkbox" class="flat-green" checked value="1" name="bill_status"  tyle="position: absolute; opacity: 0;">
 				     
 					<label for="" style="width:100%;">Date</label>
 					  <div class='input-group date datepicker'>

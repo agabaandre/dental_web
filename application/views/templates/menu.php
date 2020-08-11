@@ -136,8 +136,8 @@
                 <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
-                <li class=""><a href="<?php echo base_url();?>clinic/diagonosis">New Diagnisis</a></li>
-                
+                <li class=""><a href="<?php echo base_url();?>clinic/diagnosis">New Diagnosis</a></li>
+                 
 			          </ul>
             </li>
             <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
@@ -153,6 +153,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class=""><a href="<?php echo base_url();?>clinic/billing">Capture Bill</a></li>
+                <li class=""><a href="<?php echo base_url();?>clinic/manage_billing">Manage Bill</a></li>
                 
 			          </ul>
             </li>

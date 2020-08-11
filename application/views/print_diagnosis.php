@@ -111,9 +111,9 @@
                             </td>
                             
                             <td>
-                                Invoice #: <?php echo $bill[0]->appointment_id ?><br>
+                                Appointment #: <?php echo $bill[0]->appointment_id ?><br>
                                 Date: <?php echo date('j F, Y'); ?><br>
-                                Due: All accounts are on demand
+                               
                             </td>
                         </tr>
                     </table>
@@ -135,8 +135,8 @@
                             <td>
                           <?php  
                          // print_r($bill);
-                            echo $patient=$bill[0]->name. ' <br>'.
-                            date('j F, Y',strtotime($bill[0]->posting_date)).'<br>'. $bill[0]->mobile;
+                            echo $patient=$assessment[0]->name. ' <br>'.
+                            date('j F, Y',strtotime($assessment[0]->posting_date)).'<br>'. $assessment[0]->mobile;
                          ?>
                             </td>
                         </tr>
@@ -146,34 +146,42 @@
             
         
             
-            <tr class="heading">
-                <td>
-                    Item Description
+            <tr class="" >
+                <td style="font-weight:bold;">
+                    Medical Assessment
                 </td>
+
                 
+            </tr>
+            <tr>
                 <td>
-                    Price
+                    <?php echo $assessment[0]->diagnosis; ?>
                 </td>
             </tr>
-           <?php foreach($bill as $row){ ?>
-            <tr class="item">
-                <td>
-                    <?php echo $row->description; ?>
-                </td>
+          
+            <tr class="">
+            <td  style="font-weight:bold;">
+                    Treatment
+            </td>
                 
+                
+            </tr>
+            <tr>
                 <td>
-                    <?php echo $row->amount;  $sum += $row->amount;?>
+                    <?php echo $assessment[0]->treatment; ?>
                 </td>
             </tr>
-           <?php } ?>
+         
             
             
             
-            <tr class="total">
-                <td></td>
+            <tr>
                 
+                <td style="text-align:left;">
+                   Signature:____________________
+                </td>
                 <td>
-                   UGX: <?php echo $sum; ?>
+                
                 </td>
             </tr>
         </table>

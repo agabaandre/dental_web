@@ -65,11 +65,11 @@ $this->load->model("Request", "requestHandler");
 					<?php  
 					}
 					else { ?>
-					    <form action='<?php echo base_url();?>clinic/updateAppointment' method='post'>
+					    <!-- <form action='<?php echo base_url();?>clinic/updateAppointment' method='post'>
 						  <input type='hidden' value="0" name='status'>
-						  <input type='hidden' value='<?php echo $id; ?>' name='id'>
+						  <input type='hidden' value='<?php echo $id; ?>' name='id'> -->
 						 <button type='submit'  class='btn btn-sm btn-success' ><span class='glyphicon glyphicon-ok'></span>Finalised</button>
-						 </form> 
+						 <!-- </form>  -->
 
 
 					<?php }

@@ -6,7 +6,7 @@ $('.datepicker').datepicker({
 <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-             <li class="active"><a href="#">Diagnosis</a></li>
+             <li class="active"><a href="#">Examine</a></li>
 			</ul>
 		   </div>
 		</div>
@@ -22,11 +22,10 @@ $('.datepicker').datepicker({
 					   <th style="width:15%;">Name</th>
                        <th style="width:15%;">Patient's Contact</th>
 					   <th style="width:15%;">Time</th>
-                        <th style="width:10%;">Start Date</th>
-						<th style="width:10%;">End Date</th>							
+                        <th style="width:10%;">Date</th>							
                         <th style="width:20%;">Doctor</th>
 						
-						<th style="width:25%;">Diagnosis /Treatment</th> <?php ?>
+						<th style="width:25%;">Examination /Treatment</th> <?php ?>
                       </tr>
                     </thead>
 <tbody>       
@@ -39,26 +38,20 @@ $this->load->model("Request", "requestHandler");
     foreach($appointments as $row) {
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
-	  		<td><?php echo $patient=$row->patient;?></td>
+	  		<td><?php echo $name=$patient=$row->patient;?></td>
               <td><?php echo $mobile=$row->mobile;?></td>
 			  <td><?php echo $row->time;?></td>
-            <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $name=$row->start_date;?></td>
-			<td><?php echo  $row->end_date;?></td>
+            <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $start_date=$row->start_date;?></td>
+		
 			<td><?php echo $row->doctor;?></td>
 	        
-			<td> 
+			<td style="text-align:center;"> 
 
-			<div class="dropdown show">
-			<a class="btn btn-sm btn-default dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				 Options
-			</a>
-
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-				<li><a href="" data-toggle="modal" data-target="#<?php echo $modalid='my'.$id;?>" title="Post"><i class="fa-paper-plane"></i>Post</a></li>
-				<li><a href="<?php echo base_url();?>Clinic/print_diagnosis/<?php echo $id;?>" target="_blank" title="Print Bill"><i class="fa fa-print"></i>Print</a></li>
+			
+				<a href="" data-toggle="modal" data-target="#<?php echo $modalid='my'.$id;?>" class="btn btn-sm btn-default" title="Post"><i class="fa fa-paper-plane"></i>Assess</a>
+				<a href="<?php echo base_url();?>Clinic/print_diagnosis/<?php echo $id;?>" class="btn btn-sm btn-default" target="_blank" title="Print Bill"><i class="fa fa-print"></i>Print</a>
 				
-			</div>
-			</div>
+			
 		
 			<!--modal Update -->
 			<div class="col-md-12 offset-2">
@@ -67,28 +60,33 @@ $this->load->model("Request", "requestHandler");
 													<div class="modal-content">
 														<div class="modal-header">
 															<button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Treatment and Diagnosis For: <?php echo " ". $patient; ?></h4>
+															<h4 class="modal-title" style="text-align:center;"><i class=""></i>Treatment and Examination For: <?php echo " ". $patient; ?></h4>
 														</div>
 														<div class="modal-body">
-                <button  class="btn btn-primary add_bill"  ><span class="glyphicon glyphicon-plus"></span>New Bill Item</button>
-				<form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/diagnosis">
+                <form name="" id="data_form" method="post" action="<?php echo base_url();?>clinic/diagnosis">
+				<div class="col-md-12">
+				<?php $this->load->model("Request", "requestHandler"); 
 				
+				$diagnosis=$this->requestHandler->get_diagnosis($id);
+				//print_r($diagnosis);
+				?>
                 <div id="">
-                      <label>Diagnosis:  <span style="color:red"></span></label>
-				      <textarea class="form-control" name="diagnosis" id="diagnosis" name="editor1" rows="5" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
+                      <label>Examination:  <span style="color:red"></span></label>
+				      <textarea class="form-control editor" name="diagnosis"  name="assessment" rows="2" cols="80"  style="background:#ebf8a4; width:99%; height:200px;"><?php echo $diagnosis[0]->diagnosis; ?></textarea>
 		            </div>
 					<div id="">
                       <label>Treatment:  <span style="color:red"></span></label>
-				      <textarea class="form-control" name="treatment" id="treatment" name="editor1" rows="5" cols="80" placeholder="Description"  style="background:#ebf8a4;"></textarea>
+				      <textarea class="form-control editor" name="treatment"  name="treatment" rows="2" cols="80"   style="background:#ebf8a4; width:99%; height:200px;"><?php echo $diagnosis[0]->treatment; ?></textarea>
 		            </div>
                       
                     <input type="hidden" name="appointment_id" value="<?php echo $id; ?>">
 					<input type="hidden" name="patient" value="<?php echo $mobile; ?>">
-				
+					</div>
+				</div>
                 <div class="modal-footer">
 
 				
-			       <div id="footer-buttons" style="clear:both; margin-top:20px; margin-bottom:4px;">
+			       <div class="footer-buttons" style=" margin-top:40px; margin-bottom:4px;">
                      <button  class="btn btn-primary" type="submit" ><span class="glyphicon glyphicon-plus"></span>Save</button>
 					 <button class="btn btn-danger"  type="reset" id="reset" ><span class="glyphicon glyphicon-repeat"></span> Reset</button>
                      
@@ -100,12 +98,7 @@ $this->load->model("Request", "requestHandler");
                 </div>
                 </div>
 			 </div>
-				</div>
-				
-		 
-			
 
-          <!---end Chat-->
 
 			
 			</td>

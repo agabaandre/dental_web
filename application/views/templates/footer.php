@@ -1,5 +1,5 @@
 <footer class="main-footer" style="color:white;background-color:#222d32; font-size:10px; margin-bottom:0px;" >
-      <strong>Copyright &copy; St. Marys Dental Clinic  <?php echo date("Y")." "; ?> <a href="http://timelead.com" target="blank"> </a> TEL: 0702787688</strong> All rights reserved <version style="float:right;">Developed by TimeLead Enterprises</version>
+      <strong>Copyright &copy; St. Marys Dental Clinic  <?php echo date("Y")." "; ?> <a href="http://timelead.com" target="blank"> </a> </strong> All rights reserved <version style="float:right;">Powered by TimeLead Enterprises  +256702787688</version>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
       <!-- <script src="../../bower_components/moment/min/moment.min.js"></script> -->
@@ -69,4 +69,14 @@ $(document).on("keyup", ".bills", function() {
     $(".result").html(sum);
 });
 
+</script>
+
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<script>
+  $(function () {
+
+    // CKEDITOR.replace('.editor1');
+    CKEDITOR.replaceClass="editor";
+    $(".textarea").wysihtml5();
+  });
 </script>

@@ -164,11 +164,21 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
-    public function get_bill($id){
+    public function get_bill(){
        
-        $query=$this->db->query("SELECT * FROM bill,appointments,request where bill.appointment_id=appointments.id AND appointments.request_id=request.id and bill.appointment_id='$id'");
+        $query=$this->db->query("SELECT sum(amount) as totalbill,description, posting_date,bill.appointment_id,name,mobile,bill_status,partial_payment,posted_by FROM bill, appointments,request where appointments.id=bill.appointment_id and request.id=appointments.request_id group by appointment_id");
         if ($query){
             return $query->result();
+            }
+            else{
+            return 'Failed';
+        }
+    }
+    public function update_bill($id){
+       
+        $query=$this->db->query("UPDATE `bill` SET `bill_status` = '1' WHERE `bill`.`appointment_id` = '$id'");
+        if ($query){
+            return 'Successful';
             }
             else{
             return 'Failed';

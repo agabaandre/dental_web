@@ -55,7 +55,12 @@
       .col-md-12{
         overflow:auto;
       }
-  
+      .cke
+      {
+      min-height: 200px !important;
+      max-height: 400px !important;
+      }
+    
       @media print {
     .form-control {
         display: none;

@@ -346,5 +346,32 @@ class Request extends CI_Model
      array_push($dashbaord,$data);
 
  return $dashbaord;
+
  }
- }
+    public function get_diagnosis($id){
+        $query=$this->db->query("SELECT * FROM diagnosis,appointments,request where diagnosis.appointment_id=appointments.id and appointments.request_id=request.id and diagnosis.appointment_id='$id'");
+        return $query->result();
+
+    }
+    public function post_diagnosis($data){
+        $data=array("appointment_id"=>$data['appointment_id'],
+                    "patient"=>$data['patient'],
+                    "diagnosis"=>$data['diagnosis'],
+                    "treatment"=>$data['treatment'],
+                    "entry_id"=>$data['patient'].'-'.$data['appointment_id']
+
+        );
+        $query=$this->db->replace('diagnosis',$data);
+        if($query){
+        return "Successful";
+        }
+        else{
+        return "Failed";
+
+        }
+    }
+       
+       
+
+    }
+ 
