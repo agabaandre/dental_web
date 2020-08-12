@@ -154,8 +154,9 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
-    public function post_bill($data){
-       
+    public function post_bill($data,$appointment_id){
+  
+        $query1=$this->db->query("UPDATE `appointments` SET `status` = '2' WHERE `appointments`.`id` = $appointment_id");
         $query=$this->db->insert_batch('bill',$data);
         if ($query){
             return 'Successful';

@@ -38,7 +38,7 @@ $this->load->model("Request", "requestHandler");
     foreach($appointments as $row) {
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
-	  		<td><?php echo $name=$patient=$row->patient;?></td>
+	  		<td><a href="<?php echo base_url()?>clinic/userprofile/<?php echo  $row->mobile;?>" target="_top"><?php echo $name=$patient=$row->patient;?></a></td>
               <td><?php echo $mobile=$row->mobile;?></td>
 			  <td><?php echo $row->time;?></td>
             <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $start_date=$row->start_date;?></td>

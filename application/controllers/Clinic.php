@@ -445,6 +445,13 @@ class Clinic extends CI_Controller
         $description=$this->input->post('description');
         $appointment_id=$this->input->post('appointment_id');
         $patient=$this->input->post('patient');
+        if($this->input->post('bill_status')==1){
+            $bill_status=$this->input->post('bill_status');
+        }
+        else{
+            $bill_status=0;
+
+        }
        $final= array();
          for ($x = 0; $x < count($bill); $x++ ) {
          $insert=array("amount" => $bill[$x],
@@ -453,19 +460,20 @@ class Clinic extends CI_Controller
                         "appointment_id" => $appointment_id,
                         "patient" => $patient,
                         "posted_by" => $_SESSION['name'],
+                        "bill_status"=>$bill_status
          );
          array_push($final,$insert);
        
          }
          if(!empty($this->input->post('appointment_id'))){
-         $data['message'] = $this->employeeHandler->post_bill($final);
+         $data['message'] = $this->employeeHandler->post_bill($final,$appointment_id);
         
         }
 
-        // print_r($final);
+        //print_r($final);
         
        $data['appointments'] = $this->requestHandler->get_appointments();
-       $this->load->view("main",$data);      
+        $this->load->view("main",$data);      
     
    }
    
@@ -560,7 +568,55 @@ class Clinic extends CI_Controller
       $this->m_pdf->pdf->Output($filename,'I');
 
 
+    }
+//reports
+   public function patient_list(){
+    $data['title'] = "Patient List";
+    $data['view'] = "patientslist";
+    $data['heading'] = "Patient List";
+       $query=$this->db->query("SELECT DISTINCT mobile, name,email,address FROM `request` ORDER BY `mobile` ASC");
+   $data['patients'] = $query->result();
+   $this->load->view("main",$data);
+   }
+   public function stafflist_list(){
+    $data['title'] = "Staff List";
+    $data['view'] = "stafflist";
+    $data['heading'] = "Staff List";
+    $query=$this->db->query("SELECT * FROM `doctors`");
+   $data['stafflist']=$query->result();
+   $this->load->view("main",$data);
+   }
+   public function outstanding_payment(){
+    $data['title'] = "Out Standing Payment";
+    $data['view'] = "outstanding";
+    $data['heading'] = "Outstanding Bills";
+    $query=$this->db->query("SELECT sum(amount) as totalbill,description, posting_date,bill.appointment_id,name,mobile,bill_status,partial_payment,posted_by FROM bill, appointments,request where bill_status='0' and appointments.id=bill.appointment_id and request.id=appointments.request_id group by appointment_id");
+   $data['payments']=$query->result();
+   $this->load->view("main",$data);
 }
+public function userprofile($id){
+    $data['title'] = "Profile";
+    $data['view'] = "userprofile";
+    $data['heading'] = "User Profile";
+       $query=$this->db->query("SELECT Distinct * FROM `request` WHERE mobile='$id'");
+
+   $data['profile'] = $query->result();
+
+   //total appointments
+   $query1=$this->db->query("SELECT count(id) as requestno FROM `request` WHERE mobile='$id'");
+
+   $data['requests'] = $query1->result();
+
+   //diagnosis
+   $query2=$this->db->query("SELECT diagnosis,treatment,doctors.name as doctor,date_diagnosed FROM diagnosis,appointments,request,doctors where diagnosis.appointment_id=appointments.id and appointments.request_id=request.id and appointments.doctor=doctors.id and request.mobile='$id'");
+
+   $data['diagnosis'] = $query2->result();
+
+
+   //print_r($data);
+  $this->load->view("main",$data);
+   }
+
    
    
    

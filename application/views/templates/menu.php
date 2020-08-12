@@ -137,7 +137,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class=""><a href="<?php echo base_url();?>clinic/diagnosis">New Diagnosis</a></li>
-                 
+                <li class=""><a href="<?php echo base_url();?>clinic/diagnosis">Previous Diagnosis</a></li>
 			          </ul>
             </li>
             <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
