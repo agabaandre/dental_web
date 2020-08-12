@@ -574,7 +574,7 @@ class Clinic extends CI_Controller
     $data['title'] = "Patient List";
     $data['view'] = "patientslist";
     $data['heading'] = "Patient List";
-       $query=$this->db->query("SELECT DISTINCT mobile, name,email,address FROM `request` ORDER BY `mobile` ASC");
+       $query=$this->db->query("SELECT mobile, request.name as patient, request.email as useremail,address FROM `users` left join request on users.username=request.mobile where users.usertype='Patient' ORDER BY `mobile` ASC");
    $data['patients'] = $query->result();
    $this->load->view("main",$data);
    }
@@ -608,7 +608,7 @@ public function userprofile($id){
    $data['requests'] = $query1->result();
 
    //diagnosis
-   $query2=$this->db->query("SELECT diagnosis,treatment,doctors.name as doctor,date_diagnosed FROM diagnosis,appointments,request,doctors where diagnosis.appointment_id=appointments.id and appointments.request_id=request.id and appointments.doctor=doctors.id and request.mobile='$id'");
+   $query2=$this->db->query("SELECT diagnosis,treatment,doctors.name as doctor,date_diagnosed FROM diagnosis left join appointments on diagnosis.appointment_id=appointments.id left join request on appointments.request_id=request.id left join doctors on appointments.doctor=doctors.id where request.mobile='$id' order by diagnosis.id DESC LIMIT 50");
 
    $data['diagnosis'] = $query2->result();
 

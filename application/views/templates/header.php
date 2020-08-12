@@ -2,12 +2,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php ?>
-    <title>St. Marys Dental Clinic | <?php echo $title;?></title>
+    <title>St. Marys Dental Clinic - <?php echo $title;?></title>
 	  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
-
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/flat/blue.css">
@@ -32,7 +34,25 @@
           "autoWidth": true,
           "responsive": true,
           "iDisplayLength": 20,
-    	  "aLengthMenu": [[10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "All"]]
+        "aLengthMenu": [[10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "All"]],
+          dom: 'Bfrtip',
+          buttons: [
+            'copy',
+            'csv',
+            'excel',
+            'pdf',
+            {
+                extend: 'print',
+                text: 'Print all',
+                exportOptions: {
+                    modifier: {
+                        selected: null
+                    }
+                }
+            }
+        ],
+        select: true
+  
         });
         });
 

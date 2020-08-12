@@ -14,7 +14,7 @@ class Request extends CI_Model
     }
     public function get_appointments()
     {            
-        $query = $this->db->query("SELECT appointments.start_date,appointments.id,appointments.end_date,appointments.time, request.mobile, doctors.name as doctor,request.name as patient,appointments.allDay, appointments.status,appointments.request_id FROM appointments left join request on appointments.request_id=request.id left join doctors on appointments.doctor=doctors.id ");
+        $query = $this->db->query("SELECT appointments.start_date,appointments.id,appointments.end_date,appointments.time, request.mobile, doctors.name as doctor,request.name as patient,appointments.allDay, appointments.status,appointments.request_id FROM appointments left join request on appointments.request_id=request.id left join doctors on appointments.doctor=doctors.id order by appointments.id desc");
         if ($query){
             return $query->result();
         }
@@ -367,6 +367,10 @@ class Request extends CI_Model
         return "Failed";
 
         }
+    }
+    public function get_billstatus($id){
+    $query= $this->db->query("SELECT sum(amount) as total from bill where appointment_id='$id'");
+     return $query->result();
     }
        
        

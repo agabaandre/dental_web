@@ -23,28 +23,33 @@ $('.datepicker').datepicker({
                        <th style="width:15%;">Patient's Contact</th>
 					   <th style="width:15%;">Time</th>
                         <th style="width:10%;">Start Date</th>
-						<th style="width:10%;">End Date</th>							
+									
                         <th style="width:20%;">Doctor</th>
-						
+						<th style="width:20%;">Bill Status</th>
 						<th style="width:20%;">Bill</th> <?php ?>
                       </tr>
                     </thead>
 <tbody>       
 <?php 
-$this->load->model("Request", "requestHandler");
+  $this->load->model("Request", "requestHandler");
 	$c=1;
+
+	
 	
 	
 	
     foreach($appointments as $row) {
+
+		
     ?>
 	  <tr>  <td><?php echo $c++; ?></td>
 	  		<td><?php echo $patient=$row->patient;?></td>
               <td><?php echo $mobile=$row->mobile;?></td>
 			  <td><?php echo $row->time;?></td>
             <td><?php $id=$row->id; $requestid=$row->request_id; ?><?php echo $name=$row->start_date;?></td>
-			<td><?php echo  $row->end_date;?></td>
 			<td><?php echo $row->doctor;?></td>
+			<td> <?php $bill=$this->requestHandler->get_billstatus($row->id); if(!empty($bill[0]->total)){ echo "UGX ".$bill[0]->total;} else{ echo '<p style="color:red;">No Bill Yet</p>'; }?></td>
+			
 	        
 			<td> 
 

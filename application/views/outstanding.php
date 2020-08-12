@@ -24,39 +24,16 @@
 </form>
 </div>
 <div class="col-md-12">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js" integrity="sha512-XmZS54be9JGMZjf+zk61JZaLZyjTRgs41JLSmx5QlIP5F+sSGIyzD2eJyxD4K6kGGr7AsVhaitzZ2WTfzpsQzg==" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/css/tableexport.css" integrity="sha512-+m+NCQG6uttXsLjwxHTUdhov99LW3TSFEiM2LSFMwfOePszb2as348/96cCBG35mOK+3Gp4P0EQRWpKLZfGTnA==" crossorigin="anonymous" />
-<div class="btn-group">
-							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
-							<ul class="dropdown-menu " role="menu">
-								<li class="divider"></li>
-								<li><a href="#" onClick ="$('#mydata').tableExport({type:'excel',tableName:'Report_',escape:'false'});"> <i></i> XLS</a></li>
-								<li><a href="#" onClick ="$('#mydata').tableExport({type:'doc',tableName:'Report_',escape:'false',pdfFontSize:'9',orientation: 'potratit'});"> <i></i>Word Document</a></li>
-								
-								
-							</ul>
-</div>	<script>
- function printDiv(mydata){
-   
-                var printContents =document.getElementById(mydata).innerHTML;
-				var originalContents= document.body.innerHTML;
-				document.body.innerHTML = printContents;
-				
-				window.print();
-				document.body.innerHTML = originalContents;
-				}
-</script>
-<button type="button"  class="btn btn-sm btn-default" onclick="printDiv('printableArea')">Web Print</button>
+<div class="box-header with-border">
+                  <h5 class="box-title">Outstanding Bills</h5>
+				  <p class="danger"></p>
+        </div>
 <hr style="border:1px solid rgb(140, 141, 137);"/>
 
-<p style="font-weight:bold;"></p>
 
 
 <div id="printableArea">                            
-                <div class="box-header with-border">
-                  <h5 class="box-title">Outstanding Bills</h5>
-				  <p class="danger"></p>
-                </div>
+                
 					<table id="mydata" class="table table-hover table-responsive table-bordered">
                     <thead>
                       <tr>

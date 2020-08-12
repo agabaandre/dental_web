@@ -76,7 +76,7 @@
 
 
 
-              <?php if (in_array($view,array('makeAppointment','view_appointments'))){
+              <?php if (in_array($view,array('add_appointment','view_appointments'))){
             echo'<li class="active treeview">';
 			}
 		   else{
@@ -89,7 +89,7 @@
 
 
 
-     <?php if (in_array($view,array('request','view_requests'))){
+     <?php if (in_array($view,array('requests','view_requests','request'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -124,7 +124,7 @@
 			          
 			          </ul>
             </li>
-            <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
+            <?php if (in_array($view,array('diagnose'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -137,10 +137,10 @@
               </a>
               <ul class="treeview-menu">
                 <li class=""><a href="<?php echo base_url();?>clinic/diagnosis">New Diagnosis</a></li>
-                <li class=""><a href="<?php echo base_url();?>clinic/diagnosis">Previous Diagnosis</a></li>
+                <!-- <li class=""><a href="<?php echo base_url();?>clinic/diagnosis">Previous Diagnosis</a></li> -->
 			          </ul>
             </li>
-            <?php if (in_array($view,array('add_doctor','schedule_doctors','view_doctors'))){
+            <?php if (in_array($view,array('billing','manage_bill'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -160,7 +160,7 @@
          			  
          			  
 			
-			   <?php if (in_array($view,array('reports'))){
+			   <?php if (in_array($view,array('home_reports','userprofile','outstanding','stafflist','patientslist'))){
             echo'<li class="active treeview">';
 			}
 		     else{
@@ -172,7 +172,7 @@
               <span class="label label-primary pull-right"></span>
               </a>
             </li>
-			<?php if ( in_array($view,array('users','services'))){
+			<?php if ( in_array($view,array('manage_users','services','clinics'))){
                  echo'<li class="active treeview">';
 		          	}
 		           else{
@@ -192,8 +192,7 @@
                
                 <?php } 
 			  	else{ ?>
-                <li><a href="<?php echo base_url();?>clinic/users"><i class="fa fa-circle-o"></i>Users</a></li>
-		             <li><a href="<?php echo base_url();?>clinic/services"><i class="fa fa-circle-o"></i>Services</a></li>
+                <li><a href="<?php echo base_url();?>clinic/services"><i class="fa fa-circle-o"></i>Services</a></li>
                  <li><a href="<?php echo base_url();?>clinic/clinics"><i class="fa fa-circle-o"></i>Clinics</a></li>
                  <?php	}
 				?>

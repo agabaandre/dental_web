@@ -1,5 +1,5 @@
 <footer class="main-footer" style="color:white;background-color:#222d32; font-size:10px; margin-bottom:0px;" >
-      <strong>Copyright &copy; St. Marys Dental Clinic  <?php echo date("Y")." "; ?> <a href="http://timelead.com" target="blank"> </a> </strong> All rights reserved <version style="float:right;">Powered by TimeLead Enterprises  +256702787688</version>
+      <strong>Copyright &copy; St. Marys Dental Clinic  <?php echo date("Y")." "; ?>  </strong> All rights reserved <version style="float:right;">Powered by TimeLead Enterprises  +256702787688</version>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
       <!-- <script src="../../bower_components/moment/min/moment.min.js"></script> -->
@@ -7,6 +7,16 @@
       <script src="<?php echo base_url(); ?>assets/plugins/select2/select2.full.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+      <?php if($this->uri->segment(3)=="reports"){ ?>
+      <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script> 
+      <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+      <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+      <?php } ?>
       <script src="<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
       <script src="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
