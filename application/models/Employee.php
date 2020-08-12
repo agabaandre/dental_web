@@ -165,10 +165,10 @@ class Employee extends CI_Model
             return 'Failed';
         }
     }
+    
     public function get_bill(){
        
-        $query=$this->db->query("SELECT sum(amount) as totalbill,description, posting_date,bill.appointment_id,name,mobile,bill_status,partial_payment,posted_by FROM bill left join appointments on appointments.id=bill.appointment_id left join request on request.id=appointments.request_id group by appointment_id
-        ");
+        $query=$this->db->query("SELECT sum(amount) as totalbill,description, posting_date,bill.appointment_id,name,mobile,bill_status,partial_payment,posted_by FROM bill, appointments,request where appointments.id=bill.appointment_id and request.id=appointments.request_id group by appointment_id");
         if ($query){
             return $query->result();
             }
