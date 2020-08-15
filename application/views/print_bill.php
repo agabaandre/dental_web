@@ -162,7 +162,7 @@
                 </td>
                 
                 <td>
-                    <?php echo $row->amount;  $sum += $row->amount;?>
+                    <?php echo $row->totalbill;  $sum += $row->totalbill;?>
                 </td>
             </tr>
            <?php } ?>

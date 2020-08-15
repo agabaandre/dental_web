@@ -43,8 +43,8 @@
                      </form>
 				   </div>
    </div>
-<div class="col-md-8"> 
-<div id="CollapsiblePanel1" class="CollapsiblePanel" style="margin:0 auto; overflow-x:hidden; overflow-y:auto;">
+<div class="col-md-8" style="overflow:auto;"> 
+<div id="CollapsiblePanel1" class="CollapsiblePanel" style="margin:0 auto; overflow:auto;">
 								
 <div class="CollapsiblePanelTab" tabindex="0"><p>View System Users</p></div>
 <div class="CollapsiblePanelContent"> 

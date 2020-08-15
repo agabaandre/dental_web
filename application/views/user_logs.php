@@ -10,8 +10,8 @@
                   <h5 class="box-title">Manage User Logs</h5>
                 </div>
 </div>
-<div class="col-md-12"> 
-<div id="CollapsiblePanel1" class="CollapsiblePanel" style="margin:0 auto; overflow-x:hidden; overflow-y:auto;">
+<div class="col-md-12" style="overflow:auto;"> 
+<div id="CollapsiblePanel1" class="CollapsiblePanel" style="margin:0  overflow:auto;">
   <div class="CollapsiblePanelTab" tabindex="0"><p>View System Logs</p></div>
 <div class="CollapsiblePanelContent"> 
 <form method="post" action="<?php echo base_url();?>clinic/userlogs" autocomplte="off">

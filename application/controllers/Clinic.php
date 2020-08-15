@@ -483,7 +483,7 @@ class Clinic extends CI_Controller
 
 	     $this->load->library('M_pdf');
 
-        $data['bill'] = $this->employeeHandler->get_bill($appointment_id);
+        $data['bill'] = $this->employeeHandler->print_bill($appointment_id);
         
         //print_r($data);
 
